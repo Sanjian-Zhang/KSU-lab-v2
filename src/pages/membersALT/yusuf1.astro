@@ -1,0 +1,173 @@
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+
+const member = {
+  fullName: "Yusuf Tekes",
+  image: "/assets/images/members/yusuf.png",
+
+  bio: `First-Year Scholar and Research Assistant contributing to laboratory projects with analytical and research support. Aspiring professional in data science and quantitative finance with a focus on applying computational and statistical methods to real-world problems.
+
+Originally from Alpharetta, Georgia, with family roots in Istanbul, Turkey, bringing a multicultural perspective to collaborative research.
+
+Additional interests include soccer, cooking, and working on side projects.`
+};
+---
+
+<BaseLayout
+  title={`${member.fullName} | Intelligent Biomechanics Lab`}
+  description={`${member.fullName} profile page for the Intelligent Biomechanics Lab.`}
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500&family=Nunito:wght@400;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <section id="member-profile-minimal">
+    <div class="profile-shell">
+      <h1 class="profile-name">{member.fullName}</h1>
+
+      <div class="profile-card-wrap">
+        <div class="profile-image-ring">
+          <img
+            class="profile-image"
+            src={member.image}
+            alt={member.fullName}
+            width="500"
+            height="500"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-card-content">
+            <p class="profile-label">{member.fullName}</p>
+            <p class="profile-bio">{member.bio}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="less">
+  #member-profile-minimal {
+    padding: 8rem 1rem 4rem;
+    background: #d9d9d9;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    .profile-shell {
+      width: 100%;
+      max-width: 60rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-name {
+      margin: 0 0 2.5rem;
+      text-align: center;
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 400;
+      font-variant-caps: small-caps;
+      line-height: 1.1;
+      letter-spacing: 0.03em;
+      color: #111;
+    }
+
+    .profile-card-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-image-ring {
+      width: min(22rem, 68vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #111;
+      background: #ccc;
+      position: relative;
+      z-index: 2;
+      margin-bottom: -5rem;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-card {
+      width: 100%;
+      background: #f5f5f5;
+      border: 2px solid #111;
+      border-radius: 2rem;
+      padding: 7rem 2.5rem 2.25rem;
+      box-sizing: border-box;
+    }
+
+    .profile-card-content {
+      max-width: 46rem;
+      margin: 0 auto;
+      font-family: "Nunito", sans-serif;
+      color: #111;
+
+      .profile-label {
+        margin: 0 0 0.15rem;
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+
+      .profile-bio {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.65;
+        white-space: pre-line;
+        font-weight: 400;
+        color: #1a1a1a;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 48rem) {
+    #member-profile-minimal {
+      padding-top: 6.5rem;
+
+      .profile-name {
+        font-size: clamp(1.9rem, 9vw, 2.8rem);
+        margin-bottom: 1.75rem;
+      }
+
+      .profile-image-ring {
+        width: min(17rem, 75vw);
+        margin-bottom: -3.75rem;
+      }
+
+      .profile-card {
+        border-radius: 1.5rem;
+        padding: 5.25rem 1.25rem 1.5rem;
+      }
+
+      .profile-card-content {
+        .profile-label {
+          font-size: 0.9rem;
+        }
+
+        .profile-bio {
+          font-size: 0.9rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+</style>

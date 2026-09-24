@@ -1,0 +1,931 @@
+﻿
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import FAQ from "@components/Faq.astro";
+import CTA from "@components/CTA.astro";
+---
+
+<BaseLayout
+  title="Tutorials"
+  description="Watch laboratory equipment and experimental procedure tutorials from the Intelligent Biomechanics Lab."
+>
+
+<!-- ============================================ -->
+<!--                  Services                    -->
+<!-- ============================================ -->
+
+<section id="services-2131">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">Tutorials</span>
+            <h2 class="cs-title">Videos To Provide Guidance</h2>
+        </div>
+        <ul class="cs-card-group">
+            <li class="cs-item">
+                <a href="https://youtu.be/VT-uBhC1srM" class="cs-link">
+                    <h3 class="cs-h3">How To Clean The Biobath And Set Up The Bath</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/noelia.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/noelia.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/noelia.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="https://youtu.be/I6m5y3r479I" class="cs-link">
+                    <h3 class="cs-h3">How To Preserve The Biobath</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/aiden.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/aiden.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/aiden.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+            <li class="cs-item">
+                <a href="https://youtu.be/KxurN4BUOK8" class="cs-link">
+                    <h3 class="cs-h3">How To End The Experiment And Clean The Tools</h3>
+                    <!--Background Image-->
+                    <picture class="cs-background">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="/assets/images/tutorials/curtis.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="/assets/images/tutorials/curtis.png">
+                        <img loading="lazy" decoding="async" src="/assets/images/tutorials/curtis.png" alt="person" width="352" height="440">
+                    </picture>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!--                  FAQ Section                  -->
+<!-- ============================================ -->
+
+<section id="faq-tutorials">
+    <div class="cs-container">
+        <div class="cs-header">
+            <span class="cs-topper">FAQ</span>
+            <h2 class="cs-title">Frequently Asked Questions</h2>
+            <p class="cs-subtitle">
+                Find answers to common questions about our tutorials and research workflows.
+            </p>
+        </div>
+        <div class="cs-faq-group">
+            <div class="cs-faq-item">
+                <button class="cs-faq-trigger">
+                    <span class="cs-faq-icon">📋</span>
+                    <span class="cs-faq-question">How do I access the tutorial videos?</span>
+                    <span class="cs-faq-arrow">+</span>
+                </button>
+                <div class="cs-faq-content">
+                    <p>All tutorial videos are hosted on YouTube. Simply click on any tutorial card to be directed to the corresponding video. Some advanced tutorials may require access to our lab resources or software licenses.</p>
+                </div>
+            </div>
+            <div class="cs-faq-item">
+                <button class="cs-faq-trigger">
+                    <span class="cs-faq-icon">🔬</span>
+                    <span class="cs-faq-question">What equipment do I need for these experiments?</span>
+                    <span class="cs-faq-arrow">+</span>
+                </button>
+                <div class="cs-faq-content">
+                    <p>Our tutorials primarily feature the Biobath system for organ bath experiments. You'll need access to a functional Biobath setup, tissue samples, appropriate recording equipment, and the analysis software demonstrated in the videos.</p>
+                </div>
+            </div>
+            <div class="cs-faq-item">
+                <button class="cs-faq-trigger">
+                    <span class="cs-faq-icon">⏱️</span>
+                    <span class="cs-faq-question">How long does a typical experiment take?</span>
+                    <span class="cs-faq-arrow">+</span>
+                </button>
+                <div class="cs-faq-content">
+                    <p>The duration varies depending on the experiment type. A standard organ bath experiment typically takes 2-4 hours from setup to data collection. Preparation and cleanup add additional time. We recommend scheduling half a day for each experiment session.</p>
+                </div>
+            </div>
+            <div class="cs-faq-item">
+                <button class="cs-faq-trigger">
+                    <span class="cs-faq-icon">💾</span>
+                    <span class="cs-faq-question">How should I store and analyze the collected data?</span>
+                    <span class="cs-faq-arrow">+</span>
+                </button>
+                <div class="cs-faq-content">
+                    <p>Data should be stored in our lab's shared database with proper documentation. We recommend using MATLAB or Python for analysis. Detailed protocols for data management and analysis pipelines are available in our lab documentation.</p>
+                </div>
+            </div>
+            <div class="cs-faq-item">
+                <button class="cs-faq-trigger">
+                    <span class="cs-faq-icon">❓</span>
+                    <span class="cs-faq-question">Who should I contact if I have technical issues?</span>
+                    <span class="cs-faq-arrow">+</span>
+                </button>
+                <div class="cs-faq-content">
+                    <p>For technical issues with equipment or software, please contact our lab technician. For questions about experimental protocols or data analysis, reach out to the lab PI or senior researchers. Contact information can be found on our Contact page.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqTriggers = document.querySelectorAll('.cs-faq-trigger');
+        
+        faqTriggers.forEach(trigger => {
+            trigger.setAttribute('aria-expanded', 'false');
+            
+            trigger.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                const content = this.nextElementSibling;
+                const parent = this.parentElement;
+                
+                if (!isExpanded) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.classList.add('expanded');
+                    parent.classList.add('active');
+                } else {
+                    content.style.maxHeight = '0';
+                    content.classList.remove('expanded');
+                    parent.classList.remove('active');
+                }
+                
+                this.setAttribute('aria-expanded', !isExpanded);
+            });
+        });
+    });
+</script>
+
+</BaseLayout>
+
+
+
+
+
+<style lang="less">
+
+
+/*-- -------------------------- -->
+<---          Services          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #services-2131 {
+        padding-top: 8rem;
+        padding-bottom: var(--sectionPadding);
+        background-color: #FDFAF8;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at tablet */
+            max-width: (704/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: center;
+        }
+
+        .cs-title {
+            margin: 0;
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            /* 16px - 20px */
+            gap: clamp(1rem, 1.5vw, 1.25rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            width: 100%;
+            height: (280/16rem);
+            margin: 0;
+            /* clips the image corners */
+            overflow: hidden;
+            grid-column: span 12;
+            grid-row: span 1;
+            gap: (8/16rem);
+            position: relative;
+
+            &:hover,
+            &:focus-within {
+                .cs-h3 {
+                    transform: translateY(0);
+                }
+
+                .cs-background {
+                    &:after {
+                        opacity: .6;
+                    }
+
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        .cs-link {
+            text-decoration: none;
+            height: 100%;
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            padding: (16/16rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-h3 {
+            /* 20px - 25px */
+            font-size: clamp(1.25rem, 2vw, 1.5625rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: center;
+            margin: 0;
+            padding: (16/16rem) (20/16rem);
+            color: var(--bodyTextColorWhite);
+            border: 1px solid var(--bodyTextColorWhite);
+            /* transform down the same amount as the flex gap */
+            transform: translateY(0.75rem);
+            transition: transform 0.3s, color 0.3s, background-color .3s;
+
+            &:hover {
+                background-color: #fff;
+                color: var(--headerColor);
+            }
+        }
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+
+            &:before {
+                /* gradient overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%);
+                opacity: 1;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: -2;
+                transition: height 0.3s;
+            }
+
+            &:after {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                opacity: 0;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+                transition: opacity 0.3s;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                /* Makes img tag act as a background image */
+                object-fit: cover;
+                position: absolute;
+                z-index: -3;
+                transition: transform 0.6s;
+            }
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #services-2131 {
+        .cs-container {
+            max-width: (1280/16rem);
+        }
+
+        .cs-card-group {
+            max-width: 100%;
+            grid-template-rows: 1fr;
+        }
+
+        .cs-item {
+            /* 240px - 440px */
+            min-height: clamp(15rem, 30vw, 27.5rem);
+            grid-column: span 4;
+
+            &:nth-of-type(4),
+            &:nth-of-type(5) {
+                grid-column: span 6;
+            }
+        }
+    }
+}
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+  #services-2131 {
+    .cs-container {
+      max-width: (1840/16rem);
+    }
+
+    .cs-card-group {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cs-item {
+      grid-column: span 1;   // each item just takes one column
+    }
+
+    .cs-item:nth-of-type(4),
+    .cs-item:nth-of-type(5) {
+      grid-column: span 1;   // override the tablet span 6
+    }
+  }
+}
+
+/*-- -------------------------- -->
+<---          Process            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #steps-2330 {
+        padding: var(--sectionPadding);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            max-width: (584/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: (32/16rem);
+        }
+
+        .cs-wrapper {
+            display: contents;
+        }
+
+        .cs-content {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cs-topper {
+            color: var(--secondary);
+        }
+
+        .cs-title {
+            margin: 0;
+            max-width: (20ch);
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: clamp(2rem, 6vw, 3.75rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            gap: clamp(1rem, 2vw, 1.5rem);
+            position: relative;
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+
+        .cs-number {
+            font-size: clamp(2.4375rem, 7vw, 3.8125rem);
+            font-weight: 900;
+            line-height: (19/16em);
+            color: var(--csButtonColor);
+            display: block;
+        }
+
+        .cs-h3 {
+            font-size: (20/16rem);
+            font-weight: 700;
+            line-height: (18/16em);
+            margin: 0 0 (12/16rem) 0;
+            color: var(--headerColor);
+        }
+
+        .cs-item-text {
+            font-size: (16/16rem);
+            line-height: (24/16em);
+            text-align: left;
+            margin: 0;
+            color: var(--bodyTextColor);
+        }
+
+        .cs-picture {
+            width: 100%;
+            height: auto;
+            order: 3;
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+
+        .cs-floater {
+            display: none;
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #steps-2330 {
+        .cs-floater {
+            font-size: (180/16rem);
+            text-transform: uppercase;
+            line-height: 1.2em;
+            font-weight: 900;
+            color: #F3F3F3;
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: (-350/16rem);
+            z-index: -2;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #steps-2330 {
+        .cs-container {
+            max-width: (1280/16rem);
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        .cs-wrapper {
+            max-width: (748/16rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: (32/16rem);
+        }
+
+        .cs-title {
+            width: 80%;
+        }
+
+        .cs-card-group {
+            max-width: (578/16rem);
+            align-items: flex-end;
+        }
+
+        .cs-item {
+            position: relative;
+            z-index: 1;
+
+            &:nth-of-type(2) {
+                width: (538/16rem);
+            }
+
+            &:nth-of-type(3) {
+                width: (498/16rem);
+            }
+
+            &:nth-of-type(4) {
+                width: (458/16rem);
+            }
+        }
+
+        .cs-picture {
+            width: 120%;
+            max-height: (420/16rem);
+            max-width: (685/16rem);
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---          FAQ Section        -->
+<--- -------------------------- -*/
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#faq-tutorials {
+    padding: var(--sectionPadding);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(var(--primaryRGB), 0.2) 50%, transparent 100%);
+    }
+
+    .cs-container {
+        max-width: 48rem;
+        margin: 0 auto;
+    }
+
+    .cs-header {
+        text-align: center;
+        margin-bottom: 3rem;
+
+        .cs-topper {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .cs-title {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 700;
+            color: var(--headerColor);
+            margin: 0 0 1rem 0;
+        }
+
+        .cs-subtitle {
+            font-size: 1rem;
+            color: var(--bodyTextColor);
+            opacity: 0.85;
+            margin: 0;
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+    }
+
+    .cs-faq-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .cs-faq-item {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        &.active {
+            box-shadow: 0 4px 25px rgba(var(--primaryRGB), 0.15);
+        }
+    }
+
+    .cs-faq-trigger {
+        width: 100%;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background: rgba(var(--primaryRGB), 0.02);
+        }
+
+        .cs-faq-icon {
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cs-faq-question {
+            flex: 1;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--headerColor);
+        }
+
+        .cs-faq-arrow {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        &[aria-expanded="true"] {
+            .cs-faq-arrow {
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    .cs-faq-content {
+        padding: 0 1.5rem 1.25rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
+
+        &.expanded {
+            opacity: 1;
+        }
+
+        p {
+            font-size: 0.9375rem;
+            line-height: 1.75em;
+            color: var(--bodyTextColor);
+            margin: 0;
+            opacity: 0.9;
+        }
+    }
+}
+
+/* ============================================ */
+/*               Side By Side (SBS)              */
+/* ============================================ */
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #sbs-2283 {
+        padding: var(--sectionPadding);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            max-width: (584/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cs-content-images {
+            display: none;
+        }
+
+        .cs-text {
+            max-width: 100%;
+            margin-bottom: (16/16rem);
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+
+        .cs-card-group {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: (20/16rem);
+            order: 3;
+        }
+
+        .cs-item {
+            list-style: none;
+            padding: clamp(1.5rem, 5vw, 2rem);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: (12/16rem);
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                opacity: .05;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        }
+
+        .cs-item-picture {
+            display: none;
+        }
+
+        .cs-h3 {
+            font-size: (16/16rem);
+            line-height: 1.2em;
+            font-weight: 700;
+            margin: 0;
+            color: var(--headerColor);
+        }
+
+        .cs-item-text {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            margin: 0;
+            color: var(--bodyTextColor);
+        }
+
+        .cs-image-group {
+            font-size: ~"min(2.48vw, 1rem)";
+            width: (584/16em);
+            height: (619/16em);
+            display: block;
+            position: relative;
+            z-index: 1;
+            order: 2;
+        }
+
+        .cs-picture {
+            display: block;
+            position: absolute;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .cs-picture1 {
+            width: (340/16em);
+            height: (340/16em);
+            border-right: (14/16em) solid #FEF5F4;
+            border-bottom: (14/16em) solid #FEF5F4;
+            top: 0;
+            bottom: (281/16em);
+            left: 0;
+            z-index: 2;
+        }
+
+        .cs-picture2 {
+            width: (382/16em);
+            height: (326/16em);
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #sbs-2283 {
+        .cs-container {
+            max-width: (1280/16rem);
+            gap: (32/16rem);
+        }
+
+        .cs-content {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: (44/16rem);
+            position: relative;
+            z-index: 10;
+        }
+
+        .cs-flex {
+            width: 100%;
+            max-width: (738/16rem);
+        }
+
+        .cs-content-images {
+            width: 45vw;
+            max-width: (412/16rem);
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+            order: -1;
+        }
+
+        .cs-image-group {
+            display: none;
+        }
+
+        .cs-picture1 {
+            width: (381/16em);
+            height: (381/16em);
+            border-right: (14/16em) solid #FEF5F4;
+            border-bottom: (14/16em) solid #FEF5F4;
+            top: 0;
+            bottom: (340/16em);
+            left: 0;
+        }
+
+        .cs-card-group {
+            width: 50%;
+            max-width: (521/16rem);
+            margin-left: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cs-item-picture {
+            width: 30vw;
+            max-width: (413/16rem);
+            border: none;
+            display: block;
+            position: absolute;
+            right: calc(100% + clamp(4.5rem, 6vw + 2.5rem, 8.125rem));
+            top: (36/16rem);
+            bottom: 0;
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+}
+
+</style>

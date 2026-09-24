@@ -1,0 +1,178 @@
+<!-- ============================================ -->
+<!--                      CTA                     -->
+<!-- ============================================ -->
+
+<section id="cta-2236">
+    <div class="cs-container">
+        <div class="cs-content">
+            <h2 class="cs-title">Bringing GI Biomechanics to Life</h2>
+            <p class="cs-text">
+                At the Intelligent Biomechanics Lab, we turn clinical data and tissue experiments into patient-specific digital twins that reveal how the stomach and GI tract move, deform, and function.
+            </p>
+            <a href="/contact" class="cs-button-outline">Contact Us</a>
+        </div>
+        <div class="cs-video-wrapper">
+            <video autoplay loop muted src="/assets/videos/CTA1.mp4"></video>
+        </div>
+    </div>
+</section>
+
+<style lang= "less">
+
+/*-- -------------------------- -->
+<---             CTA            -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #cta-2236 {
+        background-color: #f7f7f7;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 5vw, 4rem);
+            position: relative;
+            z-index: 1;
+
+            &::before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%);
+                pointer-events: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+        }
+
+        .cs-content {
+            /* aligns text centrally. set to left to left-align text */
+            text-align: center;
+            padding: var(--sectionPadding);
+            /* 60px - 150px */
+            padding-top: clamp(3.75rem, 8.82vw, 9.375rem);
+            padding-bottom: clamp(3.75rem, 8.82vw, 9.375rem);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* centrally aligns items. set to flex-start to left-align items */
+            align-items: center;
+            z-index: 2;
+        }
+
+        .cs-title {
+            /* 31px - 39px */
+            font-size: clamp(1.9375rem, 3vw, 2.4375rem);
+            color: var(--bodyTextColorWhite);
+        }
+
+        .cs-text {
+            margin: 0 0 (32/16rem);
+            color: var(--bodyTextColorWhite);
+        }
+
+        .cs-button-outline {
+            font-size: (16/16rem);
+            font-weight: 700;
+            /* 46px - 56px */
+            line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-align: center;
+            text-decoration: none;
+            min-width: (200/16rem);
+            margin: 0;
+            /* prevents padding from adding to the width */
+            box-sizing: border-box;
+            /* 32px - 48px */
+            padding: 0 clamp(2rem, 4vw, 3rem);
+            pointer-events: auto;
+            color: var(--bodyTextColorWhite);
+            border: 2px solid var(--csTextColor);
+            display: inline-block;
+            position: relative;
+            transition: color 0.3s;
+
+            &:before {
+                content: "";
+                width: 0%;
+                height: 100%;
+                background: var(--primary);
+                opacity: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                color: var(--bodyTextColorWhite);
+
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        .cs-video-wrapper {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+
+            &:hover {
+                cursor: pointer;
+                .cs-play {
+                    transform: translate(-50%, -50%) scale(1.2);
+                }
+            }
+
+            video,
+            .cs-picture {
+                width: 100%;
+                height: 100%;
+                /* makes image act as a background image */
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    /* makes image act as a background image */
+                    object-fit: cover;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                &:before {
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
+                    /* prevents the cursor from interacting with it */
+                    pointer-events: none;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+</style>

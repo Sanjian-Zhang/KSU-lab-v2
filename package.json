@@ -1,0 +1,22 @@
+{
+  "name": "base-template-1",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fetch:pubs": "node scripts/fetch-publications.js"
+  },
+  "dependencies": {
+    "astro": "^6.1.1",
+    "astro-icon": "^1.1.5",
+    "better-sqlite3": "^12.10.0",
+    "isomorphic-git": "^1.42.2"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "less": "^4.3.0"
+  }
+}

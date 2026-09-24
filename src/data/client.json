@@ -1,0 +1,16 @@
+{
+	"name": "Intelligent Biomechanics Lab",
+	"email": "lshi@kennesaw.edu",
+	"phoneForTel": "+13147283493",
+	"title": "Intelligent Biomechanics Lab",
+	"phoneFormatted": "314-728-3493",
+	"address": {
+		"lineOne": "Engineering Lab Building",
+		"lineTwo": "1100 S Marietta Pkwy",
+		"city": "Marietta",
+		"state": "GA",
+		"zip": "30060",
+		"mapLink": "https://maps.google.com/?q=Engineering+Lab+Building,1100+S+Marietta+Pkwy,Marietta,GA+30060"
+	},
+	"domain": "www.intelligentbiomechanicslab.net"
+}

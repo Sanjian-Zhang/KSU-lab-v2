@@ -1,0 +1,27 @@
+[
+  {
+    "key": "News",
+    "url": "/",
+    "children": []
+  },
+  {
+    "key": "Members",
+    "url": "/members/",
+    "children": []
+  },
+  {
+    "key": "Research",
+    "url": "/research/",
+    "children": []
+  },
+  {
+    "key": "Tutorials",
+    "url": "/tutorials/",
+    "children": []     
+  },
+  {
+    "key": "Publications",
+    "url": "/publications/",
+    "children": []
+  }
+]

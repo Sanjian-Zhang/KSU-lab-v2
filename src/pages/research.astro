@@ -1,0 +1,1607 @@
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Research - Intelligent Biomechanics Lab"
+  description="Explore our cutting-edge research: HeartSimSage for cardiac mechanics and Stomach Digital Twin for GI motility modeling"
+>
+
+<!-- Hero Section -->
+<section id="item-hero">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">Research</span>
+            <h1 class="cs-title">Funding & Partners</h1>
+            <p class="cs-subtitle">Our research is supported by competitive federal grants and strong cross-institutional collaborations.</p>
+        </div>
+
+        <!-- Funding & Partners -->
+        <div class="fnp-grid">
+            <div class="fnp-card">
+                <div class="fnp-logo-box">
+                    <img src="/assets/images/funding/NIH.svg" alt="NIH Logo" />
+                </div>
+            </div>
+            <div class="fnp-card">
+                <div class="fnp-logo-box">
+                    <img src="/assets/images/funding/NSF.svg" alt="NSF Logo" />
+                </div>
+            </div>
+            <div class="fnp-card">
+                <div class="fnp-logo-box">
+                    <img src="/assets/images/PartnerInstitutions/ksu.png" alt="Kennesaw State University" loading="lazy" decoding="async" />
+                </div>
+            </div>
+            <div class="fnp-card">
+                <div class="fnp-logo-box">
+                    <img src="/assets/images/PartnerInstitutions/emory.png" alt="Emory University" loading="lazy" decoding="async" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research Areas Navigation -->
+<section id="research-nav">
+    <div class="cs-container">
+        <div class="cs-tabs">
+            <button class="cs-tab cs-tab-active" data-tab="ml">
+                <span class="cs-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2v4m0 12v4M2 12h4m12 0h4m-14.5-7.5l2.8 2.8m5.4 5.4l2.8 2.8m0-11l-2.8 2.8m-5.4 5.4l-2.8 2.8"/>
+                    </svg>
+                </span>
+                <span class="cs-tab-label">Machine Learning</span>
+            </button>
+            <button class="cs-tab" data-tab="multiscale">
+                <span class="cs-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </span>
+                <span class="cs-tab-label">Multiscale &amp; Multiphysics</span>
+            </button>
+            <button class="cs-tab" data-tab="constitutive">
+                <span class="cs-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                    </svg>
+                </span>
+                <span class="cs-tab-label">Constitutive Modeling</span>
+            </button>
+            <button class="cs-tab" data-tab="experiments">
+                <span class="cs-tab-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 3h6l1 5a4 4 0 0 1-8 0L9 3zM10 12v9M14 12v9M10 21h4"/>
+                    </svg>
+                </span>
+                <span class="cs-tab-label">Experiments &amp; Testing</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Research Areas Content -->
+<div id="research-content">
+
+<!-- ============================================ -->
+<!-- 1. Machine Learning                          -->
+<!-- ============================================ -->
+<div id="ml-content" class="research-area project-content project-active">
+    <div class="cs-container">
+        <div class="area-header">
+            <div class="area-badge">01</div>
+            <div class="area-title-row">
+                <h2 class="section-title">Machine Learning</h2>
+                <a class="research-lead" href="/members/sanjian/" aria-label="Research lead: Sanjian Zhang. View profile.">
+                    <img src="/assets/images/members/sanjian.png" alt="" width="44" height="44" loading="lazy" decoding="async" />
+                    <span class="research-lead-info">
+                        <span class="research-lead-label">Research Lead</span>
+                        <span class="research-lead-name">Sanjian Zhang</span>
+                    </span>
+                    <svg class="research-lead-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                        <path d="M5 12h14m-6-6 6 6-6 6" />
+                    </svg>
+                </a>
+            </div>
+            <p class="section-text">AI-driven simulation accelerators and predictive models that replace expensive finite element solvers with learned surrogate representations.</p>
+        </div>
+
+        <!-- Core Lab Activity: Data Analysis & Machine Learning -->
+        <div class="area-block">
+            <h3 class="block-title">Data Analysis &amp; Machine Learning</h3>
+            <p class="block-text">We design data pipelines and machine learning models to process experimental and clinical data, classify motility patterns, and accelerate prediction and decision support.</p>
+        </div>
+
+        <div class="area-block">
+            <p class="block-text">Our machine learning research also explores spatiotemporal modeling of cardiac dynamics. <a href="/members/sanjian/">Sanjian Zhang</a> studies how to integrate cardiac structures reconstructed from CT/MRI with physiological signals, such as blood pressure, and clinical variables to model and predict cardiac motion throughout the cardiac cycle.</p>
+        </div>
+
+        <!-- Core Framework -->
+        <div class="area-block">
+            <h3 class="block-title">HeartSimSage: Attention-Enhanced Graph Neural Networks</h3>
+            <p class="block-text">Our flagship ML framework converts cardiac finite element meshes into graph structures, learning the relationship between geometry, material properties, loading conditions, and tissue deformation — at <strong>13,000× GPU acceleration</strong> and <strong>190× CPU acceleration</strong> compared to traditional FEA, with median error under <strong>0.13%</strong>.</p>
+
+            <div class="area-image">
+                <img src="/assets/images/item/heartsim.png" alt="HeartSimSage Framework Architecture" loading="lazy" decoding="async" />
+                <p class="area-image-caption"><strong>Figure 1:</strong> HeartSimSage framework architecture illustrating the graph-based representation with attention-driven message-passing mechanism.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">GraphSAGE Topology</h4>
+                    <p class="tech-text">Flexible node connectivity on unstructured cardiac meshes.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Laplace-Dirichlet Encoding</h4>
+                    <p class="tech-text">Mesh-aware spatial embedding via Laplace equation solutions.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Attention Mechanism</h4>
+                    <p class="tech-text">Adaptive message passing with dynamic neighbor weighting.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <line x1="9" y1="9" x2="15" y2="9"/>
+                            <line x1="9" y1="15" x2="14" y2="15"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Subset Training</h4>
+                    <p class="tech-text">Efficient subgraph sampling to reduce memory footprint.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="performance-grid">
+            <div class="performance-card">
+                <div class="performance-value">13,000×</div>
+                <div class="performance-label">GPU Acceleration</div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-value">190×</div>
+                <div class="performance-label">CPU Acceleration</div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-value">0.13%</div>
+                <div class="performance-label">Median Error</div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-value">0.28mm</div>
+                <div class="performance-label">Max Displacement Error</div>
+            </div>
+        </div>
+
+        <!-- Publications -->
+        <div class="area-block">
+            <h3 class="block-title">Related Publications</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <strong>Shi L*</strong>, Chen Y, Vedula V. <em>Journal of Computational Physics</em>, 2026. HeartSimSage framework for AI-accelerated cardiac biomechanical simulations.
+                </li>
+            </ul>
+        </div>
+        <!-- Undergraduate: How You Can Contribute -->
+        <div class="area-block ug-contribute">
+            <h3 class="block-title ug-contribute-title">How You Can Contribute</h3>
+            <table class="ug-contribute-table">
+                <thead>
+                    <tr>
+                        <th>Direction</th>
+                        <th>What You'd Do</th>
+                        <th>Skills You'd Learn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data &amp; Visualization</td>
+                        <td>Organize cardiac motion data, plot displacement curves, and help debug data pipelines.</td>
+                        <td class="ug-skills">Python · NumPy · Matplotlib</td>
+                    </tr>
+                    <tr>
+                        <td>Python &amp; Machine Learning</td>
+                        <td>Run baseline models, compare prediction accuracy, and help train small neural networks.</td>
+                        <td class="ug-skills">PyTorch · Google Colab · Git</td>
+                    </tr>
+                    <tr>
+                        <td>Web &amp; Interactive</td>
+                        <td>Build an interactive demo of the cardiac model — a simple web tool that shows simulation results.</td>
+                        <td class="ug-skills">HTML · JavaScript · Three.js basics</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="ug-note">No experience in these tools yet? We'll walk you through it. Bring curiosity and a willingness to learn.</p>
+        </div>
+
+        <!-- Interested CTA -->
+        <div class="research-interested">
+            <div class="interested-left">
+                <h3>Interested in This Research?</h3>
+                <p>Tell us your major, year, and what caught your eye. We'll reply within a week.</p>
+            </div>
+            <a href="/contact" class="interested-btn">Contact Dr. Shi</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 2. Multiscale & Multiphysics Simulation     -->
+<!-- ============================================ -->
+<div id="multiscale-content" class="research-area area-alt project-content">
+    <div class="cs-container">
+        <div class="area-header">
+            <div class="area-badge">02</div>
+            <h2 class="section-title">Multiscale &amp; Multiphysics Simulation</h2>
+            <p class="section-text">Cross-scale computational modeling and coupled multiphysics simulations — from molecular ion channels to whole-organ electromechanics.</p>
+        </div>
+
+        <!-- Core Lab Activity: Medical Imaging & 3D Reconstruction -->
+        <div class="area-block">
+            <h3 class="block-title">Medical Imaging &amp; 3D Reconstruction</h3>
+            <p class="block-text">We integrate CT scans, endoscopy images, and manometry data from clinical collaborators to build accurate 3D models of the stomach, esophagus, and heart — the geometric foundation for every digital twin we construct.</p>
+        </div>
+
+        <!-- Core Lab Activity: Computational Modeling & Digital Twins -->
+        <div class="area-block">
+            <h3 class="block-title">Computational Modeling &amp; Digital Twins</h3>
+            <p class="block-text">We develop patient-specific digital twins that couple tissue mechanics with electrical activity to simulate how each organ contracts, moves, and responds to disease or surgical intervention.</p>
+        </div>
+
+        <div class="two-col">
+            <div class="area-block">
+                <h3 class="block-title">3D-0D Electromechanical Coupling</h3>
+                <p class="block-text">Implicit coupling framework that integrates 0D ion-based electrophysiology models with 3D finite-element solid mechanics, enabling patient-specific simulation of cardiac and gastric motility.</p>
+                <div class="area-image">
+                    <img src="/assets/images/achievements/cardiacdigitaltwin.png" alt="Cardiac Digital Twin Multiscale Modeling" loading="lazy" decoding="async" />
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item"><span>3D</span> Nonlinear solid mechanics with large deformation kinematics</div>
+                    <div class="feature-item"><span>0D</span> Ion-channel electrophysiology (e.g., Hodgkin-Huxley type)</div>
+                    <div class="feature-item"><span>Couple</span> Bidirectional mechano-electric feedback</div>
+                </div>
+            </div>
+            <div class="area-block">
+                <h3 class="block-title">4D Patient-Specific Imaging</h3>
+                <p class="block-text">Integration of time-phase CT and MRI imaging to construct personalized 3D organ geometries that evolve physiologically throughout the cardiac or respiratory cycle.</p>
+                <div class="feature-list">
+                    <div class="feature-item"><span>Segment</span> Multi-atlas + deep-learning organ segmentation</div>
+                    <div class="feature-item"><span>Morph</span> Non-rigid registration for motion estimation</div>
+                    <div class="feature-item"><span>Mesh</span> Hex-dominant discretization with quality control</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications -->
+        <div class="area-block">
+            <h3 class="block-title">Applications</h3>
+            <div class="applications-list">
+                <div class="application-item">
+                    <span class="application-number">01</span>
+                    <div class="application-content">
+                        <h4 class="application-title">Personalized Diagnosis</h4>
+                        <p class="application-text">Patient-specific mechanical predictions for improved clinical accuracy.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">02</span>
+                    <div class="application-content">
+                        <h4 class="application-title">Surgical Planning</h4>
+                        <p class="application-text">Pre-operative biomechanical simulation of bariatric and GI procedures.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">03</span>
+                    <div class="application-content">
+                        <h4 class="application-title">Gastric Pacemaker Design</h4>
+                        <p class="application-text">Optimizing electrode placement for electrical stimulation devices.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <span class="application-number">04</span>
+                    <div class="application-content">
+                        <h4 class="application-title">Population-Scale Studies</h4>
+                        <p class="application-text">Efficient computation enabling large-cohort biomechanical research.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="area-block">
+            <h3 class="block-title">Related Publications</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <strong>Shi L*</strong>, Chen IY, Vedula V. <em>Computer Methods in Applied Mechanics and Engineering</em>, 2026. Personalized multiscale modeling of left atrial mechanics and blood flow.
+                </li>
+                <li class="pub-item">
+                    Vedula V, <strong>Shi L</strong>, Gan BB. APS Division of Fluid Dynamics, 2024. Multiscale electromechanics modeling framework.
+                </li>
+            </ul>
+        </div>
+        <!-- Interested CTA -->
+        <div class="research-interested">
+            <div class="interested-left">
+                <h3>Interested in This Research?</h3>
+                <p>Tell us your major, year, and what caught your eye. We'll reply within a week.</p>
+            </div>
+            <a href="/contact" class="interested-btn">Contact Dr. Shi</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 3. Constitutive Modeling                    -->
+<!-- ============================================ -->
+<div id="constitutive-content" class="research-area project-content">
+    <div class="cs-container">
+        <div class="area-header">
+            <div class="area-badge">03</div>
+            <h2 class="section-title">Constitutive Modeling</h2>
+            <p class="section-text">Physics-based material models that capture the complex, nonlinear behavior of biological soft tissues under large deformation.</p>
+        </div>
+
+        <div class="area-block">
+            <h3 class="block-title">Hyper-Viscoelastic Constitutive Framework</h3>
+            <p class="block-text">We develop microstructure-informed material models that combine hyperelastic equilibrium response with viscoelastic rate-dependent behavior — essential for accurate simulation of stomach, cardiac, and other soft tissues that exhibit both elastic recoil and time-dependent relaxation.</p>
+
+            <div class="area-image">
+                <img src="/assets/images/achievements/computationalbiomechanics.jpg" alt="Computational Biomechanics" loading="lazy" decoding="async" />
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12c0 0 3-6 9-6s9 6 9 6-3 6-9 6-9-6-9-6z"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Microstructure-Informed</h4>
+                    <p class="tech-text">Material parameters tied to collagen fiber architecture and ground substance properties.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12h16M4 12l4-4m-4 4l4 4M20 12l-4-4m4 4l-4 4"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Large Deformation</h4>
+                    <p class="tech-text">Validated across physiological strain ranges (up to 40–60%) with anisotropic fiber reinforcement.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Viscoelastic Coupling</h4>
+                    <p class="tech-text">Prony-series based time-dependent response with separable hyperelastic equilibrium.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M2 12h20"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Cross-Validation</h4>
+                    <p class="tech-text">Identified via inverse calibration against biaxial, uniaxial, and shear experimental data.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="area-block">
+            <h3 class="block-title">Related Publications</h3>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <strong>Shi L*</strong>, Myers K. <em>Journal of the Mechanics and Physics of Solids</em>, 2026. Microstructure-informed hyper-viscoelastic model for gastric tissue.
+                </li>
+            </ul>
+        </div>
+        <!-- Interested CTA -->
+        <div class="research-interested">
+            <div class="interested-left">
+                <h3>Interested in This Research?</h3>
+                <p>Tell us your major, year, and what caught your eye. We'll reply within a week.</p>
+            </div>
+            <a href="/contact" class="interested-btn">Contact Dr. Shi</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 4. Experiments & Mechanical Testing          -->
+<!-- ============================================ -->
+<div id="experiments-content" class="research-area area-alt project-content">
+    <div class="cs-container">
+        <div class="area-header">
+            <div class="area-badge">04</div>
+            <h2 class="section-title">Experiments &amp; Mechanical Testing</h2>
+            <p class="section-text">State-of-the-art experimental facilities and protocols for characterizing the mechanical properties of biological tissues.</p>
+        </div>
+
+        <!-- Precision Testing (Side By Side Reverse) -->
+        <div class="precision-sbsr">
+            <div class="precision-sbsr-content">
+                <h3 class="precision-sbsr-topper">Precision Testing &amp; Modeling</h3>
+                <h4 class="precision-sbsr-title">Accurate Models Don't Happen by Accident</h4>
+                <p class="precision-sbsr-text">
+                    We combine carefully controlled experiments, advanced instruments like the Instron Biopuls system, and rigorous computational methods to capture how the stomach and GI tract actually behave. Every data point feeds into more realistic digital twins and deeper insight into GI function.
+                </p>
+                <p class="precision-sbsr-text">
+                    High-quality science starts with careful planning, attention to detail, and consistent methods. In the Intelligent Biomechanics Lab, we design each study around clear clinical questions, prepare and test tissue under physiologically relevant conditions, and link experimental results directly to our computational models. From the first specimen in the biobath to the final simulation run, we focus on reproducibility, transparency, and meaningful impact.
+                </p>
+            </div>
+            <div class="precision-sbsr-visual">
+                <picture>
+                    <img src="/assets/images/index/index8.png" alt="Precision testing and modeling workflow" loading="lazy" decoding="async" />
+                </picture>
+                <div class="precision-sbsr-box">
+                    <span class="precision-sbsr-number">100%</span>
+                    <div class="precision-sbsr-box-info">
+                        <h4>Research-Driven Results</h4>
+                        <span>Every conclusion we draw is grounded in quantitative experiments, clinical data, and rigorous analysis.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment -->
+        <div class="area-block">
+            <h3 class="block-title">Tissue Preparation &amp; Biomechanical Testing</h3>
+            <p class="block-text">We collect and prepare GI tissue samples and use systems like the Instron Biopuls biobath to perform tensile and biaxial tests, measuring stiffness, elasticity, and other mechanical properties. Every specimen is handled with care to preserve native tissue structure and ensure physiologically relevant results.</p>
+        </div>
+
+        <div class="area-block">
+            <h3 class="block-title">Experimental Facilities</h3>
+            <div class="area-image">
+                <img src="/assets/images/index/index9.png" alt="Biomechanical Testing Setup" loading="lazy" decoding="async" />
+            </div>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 3h6l1 5a4 4 0 0 1-8 0L9 3zM10 12v9M14 12v9M10 21h4"/>
+                        </svg>
+                    </div>
+                    <h4>Instron Biopuls Biobath</h4>
+                    <p>Temperature-controlled physiological solution bath for uniaxial, biaxial, and shear tissue testing.</p>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M2 12h20"/>
+                        </svg>
+                    </div>
+                    <h4>5960 Universal Testing Machine</h4>
+                    <p>High-precision force and displacement measurement with sub-micron resolution and temperature control.</p>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h4>Digital Image Correlation (DIC)</h4>
+                    <p>Full-field strain measurement via high-speed camera and stochastic speckle pattern analysis.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testing Process -->
+        <div class="area-block">
+            <h3 class="block-title">Testing Process</h3>
+            <p class="section-text">Our standardized workflow ensures consistent, high-quality mechanical data that feeds directly into constitutive model calibration and simulation validation.</p>
+            <ul class="process-list">
+                <li class="process-item">
+                    <span class="process-num">01</span>
+                    <div>
+                        <h4>Specimen Preparation</h4>
+                        <p>Controlled defrosting, gentle cleaning, and region-of-interest trimming to preserve native tissue structure.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <span class="process-num">02</span>
+                    <div>
+                        <h4>Mounting &amp; Equilibration</h4>
+                        <p>Secure clamping without tissue damage; acclimation to physiological temperature and solution.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <span class="process-num">03</span>
+                    <div>
+                        <h4>System &amp; Data Setup</h4>
+                        <p>Configure load cells, displacement sensors, and DIC cameras; record force, position, and strain fields.</p>
+                    </div>
+                </li>
+                <li class="process-item">
+                    <span class="process-num">04</span>
+                    <div>
+                        <h4>Experiment Run</h4>
+                        <p>Apply controlled loading protocols (ramp, cyclic, stress-relaxation) and capture full mechanical response.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- Interested CTA -->
+        <div class="research-interested">
+            <div class="interested-left">
+                <h3>Interested in This Research?</h3>
+                <p>Tell us your major, year, and what caught your eye. We'll reply within a week.</p>
+            </div>
+            <a href="/contact" class="interested-btn">Contact Dr. Shi</a>
+        </div>
+    </div>
+</div>
+
+</div><!-- /#research-content -->
+
+</BaseLayout>
+
+<style>
+/* ============================================ */
+/* Hero Section (Funding & Partners)             */
+/* ============================================ */
+#item-hero {
+    padding: clamp(2.5rem, 5vw, 4rem) 1rem clamp(1.5rem, 3vw, 2.5rem);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(0, 212, 255, 0.18) 0%, transparent 45%),
+        linear-gradient(135deg, #003d80 0%, var(--primary) 45%, #0056b3 100%);
+    position: relative;
+    overflow: hidden;
+}
+#item-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.6;
+}
+#item-hero .cs-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+#item-hero .cs-content {
+    text-align: center;
+    color: white;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+#item-hero .cs-topper {
+    display: inline-block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+#item-hero .cs-title {
+    font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 0.375rem;
+    line-height: 1.2;
+}
+#item-hero .cs-subtitle {
+    font-size: clamp(0.75rem, 1.3vw, 0.875rem);
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    max-width: 44ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* Funding & Partners (unified 4-col logo row) */
+.fnp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin: 0 auto;
+}
+.fnp-card {
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.fnp-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+.fnp-logo-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+.fnp-logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+@media only screen and (max-width: 60rem) {
+    .fnp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media only screen and (max-width: 30rem) {
+    .fnp-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+}
+
+/* ============================================ */
+/* Research Areas Navigation (sticky tabs)       */
+/* ============================================ */
+#research-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: linear-gradient(135deg, #003d80 0%, var(--primary) 100%);
+    padding: 0;
+    transition: box-shadow 0.3s ease;
+}
+#research-nav.is-scrolled {
+    box-shadow: 0 8px 28px rgba(0, 61, 128, 0.35);
+}
+#research-nav .cs-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1.25rem 1rem;
+}
+#research-nav .cs-tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0.375rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#research-nav .cs-tabs::-webkit-scrollbar { display: none; }
+#research-nav .cs-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 999px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    letter-spacing: 0.02em;
+}
+#research-nav .cs-tab:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    transform: translateY(-1px);
+}
+#research-nav .cs-tab.cs-tab-active {
+    background: #fff;
+    color: var(--primary);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+#research-nav .cs-tab.cs-tab-active .cs-tab-icon {
+    color: var(--primary);
+}
+#research-nav .cs-tab-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.25s ease;
+}
+#research-nav .cs-tab-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================ */
+/* Research Area Sections                        */
+/* ============================================ */
+.research-area {
+    padding: clamp(3rem, 6vw, 5rem) 1rem;
+    scroll-margin-top: 4rem;
+    position: relative;
+}
+.research-area .cs-container {
+    max-width: 72rem;
+    margin: 0 auto;
+}
+.research-area.area-alt {
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #fff 100%);
+}
+
+/* Area header */
+.area-header {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+.area-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--primary), #0056b3);
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 14px rgba(0, 86, 179, 0.25);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.area-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+}
+.research-lead {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.875rem;
+    background: #f8fafc;
+    color: var(--headerColor);
+    text-decoration: none;
+}
+.research-lead:hover {
+    border-color: var(--primary);
+    background: #eff6ff;
+}
+.research-lead:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+}
+.research-lead img {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
+}
+.research-lead-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+.research-lead-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+.research-lead-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+.research-lead-arrow {
+    flex-shrink: 0;
+    color: var(--primary);
+}
+.research-area .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--headerColor);
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+.research-area .section-text {
+    font-size: 1.0625rem;
+    color: #64748b;
+    margin: 0;
+    max-width: 60ch;
+    line-height: 1.65;
+}
+
+/* Block */
+.area-block {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+.block-title {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 700;
+    color: var(--headerColor);
+    margin: 0 0 0.875rem;
+    position: relative;
+    padding-left: 1.125rem;
+}
+.block-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 1.2em;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--primary), #0056b3);
+}
+.block-text {
+    font-size: 0.9375rem;
+    color: #475569;
+    line-height: 1.75;
+    margin: 0 0 1.25rem;
+}
+
+/* Area images */
+.area-image {
+    margin: 1rem 0 1.25rem;
+    border-radius: 0.875rem;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.area-image:hover {
+    box-shadow: 0 12px 32px rgba(0, 86, 179, 0.12);
+    transform: translateY(-2px);
+}
+.area-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.area-image-caption {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    background: #f8fafc;
+    margin: 0;
+    line-height: 1.5;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Two column */
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Feature list */
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    color: #334155;
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    transition: all 0.25s ease;
+}
+.feature-item:hover {
+    background: linear-gradient(135deg, rgba(14,165,233,0.06) 0%, rgba(59,130,246,0.06) 100%);
+    border-color: rgba(14, 165, 233, 0.2);
+}
+.feature-item span {
+    flex-shrink: 0;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    background: linear-gradient(135deg, var(--primary), #0056b3);
+    color: #fff;
+    border-radius: 0.375rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Tech grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+.tech-card {
+    padding: 1.375rem;
+    border-radius: 0.875rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), #0056b3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+}
+.tech-card:hover {
+    border-color: transparent;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 86, 179, 0.15);
+}
+.tech-card:hover::before {
+    transform: scaleX(1);
+}
+.tech-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.625rem;
+    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(99,102,241,0.12));
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.875rem;
+    transition: all 0.3s ease;
+}
+.tech-card:hover .tech-icon {
+    background: linear-gradient(135deg, var(--primary), #0056b3);
+    color: #fff;
+    transform: scale(1.05);
+}
+.tech-icon svg {
+    width: 1.375rem;
+    height: 1.375rem;
+}
+.tech-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--headerColor);
+    margin: 0 0 0.375rem;
+}
+.tech-text {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Performance grid */
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+.performance-card {
+    padding: 1.625rem 1rem;
+    border-radius: 0.875rem;
+    background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.performance-card::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+.performance-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 86, 179, 0.35);
+}
+.performance-value {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+}
+.performance-label {
+    font-size: 0.8125rem;
+    opacity: 0.9;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+}
+
+/* Publication list */
+.pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+.pub-item {
+    padding: 1rem 1.125rem;
+    border-left: 3px solid #e2e8f0;
+    background: #fff;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    color: #334155;
+    line-height: 1.65;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+.pub-item:hover {
+    border-left-color: var(--primary);
+    background: #f8fafc;
+    transform: translateX(3px);
+}
+.pub-item strong {
+    color: var(--primary);
+}
+
+/* Applications list */
+.applications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-top: 1rem;
+}
+.application-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.125rem 1.25rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+.application-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), #0056b3);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+.application-item:hover {
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(0, 86, 179, 0.12);
+    transform: translateY(-2px);
+}
+.application-item:hover::before {
+    transform: scaleY(1);
+}
+.application-number {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: var(--primary);
+    background: rgba(14, 165, 233, 0.08);
+    border-radius: 0.5rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.application-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--headerColor);
+    margin: 0 0 0.25rem;
+}
+.application-text {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Equipment grid */
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+.equipment-card {
+    padding: 1.375rem;
+    border-radius: 0.875rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.equipment-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), #0056b3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+}
+.equipment-card:hover {
+    border-color: transparent;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 86, 179, 0.15);
+}
+.equipment-card:hover::before {
+    transform: scaleX(1);
+}
+.equipment-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(99,102,241,0.12));
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.875rem;
+    transition: all 0.3s ease;
+}
+.equipment-card:hover .equipment-icon {
+    background: linear-gradient(135deg, var(--primary), #0056b3);
+    color: #fff;
+    transform: scale(1.05);
+}
+.equipment-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.equipment-card h4 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--headerColor);
+    margin: 0 0 0.375rem;
+}
+.equipment-card p {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Process list */
+.process-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    counter-reset: process;
+}
+.process-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.125rem 1.25rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+.process-item:hover {
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(0, 86, 179, 0.12);
+    transform: translateX(3px);
+}
+.process-num {
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--primary), #0056b3);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    box-shadow: 0 3px 10px rgba(0, 86, 179, 0.2);
+}
+.process-item h4 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--headerColor);
+    margin: 0 0 0.25rem;
+}
+.process-item p {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 48rem) {
+    #research-nav .cs-tabs {
+        gap: 0.25rem;
+        padding: 0.1875rem;
+    }
+    #research-nav .cs-tab {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    .tech-grid,
+    .equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media only screen and (max-width: 30rem) {
+    .tech-grid,
+    .equipment-grid,
+    .performance-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tab content visibility */
+.project-content {
+    display: none;
+}
+.project-content.project-active {
+    display: block;
+    animation: fadeSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================ */
+/* How You Can Contribute Table                  */
+/* ============================================ */
+.ug-contribute {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+    border-radius: 1rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgba(14, 165, 233, 0.15);
+}
+.ug-contribute-title {
+    color: var(--primary);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ug-contribute-title::before {
+    content: "";
+    width: 4px;
+    height: 1.25rem;
+    background: linear-gradient(180deg, var(--primary), #0ea5e9);
+    border-radius: 2px;
+}
+.ug-contribute-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+}
+.ug-contribute-table th {
+    text-align: left;
+    padding: 0.625rem 0.75rem;
+    font-weight: 700;
+    color: var(--headerColor);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid rgba(14, 165, 233, 0.25);
+}
+.ug-contribute-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    vertical-align: top;
+    line-height: 1.5;
+}
+.ug-contribute-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.ug-contribute-table tbody tr:hover td {
+    background: rgba(14, 165, 233, 0.04);
+}
+.ug-skills {
+    white-space: nowrap;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+.ug-note {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0.5rem 0 0;
+    font-style: italic;
+}
+
+/* ============================================ */
+/* Precision Testing (Side By Side Reverse)      */
+/* ============================================ */
+.precision-sbsr {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+.precision-sbsr-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.precision-sbsr-topper {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
+}
+.precision-sbsr-title {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--headerColor);
+    margin: 0;
+    line-height: 1.25;
+}
+.precision-sbsr-text {
+    font-size: clamp(0.9375rem, 1.7vw, 1.0625rem);
+    color: var(--bodyTextColor);
+    line-height: 1.6;
+    margin: 0.5rem 0 0;
+}
+.precision-sbsr-visual {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 61, 128, 0.12);
+    aspect-ratio: 1 / 1;
+}
+.precision-sbsr-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.precision-sbsr-box {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-width: calc(100% - 2rem);
+}
+.precision-sbsr-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    white-space: nowrap;
+}
+.precision-sbsr-box-info h4 {
+    margin: 0 0 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--headerColor);
+}
+.precision-sbsr-box-info span {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+@media (min-width: 64rem) {
+    .precision-sbsr {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 3rem;
+    }
+    /* Reverse: visual on left, content on right */
+    .precision-sbsr-content { order: 2; }
+    .precision-sbsr-visual { order: 1; }
+    .precision-sbsr-box {
+        bottom: 1.5rem;
+        left: 1.5rem;
+        padding: 1rem 1.5rem;
+    }
+    .precision-sbsr-number { font-size: 2.25rem; }
+    .precision-sbsr-box-info h4 { font-size: 0.9375rem; }
+    .precision-sbsr-box-info span { font-size: 0.8125rem; }
+}
+
+@media (min-width: 48rem) and (max-width: 63.9375rem) {
+    .precision-sbsr-visual { aspect-ratio: 16 / 10; }
+}
+
+/* ============================================ */
+/* Interested in This Research CTA               */
+/* ============================================ */
+.research-interested {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: linear-gradient(135deg, #003d80, var(--primary));
+    border-radius: 1rem;
+    color: #fff;
+    flex-wrap: wrap;
+}
+.interested-left h3 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: #fff;
+}
+.interested-left p {
+    margin: 0;
+    font-size: 0.9375rem;
+    opacity: 0.85;
+}
+.interested-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #fff;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+.interested-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 48rem) {
+    .ug-contribute-table {
+        font-size: 0.875rem;
+    }
+    .ug-contribute-table th, .ug-contribute-table td {
+        padding: 0.5rem 0.5rem;
+        display: block;
+        width: 100%;
+    }
+    .ug-contribute-table th {
+        border-bottom: none;
+        padding-bottom: 0.25rem;
+    }
+    .ug-contribute-table td {
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+    .ug-contribute-table tbody tr {
+        display: block;
+        margin-bottom: 0.75rem;
+    }
+    .research-interested {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<script is:inline>
+    // Sticky nav scroll effect
+    const nav = document.getElementById('research-nav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('is-scrolled', window.scrollY > 10);
+        }, { passive: true });
+    }
+
+    // Tab switching (click to show/hide content)
+    const tabsContainer = document.getElementById('research-nav');
+    const tabs = tabsContainer ? tabsContainer.querySelectorAll('.cs-tab') : [];
+    const contents = document.querySelectorAll('.project-content');
+
+    function switchTab(tab) {
+        const target = tab.getAttribute('data-tab');
+        if (!target) return;
+
+        tabs.forEach(t => t.classList.remove('cs-tab-active'));
+        contents.forEach(c => c.classList.remove('project-active'));
+
+        tab.classList.add('cs-tab-active');
+        const targetContent = document.getElementById(target + '-content');
+        if (targetContent) targetContent.classList.add('project-active');
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab));
+    });
+</script>

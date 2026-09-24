@@ -1,0 +1,284 @@
+---
+import client from "@data/client.json";
+import { getCurrentYear } from "@js/utils"
+
+const currentYear = getCurrentYear()
+---
+
+<!-- ============================================ -->
+<!--                  Footer                      -->
+<!-- ============================================ -->
+
+<footer id="cs-footer-271">
+    <div class="cs-container">
+        <!-- Logo Group -->
+        <div class="cs-logo-group">
+            <a href="/" class="cs-logo" aria-label="back to home">
+                <img src="/assets/bioheartWhiteResize.png" alt="logo" width="100" height="100" aria-hidden="true" decoding="async">
+            </a>
+            <p class="cs-text">
+                Intelligent Biomechanics Lab — Advancing GI health through biomechanics, medical imaging, and patient-specific digital twins.
+            </p>
+        </div>
+        <!-- Address Info -->
+        <ul class="cs-nav">
+            <li class="cs-nav-li">
+                <span class="cs-header">Address</span>
+            </li>
+            <li class="cs-nav-li">
+                <a
+                    class="cs-nav-link"
+                    href={client.address.mapLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >{client.address.lineOne}, {client.address.lineTwo}<br>{client.address.city}, {client.address.state} {client.address.zip}</a>
+            </li>
+        </ul>
+        <!-- Contact Info -->
+        <ul class="cs-nav">
+            <li class="cs-nav-li">
+                <span class="cs-header">Contact</span>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href={`tel:${client.phoneForTel}`}>{client.phoneFormatted}</a>
+            </li>
+            <li class="cs-nav-li">
+                <a class="cs-nav-link" href={`mailto:${client.email}`}>{client.email}</a>
+            </li>
+        </ul>
+        <!-- Social and Credit -->
+        <div class="cs-bottom">
+            <span class="cs-copyright">© {currentYear} {client.name}</span>
+            <div class="cs-social">
+                <a class="cs-social-link" aria-label="visit youtube profile" href="https://www.youtube.com/@IntelligentBiomechanicsLab" target="_blank" rel="noopener noreferrer">
+                    <svg class="cs-social-img" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+                                
+
+<style lang="less">
+
+
+/*-- -------------------------- -->
+<---           Footer           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #cs-footer-271 {
+        padding: var(--sectionPadding);
+        background-color: #000000;
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        .cs-logo-group {
+            /* takes up all the space, lets the other ul's wrap below it */
+            width: 100%;
+            position: relative;
+        }
+
+        .cs-logo {
+            width: (100/16rem);
+            height: (100/16rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            overflow: hidden;
+            /* 28px - 44px */
+            margin-bottom: clamp(1.75rem, 4.17vw, 2.75rem);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+
+        .cs-logo-img {
+            width: 100%;
+            height: auto;
+
+            &.dark {
+                display: none;
+            }
+        }
+        .cs-nav {
+            padding: 0;
+            padding-left: (16/16rem);
+            margin: 0;
+            /* 32px - 40px */
+            margin-bottom: clamp(2rem, 5.3vw, 2.5rem);
+        }
+
+        .cs-nav-li {
+            list-style: none;
+            line-height: 1.5em;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .cs-header {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            font-weight: 700;
+            margin-bottom: (20/16rem);
+            color: var(--bodyFooterColor);
+            position: relative;
+            display: block;
+        }
+
+        .cs-nav-link {
+            font-size: (16/16rem);
+            text-decoration: none;
+            line-height: 1.5em;
+            color: var(--bodyFooterColor);
+            position: relative;
+
+            &:before {
+                /* underline */
+                content: "";
+                width: 0%;
+                height: (2/16rem);
+                /* current color of the parent */
+                background: currentColor;
+                opacity: 1;
+                position: absolute;
+                display: block;
+                bottom: (-2/16rem);
+                left: 0;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        .cs-bottom {
+            width: 100%;
+            position: relative;
+            padding-left: (16/16rem);
+        }
+
+        .cs-copyright {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            color: #746f95;
+            display: block;
+        }
+
+        .cs-social {
+            display: inline-flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: (12/16rem);
+            position: absolute;
+            right: (16/16rem);
+            bottom: 0;
+        }
+
+        .cs-social-link {
+            width: (24/16rem);
+            height: (24/16rem);
+            background-color: #4e4b66;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            transition:
+                transform 0.3s,
+                background-color 0.3s;
+
+            &:hover {
+                background-color: var(--primary);
+                transform: translateY(-0.1875rem);
+            }
+        }
+
+        .cs-social-img {
+            height: (13/16rem);
+            width: auto;
+            display: block;
+            color: #ffffff;
+        }
+    }
+}
+
+/* Inbetween - 600px */
+@media only screen and (min-width: 37.5rem) {
+    #cs-footer-271 {
+        .cs-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            /* 48px - 60px */
+            column-gap: clamp(3rem, 5.9vw, 3.75rem);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #cs-footer-271 {
+        .cs-logo-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* 20px - 60px */
+            margin-bottom: clamp(1.25rem, 4vw, 3.75rem);
+        }
+
+        .cs-logo {
+            margin: 0;
+        }
+
+        .cs-text {
+            text-align: right;
+            width: 50%;
+            max-width: (521/16rem);
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .cs-nav {
+            padding: 0;
+        }
+
+        .cs-bottom {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-social {
+            flex-direction: row;
+            position: relative;
+            /* reset these positions */
+            bottom: auto;
+            right: auto;
+        }
+    }
+}
+                                
+
+
+
+</style>

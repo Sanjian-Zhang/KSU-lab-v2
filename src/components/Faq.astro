@@ -1,0 +1,314 @@
+<!-- ============================================ -->
+<!--                    FAQ                       -->
+<!-- ============================================ -->
+
+<section id="faq-1108">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">FAQ’s</span>
+            <h2 class="cs-title">Frequently Asked Questions</h2>
+            <picture class="cs-picture">
+                <!--Mobile Image-->
+                <source media="(max-width: 600px)" srcset="/assets/images/FAQ/FAQ1.png">
+                <!--Tablet and above Image-->
+                <source media="(min-width: 601px)" srcset="/assets/images/FAQ/FAQ1.png">
+                <img loading="lazy" decoding="async" src="/assets/images/FAQ/FAQ1.png" alt="appliance" width="522" height="400">
+            </picture>
+        </div>
+        <div class="cs-flex-group">
+            <ul class="cs-faq-group">
+                <!-- Active class added as default -->
+                <li class="cs-faq-item active">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What does the Intelligent Biomechanics Lab study?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        We study how the stomach and gastrointestinal (GI) tract move and function by combining tissue biomechanics, medical imaging, and computational modeling. Our goal is to build patient-specific “digital twins” of the stomach that simulate both its mechanical behavior and electrical activity.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What is a “digital twin” of the stomach?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        A digital twin is a virtual model of a real organ. In our lab, a stomach digital twin combines: 3D geometry from imaging, tissue mechanical properties from lab testing, electrical and pressure data from clinical recordings. Together, these let us simulate how a person’s stomach actually moves and responds under different conditions.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What kind of data do you use?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        We integrate multiple types of data, including: CT scans and endoscopy images to capture the shape and structure of the stomach, manometry data to measure pressure and deformation in the stomach and esophagus, biomechanical tests (like tensile and biaxial testing using systems such as Instron Biopuls) to determine tissue stiffness and elasticity.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            How is this research connected to real patients?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        We work in collaboration with physicians at Emory University, who provide clinical data such as imaging and manometry recordings. By building digital twins that reflect actual patient anatomy and function, our models can help detect subtle changes that might be overlooked by standard diagnostic tools and may one day assist in planning treatments for GI disorders.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What techniques and tools does the lab use?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        Our lab uses a mix of experimental and computational tools, including: Biomechanical testing equipment (e.g., Instron Biopuls biobath systems), 3D modeling and simulation software for tissue and organ mechanics, signal processing for pressure and electrical activity data, machine learning methods to speed up analysis and prediction.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            Who can get involved with the Intelligent Biomechanics Lab?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        We welcome motivated undergraduate and graduate students from fields such as mechanical engineering, biomedical engineering, electrical engineering, computer science, and related areas. Students can work on everything from hands-on tissue testing to 3D modeling, coding, and data analysis. Prior experience is helpful but not always required—curiosity and willingness to learn are just as important.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What are the lab’s long-term goals?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">
+                        Our long-term vision is to expand beyond the stomach and build digital twins of the entire GI tract, from the esophagus to the intestines, and to study how it interacts with other systems such as the brain–gut axis. We aim to create tools that can support clinicians in diagnosing GI disorders, predicting treatment outcomes, and personalizing care for individual patients.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+                                
+<!-- ============================================ -->
+<!--                    Java Script               -->
+<!-- ============================================ -->
+ 
+<script is:inline>
+  if (!window.__faqClickBound) {
+    window.__faqClickBound = true;
+
+    document.addEventListener("click", (e) => {
+      const item = e.target.closest(".cs-faq-item");
+      if (!item) return;
+      item.classList.toggle("active");
+    });
+  }
+</script>
+
+
+
+<style lang="less">
+/*-- -------------------------- -->
+<---            FAQ             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #faq-1108 {
+        padding: var(--sectionPadding);
+        position: relative;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at desktop */
+            max-width: (584/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 32px - 48px */
+            gap: clamp(2rem, 6vw, 3rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: center;
+        }
+
+        .cs-title {
+            /* 32px - 48px */
+            margin: 0 0 clamp(2rem, 5vw, 3rem);
+        }
+
+        .cs-picture {
+            width: 100%;
+            /* 360px - 400px */
+            height: clamp(22.5rem, 54vw, 25rem);
+            display: block;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .cs-faq-group {
+            width: 100%;
+            max-width: (650/16rem);
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: (12/16rem);
+        }
+
+        .cs-faq-item {
+            list-style: none;
+            width: 100%;
+            background-color: #f7f7f7;
+            /* clips all corners of the button that overlap the rounded border */
+            overflow: hidden;
+            transition: border-bottom 0.3s;
+
+            &.active {
+                .cs-button {
+                    color: var(--primary);
+                    &:before {
+                        background-color: var(--primary);
+                        transform: rotate(315deg);
+                    }
+                    &:after {
+                        background-color: var(--primary);
+                        transform: rotate(-315deg);
+                    }
+                }
+                .cs-item-p {
+                    height: auto;
+                    /* 20px - 24px bottom */
+                    /* 16px - 24px left & right */
+                    padding: 0 clamp(1rem, 2vw, 1.5rem)
+                        clamp(1.25rem, 1.3vw, 1.5rem);
+                    opacity: 1;
+                }
+            }
+        }
+
+        .cs-button {
+            /* 16px - 20px */
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            line-height: 1.2em;
+            text-align: left;
+            font-weight: bold;
+            /* 20px - 24px */
+            padding: clamp(1.25rem, 2vw, 1.5rem);
+            background-color: #f7f7f7;
+            border: none;
+            color: var(--headerColor);
+            display: block;
+            width: 100%;
+            position: relative;
+            transition:
+                background-color 0.3s,
+                color 0.3s;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:before {
+                /* left line */
+                content: "";
+                width: (8/16rem);
+                height: (2/16rem);
+                background-color: var(--headerColor);
+                opacity: 1;
+                border-radius: 50%;
+                position: absolute;
+                display: block;
+                top: 50%;
+                right: (24/16rem);
+                transform: rotate(45deg);
+                /* animate the transform from the left side of the x axis, and the center of the y */
+                transform-origin: left center;
+                transition: transform 0.5s;
+            }
+
+            &:after {
+                /* right line */
+                content: "";
+                width: (8/16rem);
+                height: (2/16rem);
+                background-color: var(--headerColor);
+                opacity: 1;
+                border-radius: 50%;
+                position: absolute;
+                display: block;
+                top: 50%;
+                right: (21/16rem);
+                transform: rotate(-45deg);
+                /* animate the transform from the right side of the x axis, and the center of the y */
+                transform-origin: right center;
+                transition: transform 0.5s;
+            }
+        }
+
+        .cs-button-text {
+            width: 80%;
+            display: block;
+        }
+
+        .cs-item-p {
+            /* 14px - 16px */
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.5em;
+            width: 90%;
+            height: 0;
+            margin: 0;
+            /* 16px - 24px */
+            padding: 0 clamp(1rem, 2vw, 1.5rem);
+            opacity: 0;
+            color: var(--bodyTextColor);
+            /* clips the text so it doesn't show up */
+            overflow: hidden;
+            transition:
+                opacity 0.3s,
+                padding-bottom 0.3s;
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #faq-1108 {
+        .cs-container {
+            max-width: (1280/16rem);
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+        }
+
+        .cs-content {
+            width: 40%;
+            text-align: left;
+            align-items: flex-start;
+            /* prevents flexbox from squishing it */
+            flex: none;
+        }
+    }
+}
+
+                                
+</style>

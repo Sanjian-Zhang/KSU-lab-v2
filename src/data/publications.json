@@ -1,0 +1,169 @@
+{
+  "fetchedAt": "2026-09-13T14:30:33.024Z",
+  "totalPapers": 10,
+  "labMembers": [
+    "Lei Shi",
+    "Nanlong Sun",
+    "Nan Sun",
+    "Yue Li",
+    "Sanjian Zhang"
+  ],
+  "papers": [
+    {
+      "title": "HeartSimSage: Attention-Enhanced Graph Neural Networks for Accelerating Cardiac Mechanics Modeling",
+      "authors": [
+        "Lei Shi",
+        "Yurui Chen",
+        "Vijay Vedula"
+      ],
+      "venue": "Journal of Computational Physics",
+      "year": 2026,
+      "doi": "10.1016/j.jcp.2026.114895",
+      "link": "https://doi.org/10.1016/j.jcp.2026.114895"
+    },
+    {
+      "title": "Personalized multiscale modeling of left atrial mechanics and blood flow",
+      "authors": [
+        "Lei Shi",
+        "Bo-Yang Gan",
+        "Ian Chen",
+        "Vijay Vedula"
+      ],
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2026,
+      "doi": "10.1016/j.cma.2025.118412",
+      "link": "https://doi.org/10.1016/j.cma.2025.118412"
+    },
+    {
+      "title": "Effects of Left Atrial Wall Thickness on Myocardial Mechanics and Blood Dynamics using Multiscale Modeling",
+      "authors": [
+        "Bo-Yang Gan",
+        "Lei Shi",
+        "Ian Chen",
+        "Vijay Vedula"
+      ],
+      "venue": "bioRxiv",
+      "year": 2026,
+      "doi": "10.64898/2026.06.09.731221",
+      "link": "https://doi.org/10.64898/2026.06.09.731221"
+    },
+    {
+      "title": "Variance-Aware Adaptive Weighting for Diffusion Model Training",
+      "authors": [
+        "Nan Sun",
+        "Lei Shi"
+      ],
+      "venue": "arXiv preprint",
+      "year": 2026,
+      "doi": "10.48550/arXiv.2603.10391",
+      "link": "https://arxiv.org/abs/2603.10391"
+    },
+    {
+      "title": "A software benchmark for cardiac elastodynamics",
+      "authors": [
+        "Reidmen Aróstica",
+        "David Nolte",
+        "Aaron L. Brown",
+        "A. Gebauer",
+        "E. Karabelas",
+        "Javiera Jilberto",
+        "Matteo Salvador",
+        "Michele Bucelli",
+        "R. Piersanti",
+        "Kasra Osouli",
+        "Christoph M. Augustin",
+        "H. Finsberg",
+        "Lei Shi",
+        "M. Hirschvogel",
+        "M. Pfaller",
+        "P. C. Africa",
+        "M. Gsell",
+        "Alison L. Marsden",
+        "D. Nordsletten",
+        "Francesco Regazzoni",
+        "Gernot Plank",
+        "J. Sundnes",
+        "Luca Dede'",
+        "M. Peirlinck",
+        "Vijay Vedula",
+        "Wolfgang Wall",
+        "Cristóbal Bertoglio"
+      ],
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2025,
+      "doi": "10.1016/j.cma.2024.117485",
+      "link": "https://doi.org/10.1016/j.cma.2024.117485"
+    },
+    {
+      "title": "Personalized biventricular mechanics and sensitivity to model morphology",
+      "authors": [
+        "Aaron L. Brown",
+        "Lei Shi",
+        "Matteo Salvador",
+        "Fanwei Kong",
+        "Daniel B. Ennis",
+        "Ian Chen",
+        "Vijay Vedula",
+        "A. Marsden"
+      ],
+      "venue": "bioRxiv",
+      "year": 2025,
+      "doi": "10.64898/2025.12.11.693778",
+      "link": "https://doi.org/10.64898/2025.12.11.693778"
+    },
+    {
+      "title": "An Optimization Framework to Personalize Passive Cardiac Mechanics",
+      "authors": [
+        "Lei Shi",
+        "Ian Chen",
+        "Hiroo Takayama",
+        "Vijay Vedula"
+      ],
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2024,
+      "doi": "10.48550/arXiv.2404.02807",
+      "link": "https://doi.org/10.48550/arXiv.2404.02807"
+    },
+    {
+      "title": "A Modular Framework for Implicit 3D-0D Coupling in Cardiac Mechanics",
+      "authors": [
+        "Aaron L. Brown",
+        "Matteo Salvador",
+        "Lei Shi",
+        "Martin R. Pfaller",
+        "Zinan Hu",
+        "Kaitlin E. Harold",
+        "Tzung-Hsi K. Ai",
+        "Vijay Vedula",
+        "A. Marsden"
+      ],
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2023,
+      "doi": "10.48550/arXiv.2310.13780",
+      "link": "https://doi.org/10.48550/arXiv.2310.13780"
+    },
+    {
+      "title": "A Comparison of Hyperelastic Constitutive Models for Passive Cardiac Mechanics",
+      "authors": [
+        "Lei Shi",
+        "Vijay Vedula",
+        "Alison L. Marsden"
+      ],
+      "venue": "Acta Biomaterialia",
+      "year": 2022,
+      "doi": null,
+      "link": null
+    },
+    {
+      "title": "Computational Modeling of the Stomach: A Review",
+      "authors": [
+        "Lei Shi",
+        "Vijay Vedula"
+      ],
+      "venue": "Journal of Biomechanical Engineering",
+      "year": 2019,
+      "doi": null,
+      "link": null
+    }
+  ]
+}

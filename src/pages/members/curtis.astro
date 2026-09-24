@@ -1,0 +1,665 @@
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+
+const member = {
+  fullName: "Curtis Ledford",
+  role: "Undergraduate Researcher",
+  image: "/assets/images/members/curtis.png",
+  email: "curtis@example.com",
+  department: "Intelligent Biomechanics Lab",
+  shortBio:
+    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+
+  introduction:
+    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+
+  hobbies: [
+    "Cooking",
+    "Health",
+    "Aquaponics",
+    "Music",
+    "Astronomy"
+  ],
+
+  academicExperience: [
+    "Highschool Diploma - [Some Highschool]"
+  ],
+
+  workExperience: [
+    "Researcher, Kennesaw State University",
+    "Previous Position - Institution / Organization",
+    "Previous Position - Institution / Organization"
+  ],
+
+  cvSections: [
+    {
+      title: "Career Interests",
+      items: [
+        "Biomechanics Industry",
+        "Aerospace Engineering"
+      ]
+    },
+    {
+      title: "Selected Projects",
+      items: [
+        "Project title or short description",
+        "Project title or short description",
+        "Project title or short description"
+      ]
+    },
+    {
+      title: "Awards / Honors",
+      items: [
+        "Award or recognition",
+        "Award or recognition"
+      ]
+    }
+  ],
+
+  locations: {
+    birthplace: "Southern Appalachia",
+    highSchool: "Example High School",
+    traveled: [
+      { name: "United States", country: "USA", lat: 37.0902, lon: -95.7129, label: "Research" }
+    ]
+  }
+};
+---
+
+<BaseLayout
+  title={`${member.fullName} | Intelligent Biomechanics Lab`}
+  description={`${member.fullName} profile page for the Intelligent Biomechanics Lab.`}
+>
+  <section id="member-profile">
+    <div class="cs-container">
+
+      <div class="cs-hero">
+        <div class="cs-image-group">
+          <img
+            class="cs-profile-image"
+            src={member.image}
+            alt={member.fullName}
+            width="500"
+            height="600"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="cs-hero-content">
+          <span class="cs-topper">Team Member Profile</span>
+          <h1 class="cs-title">{member.fullName}</h1>
+          <p class="cs-role">{member.role}</p>
+          <p class="cs-short-bio">{member.shortBio}</p>
+
+          <div class="cs-meta">
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Lab</span>
+              <span class="cs-meta-value">{member.department}</span>
+            </div>
+
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">{member.role}</span>
+            </div>
+
+            <div class="cs-meta-item">
+              <span class="cs-meta-label">Email</span>
+              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-main-grid">
+        <div class="cs-main-content">
+          <section class="cs-section-card">
+            <h2>Introduction</h2>
+            <p>{member.introduction}</p>
+          </section>
+
+          <section class="cs-section-card">
+            <h2>Academic Experience</h2>
+            <ul class="cs-list">
+              {member.academicExperience.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="cs-section-card">
+            <h2>Work Experience</h2>
+            <ul class="cs-list">
+              {member.workExperience.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="cs-section-card">
+            <h2>CV Overview</h2>
+            <div class="cs-cv-grid">
+              {member.cvSections.map((section) => (
+                <div class="cs-cv-card">
+                  <h3>{section.title}</h3>
+                  <ul class="cs-list">
+                    {section.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="cs-section-card cs-map-section">
+            <h2>Places Visited</h2>
+
+            <div class="cs-map-wrap" id="cs-map-wrap">
+              <canvas id="cs-map-canvas"></canvas>
+              <div id="cs-map-tooltip" role="tooltip">
+                <strong id="cs-tt-name"></strong>
+                <span id="cs-tt-info"></span>
+              </div>
+            </div>
+
+            <ul class="cs-place-chips">
+              {member.locations.traveled.map((p) => (
+                <li class="cs-place-chip">
+                  <span class="cs-chip-dot"></span>
+                  {p.name}{p.label ? ` — ${p.label}` : ""}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+          <div class="cs-sidebar-card">
+            
+            <h3>Quick Facts:</h3>
+            <ul class="cs-facts-list">
+              <li>
+                <span>Name</span>
+                <strong>{member.fullName}</strong>
+              </li>
+              <li>
+                <span>Birthplace:</span>
+                <strong>{member.locations.birthplace}</strong>
+              </li>
+              <li>
+                <span>Hobbies:</span>
+                <strong>{member.hobbies.join(", ")}</strong>
+              </li>
+            </ul>
+          </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script
+  define:vars={{
+    traveledPlaces: member.locations.traveled,
+  }}
+>
+  const canvas = document.getElementById("cs-map-canvas");
+
+  if (canvas && traveledPlaces.length > 0) {
+    const ctx = canvas.getContext("2d");
+    const wrap = document.getElementById("cs-map-wrap");
+    const tooltip = document.getElementById("cs-map-tooltip");
+
+    let proj, pathFn, W, H, worldData;
+    const PIN_COLOR = "#e02020";
+
+    function drawPin(x, y, r) {
+      const h = r * 2.2;
+      ctx.beginPath();
+      ctx.arc(x, y - h + r, r, Math.PI, 0);
+      ctx.quadraticCurveTo(x + r, y - h + r * 1.8, x, y);
+      ctx.quadraticCurveTo(x - r, y - h + r * 1.8, x - r, y - h + r);
+      ctx.closePath();
+      ctx.fillStyle = PIN_COLOR;
+      ctx.fill();
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x, y - h + r, r * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = "#fff";
+      ctx.fill();
+    }
+
+    function loadScript(src) {
+      return new Promise((res, rej) => {
+        const s = document.createElement("script");
+        s.src = src;
+        s.onload = res;
+        s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+
+    async function init() {
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js");
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js");
+      const res = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      worldData = await res.json();
+      resize();
+      window.addEventListener("resize", resize);
+    }
+
+    function setupProjection() {
+      W = canvas.width / (window.devicePixelRatio || 1);
+      H = canvas.height / (window.devicePixelRatio || 1);
+      proj = d3.geoNaturalEarth1().scale(W / 6.5).translate([W / 2, H / 2]);
+      pathFn = d3.geoPath(proj, ctx);
+    }
+
+    function draw() {
+      const dpr = window.devicePixelRatio || 1;
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, W, H);
+      ctx.beginPath();
+      pathFn({ type: "Sphere" });
+      ctx.fillStyle = "#b2dfd4";
+      ctx.fill();
+      const graticule = d3.geoGraticule()();
+      ctx.beginPath();
+      pathFn(graticule);
+      ctx.strokeStyle = "rgba(255,255,255,0.35)";
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+      const countries = topojson.feature(worldData, worldData.objects.countries);
+      countries.features.forEach((f) => {
+        ctx.beginPath();
+        pathFn(f);
+        ctx.fillStyle = "#c8ddb0";
+        ctx.fill();
+        ctx.strokeStyle = "#a8c890";
+        ctx.lineWidth = 0.4;
+        ctx.stroke();
+      });
+      ctx.beginPath();
+      pathFn({ type: "Sphere" });
+      ctx.strokeStyle = "#7bbfb0";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      traveledPlaces.forEach((p) => {
+        const xy = proj([p.lon, p.lat]);
+        if (!xy) return;
+        drawPin(xy[0], xy[1], 6);
+      });
+      ctx.restore();
+    }
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = wrap.getBoundingClientRect().width;
+      const h = Math.round(w * 0.5);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      setupProjection();
+      draw();
+    }
+
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const hit = traveledPlaces.find((p) => {
+        const xy = proj([p.lon, p.lat]);
+        return xy && Math.hypot(mx - xy[0], my - xy[1]) < 10;
+      });
+      if (hit) {
+        tooltip.style.display = "block";
+        tooltip.style.left = mx + 12 + "px";
+        tooltip.style.top = my - 48 + "px";
+        document.getElementById("cs-tt-name").textContent = hit.name;
+        document.getElementById("cs-tt-info").textContent = hit.country + (hit.label ? " · " + hit.label : "");
+        canvas.style.cursor = "pointer";
+      } else {
+        tooltip.style.display = "none";
+        canvas.style.cursor = "default";
+      }
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      tooltip.style.display = "none";
+    });
+
+    init();
+  }
+</script>
+
+<style lang="less">
+  #member-profile {
+    padding-top: 8rem;
+    padding-bottom: var(--sectionPadding);
+
+    .cs-container {
+      width: 100%;
+      max-width: (1280/16rem);
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: (32/16rem);
+    }
+
+    .cs-breadcrumbs {
+      font-size: (14/16rem);
+      line-height: 1.5em;
+      color: var(--bodyTextColor);
+
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      span {
+        margin: 0 (6/16rem);
+      }
+    }
+
+    .cs-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (24/16rem);
+      align-items: start;
+    }
+
+    .cs-image-group {
+      width: 100%;
+      max-width: (420/16rem);
+    }
+
+    .cs-profile-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: (16/16rem);
+      border: 1px solid #e8e8e8;
+      object-fit: cover;
+    }
+
+    .cs-hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: (12/16rem);
+    }
+
+    .cs-topper {
+      font-size: (14/16rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .cs-title {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.1em;
+      margin: 0;
+      color: var(--headerColor);
+    }
+
+    .cs-role {
+      font-size: (20/16rem);
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .cs-short-bio {
+      font-size: (16/16rem);
+      line-height: 1.7em;
+      margin: 0;
+      color: var(--bodyTextColor);
+      max-width: 48rem;
+    }
+
+    .cs-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (12/16rem);
+      margin-top: (8/16rem);
+    }
+
+    .cs-meta-item {
+      padding: (16/16rem);
+      border: 1px solid #e8e8e8;
+      border-radius: (12/16rem);
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: (4/16rem);
+    }
+
+    .cs-meta-label {
+      font-size: (13/16rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--bodyTextColor);
+    }
+
+    .cs-meta-value {
+      font-size: (16/16rem);
+      line-height: 1.5em;
+      color: var(--headerColor);
+      text-decoration: none;
+    }
+
+    .cs-main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (24/16rem);
+    }
+
+    .cs-main-content {
+      display: flex;
+      flex-direction: column;
+      gap: (24/16rem);
+    }
+
+    .cs-section-card,
+    .cs-sidebar-card {
+      border: 1px solid #e8e8e8;
+      border-radius: (16/16rem);
+      padding: (24/16rem);
+      background-color: #fff;
+    }
+
+    .cs-section-card h2,
+    .cs-sidebar-card h3,
+    .cs-cv-card h3,
+    .cs-location-card h3 {
+      margin-top: 0;
+      color: var(--headerColor);
+    }
+
+    .cs-section-card p,
+    .cs-sidebar-card p {
+      line-height: 1.7em;
+      color: var(--bodyTextColor);
+    }
+
+    .cs-list {
+      margin: 0;
+      padding-left: 1.25rem;
+
+      li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6em;
+        color: var(--bodyTextColor);
+      }
+    }
+
+    .cs-cv-grid,
+    .cs-location-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: (16/16rem);
+    }
+
+    .cs-cv-card,
+    .cs-location-card {
+      border: 1px solid #ececec;
+      border-radius: (12/16rem);
+      padding: (18/16rem);
+      background: #fafafa;
+    }
+
+    .cs-map-note {
+      margin-bottom: (16/16rem);
+    }
+
+    .cs-map-placeholder {
+      min-height: (280/16rem);
+      border: 2px dashed #cfcfcf;
+      border-radius: (16/16rem);
+      background: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: (20/16rem);
+      padding: (24/16rem);
+      box-sizing: border-box;
+    }
+
+    .cs-map-placeholder-inner p {
+      margin: (8/16rem) 0 0 0;
+    }
+
+    .cs-map-section {
+      h2 {
+        margin-bottom: (16/16rem);
+      }
+    }
+
+    .cs-map-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: (12/16rem);
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      background: #e8f4f0;
+      margin-bottom: (16/16rem);
+    }
+
+    #cs-map-canvas {
+      display: block;
+      width: 100%;
+    }
+
+    #cs-map-tooltip {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: (8/16rem);
+      padding: (7/16rem) (12/16rem);
+      font-size: (12/16rem);
+      color: var(--bodyTextColor);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .cs-place-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: (10/16rem);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: (6/16rem);
+        font-size: (13/16rem);
+        color: var(--bodyTextColor);
+      }
+    }
+
+    .cs-chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e02020;
+    }
+
+    .cs-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: (24/16rem);
+    }
+
+    .cs-facts-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: (14/16rem);
+
+      li {
+        display: flex;
+        flex-direction: column;
+        gap: (4/16rem);
+      }
+
+      span {
+        font-size: (13/16rem);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--bodyTextColor);
+      }
+
+      strong {
+        color: var(--headerColor);
+      }
+    }
+  }
+
+  @media only screen and (min-width: 48rem) {
+    #member-profile {
+      .cs-hero {
+        grid-template-columns: minmax(18rem, 26rem) 1fr;
+        gap: (32/16rem);
+      }
+
+      .cs-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cs-cv-grid,
+      .cs-location-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+
+  @media only screen and (min-width: 64rem) {
+    #member-profile {
+      .cs-main-grid {
+        grid-template-columns: minmax(0, 2fr) minmax(18rem, 22rem);
+        align-items: start;
+      }
+
+      .cs-sidebar {
+        position: sticky;
+        top: 6rem;
+      }
+
+      .cs-location-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }
+</style>

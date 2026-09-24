@@ -1,0 +1,2231 @@
+---
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import CTA from "@components/CTA.astro";
+import FAQ from "@components/Faq.astro";
+import fs from "node:fs";
+import path from "node:path";
+
+const heroDir = path.resolve(process.cwd(), "public/assets/images/hero");
+const imageExt = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
+
+const defaultImage = "Image -2.jpg";
+
+const heroImages = fs.existsSync(heroDir)
+  ? fs
+      .readdirSync(heroDir, { withFileTypes: true })
+      .filter(
+        (entry) =>
+          entry.isFile() && imageExt.has(path.extname(entry.name).toLowerCase())
+      )
+      .map((entry) => `/assets/images/hero/${encodeURIComponent(entry.name)}`)
+      .sort((a, b) => {
+        if (a.includes(defaultImage)) return -1;
+        if (b.includes(defaultImage)) return 1;
+        return a.localeCompare(b);
+      })
+  : [];
+---
+
+<BaseLayout
+  title="News - Intelligent Biomechanics Lab"
+  description="Explore research, lab activities, and news from the Intelligent Biomechanics Lab at Kennesaw State University."
+>
+
+<!-- ============================================ -->
+<!--                    Hero                      -->
+<!-- ============================================ -->
+
+<section id="hero-2150">
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">Welcome to the</span>
+            <h1 class="cs-title">Intelligent Biomechanics Lab</h1>
+            <p class="cs-text">
+                The Intelligent Biomechanics Lab, where biomechanics meets artificial intelligence.
+            </p>
+            <a href="/contact" class="cs-button-solid cs-button1">Learn more from us</a>
+        </div>
+        <ul class="cs-card-group">
+            <li class="cs-item">
+                <div class="cs-icon-group">
+                    <picture class="cs-icon-picture">
+                    </picture>
+                    <h3 class="cs-h3"></h3>
+                </div>
+                <p class="cs-item-text"></p>
+            </li>
+            <li class="cs-item">
+                <div class="cs-icon-group">
+                    <picture class="cs-icon-picture">
+                    </picture>
+                    <h3 class="cs-h3"></h3>
+                </div>
+                <p class="cs-item-text"></p>
+            </li>
+            <li class="cs-item">
+                <div class="cs-icon-group">
+                    <picture class="cs-icon-picture">
+                    </picture>
+                    <h3 class="cs-h3"></h3>
+                </div>
+                <p class="cs-item-text"></p>
+            </li>
+        </ul>
+    </div>
+    <!-- Background Slideshow -->
+    <div class="cs-background">
+      {heroImages.length > 0 ? (
+        <div
+          class="cs-slideshow"
+          data-hero-slideshow
+          data-interval="20000"
+          data-slide-count={heroImages.length}
+          data-landscape-ratio="1.15"
+        >
+          <div class="cs-track" aria-live="polite">
+            {heroImages.map((src) => (
+              <div class="cs-slide-frame">
+                <img
+                  src={src}
+                  alt=""
+                  class="cs-slide-bg"
+                  loading="eager"
+                  decoding="async"
+                  aria-hidden="true"
+                />
+                <img
+                  src={src}
+                  alt=""
+                  class="cs-slide"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+    {heroImages.length > 1 ? (
+      <div class="cs-slideshow-controls">
+              <button
+                type="button"
+                class="cs-slideshow-btn cs-slideshow-prev"
+                aria-label="Previous slide"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="cs-slideshow-btn cs-slideshow-next"
+                aria-label="Next slide"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="m10 6-1.41 1.41L13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
+              </button>
+      </div>
+    ) : null}
+</section>
+
+<script>
+  function classifyHeroSlideFrame(frame: Element, landscapeMinRatio: number) {
+    const img = frame.querySelector(".cs-slide");
+    if (!(img instanceof HTMLImageElement)) return;
+
+    const apply = () => {
+      const { naturalWidth, naturalHeight } = img;
+      if (!naturalWidth || !naturalHeight) return;
+      const aspectRatio = naturalWidth / naturalHeight;
+      const isLandscape = aspectRatio >= landscapeMinRatio;
+      frame.classList.toggle("is-landscape", isLandscape);
+      frame.classList.toggle("is-portrait", !isLandscape);
+    };
+
+    if (img.complete) apply();
+    else img.addEventListener("load", apply, { once: true });
+  }
+
+  function initHeroSlideshow() {
+    document.querySelectorAll("[data-hero-slideshow]").forEach((root) => {
+      if (root instanceof HTMLElement && root.dataset.heroInit === "true") return;
+
+      const track = root.querySelector(".cs-track");
+      const slides = root.querySelectorAll(".cs-slide-frame");
+      const heroSection = root.closest("#hero-2150");
+      const prevBtn = heroSection?.querySelector(".cs-slideshow-prev");
+      const nextBtn = heroSection?.querySelector(".cs-slideshow-next");
+      if (!(track instanceof HTMLElement) || slides.length === 0) return;
+
+      const landscapeMinRatio = Number.parseFloat(
+        root.getAttribute("data-landscape-ratio") || "1.15"
+      );
+      slides.forEach((frame) =>
+        classifyHeroSlideFrame(frame, landscapeMinRatio)
+      );
+
+      if (root instanceof HTMLElement) root.dataset.heroInit = "true";
+
+      const intervalMs = Number.parseInt(root.dataset.interval || "20000", 10);
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      let index = 0;
+      let timer: ReturnType<typeof setInterval> | null = null;
+
+      const goTo = (nextIndex: number) => {
+        index = ((nextIndex % slides.length) + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+      };
+
+      const next = () => goTo(index + 1);
+      const prev = () => goTo(index - 1);
+
+      const resetTimer = () => {
+        if (timer) clearInterval(timer);
+        if (slides.length > 1 && !prefersReducedMotion) {
+          timer = setInterval(next, intervalMs);
+        }
+      };
+
+      prevBtn?.addEventListener("click", () => {
+        prev();
+        resetTimer();
+      });
+      nextBtn?.addEventListener("click", () => {
+        next();
+        resetTimer();
+      });
+
+      goTo(0);
+      resetTimer();
+    });
+  }
+
+  initHeroSlideshow();
+  document.addEventListener("astro:after-swap", initHeroSlideshow);
+
+  // Carousel for gallery news articles
+(function initCarousels() {
+  const carousels = document.querySelectorAll('.cs-carousel');
+  carousels.forEach(carousel => {
+    const track = carousel.querySelector('.cs-carousel-track');
+    const images = track.querySelectorAll('img');
+    const dots = carousel.querySelectorAll('.cs-carousel-dot');
+    const prevBtn = carousel.querySelector('.cs-carousel-prev');
+    const nextBtn = carousel.querySelector('.cs-carousel-next');
+    let current = 0;
+    const total = images.length;
+
+    function goTo(index) {
+      current = (index + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    // Keyboard nav
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    // Touch swipe
+    let startX = 0;
+    track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+  });
+
+  document.addEventListener('astro:after-swap', initCarousels);
+})();
+</script>
+                                
+                                                        
+<!-- ============================================ -->
+<!--                    News                       -->
+<!-- ============================================ -->
+
+<section id="news-page">
+    <!-- Page Header -->
+    <div class="cs-container">
+        <div class="cs-content">
+            <span class="cs-topper">News</span>
+            <h2 class="cs-title">Lab Highlights & Milestones</h2>
+            <p class="cs-text">From hands-on testing sessions to internal training and visiting collaborators,
+                these highlights reflect the day-to-day work that drives the Intelligent Biomechanics Lab forward.</p>
+        </div>
+    </div>
+
+    <!-- Activity Timeline -->
+    <div class="cs-container">
+
+        <article class="cs-activity cs-news-item cs-featured">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/2026-09-10.jpg"
+                  alt="Liz Gainsford visiting the lab"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2026-09-10">Sep 10, 2026</time>
+                    <span class="cs-tag">Lab Visit</span>
+                </div>
+                <h2 class="cs-activity-title">Wheeler High School Internship Coordinator Visits Lab</h2>
+                <p class="cs-desc">
+                    It was an honor to welcome Liz (Jefferson) Gainsford, Internship Coordinator at Wheeler High School's Center for Advanced Studies, to our lab. We are proud to witness the remarkable growth and development of Jonathan—who is consistently the first to arrive at the lab and has demonstrated exceptional performance across all research tasks. Ms. Gainsford expressed strong interest in future collaborations. We look forward to welcoming more talented high school students to join us for internships!
+                </p>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item cs-featured cs-activity-gallery">
+            <div class="cs-carousel">
+                <div class="cs-carousel-track">
+                    <img src="/assets/images/activities/2026-09-10-2.jpg" alt="Lab BBQ group photo" loading="lazy" decoding="async" />
+                    <img src="/assets/images/activities/2026-09-10-3.jpg" alt="Grilling at the park" loading="lazy" decoding="async" />
+                    <img src="/assets/images/activities/2026-09-10-4.jpg" alt="Team enjoying the BBQ" loading="lazy" decoding="async" />
+                </div>
+                <button class="cs-carousel-btn cs-carousel-prev" aria-label="Previous photo">&#10094;</button>
+                <button class="cs-carousel-btn cs-carousel-next" aria-label="Next photo">&#10095;</button>
+                <div class="cs-carousel-dots">
+                    <button class="cs-carousel-dot is-active" data-index="0" aria-label="Photo 1"></button>
+                    <button class="cs-carousel-dot" data-index="1" aria-label="Photo 2"></button>
+                    <button class="cs-carousel-dot" data-index="2" aria-label="Photo 3"></button>
+                    <button class="cs-carousel-dot" data-index="3" aria-label="Photo 4"></button>
+                    <button class="cs-carousel-dot" data-index="4" aria-label="Photo 5"></button>
+                </div>
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2026-09-10">Sep 10, 2026</time>
+                    <span class="cs-tag">Team Building</span>
+                </div>
+                <h2 class="cs-activity-title">Lab BBQ &amp; Welcome Event at Morgan Falls Overlook Park</h2>
+                <p class="cs-desc">
+                    Our lab recently held its very first group outing and BBQ at the scenic Morgan Falls Overlook Park! It was a fantastic opportunity for everyone to unwind, enjoy great food, and give a warm welcome to our new Ph.D. students, Sanjian Zhang and NanLong Sun.
+                </p>
+                <p class="cs-desc">
+                    Surrounded by nature and good company, the team fired up the grill and spent the day sharing stories and laughs outside the lab. This inaugural team-building event set a wonderful tone for our growing research group, fostering a strong sense of community and collaboration.
+                </p>
+                <p class="cs-desc">
+                    Please join us in giving a huge congratulations to Sanjian Zhang and NanLong Sun as they officially embark on their Ph.D. journeys. We are excited to see the impact they will make and look forward to sharing this inspiring academic adventure together!
+                </p>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item cs-featured">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/2026-05-28.png"
+                  alt="Josiah Ware featured in President's Monthly Message"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2026-05-28">May 28, 2026</time>
+                    <span class="cs-tag">Alumni Spotlight</span>
+                </div>
+                <h2 class="cs-activity-title">Alumnus Josiah Ware Featured in President's Monthly Message</h2>
+                <p class="cs-desc">
+                    We are thrilled to share that our lab alumnus, Josiah Ware, was recently highlighted in the president's monthly message for his exceptional undergraduate research at Kennesaw State University! Under the guidance of Dr. Lei Shi, Josiah contributed to developing patient-specific virtual heart models using advanced imaging and machine learning. His work focuses on transforming CT scans into detailed 3D representations to simulate cardiac function and help medical professionals diagnose and personalize heart treatments more efficiently. Congratulations, Josiah, on this well-deserved recognition!
+                </p>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities7.jpg"
+                  alt="Team demo or lab activity photo"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2026-04-22">Apr 22, 2026</time>
+                    <span class="cs-tag">Research Showcase</span>
+                </div>
+                <h2 class="cs-activity-title">Spring Symposium 2026: Poster Presentation</h2>
+                <p class="cs-desc">
+                    Our First Year Scholars team presented a poster on how differences in esophageal tissue strain
+                    may support more personalized AI-based analysis of endoscopy results. The project focused on
+                    comparing the muscular and mucosal layers of the esophagus and examining how tissue response
+                    changes by direction.
+                </p>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities1.png"
+                  alt="Boyang visiting the lab"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2025-12-05">Dec 5 – Dec 12, 2025</time>
+                    <span class="cs-tag">Visiting Scholar</span>
+                </div>
+                <h2 class="cs-activity-title">Scholar Visit: Boyang (Columbia University)</h2>
+                <p class="cs-desc">
+                    We welcomed Boyang, a second-year PhD student from Columbia University. During the visit, he conducted
+                    biaxial mechanical stretching experiments on the heart and collaborated with our team on experimental
+                    planning and analysis.
+                </p>
+                <details class="cs-details">
+                    <summary>Read more</summary>
+                    <div class="cs-details-content">
+                        <p>
+                            This visit supported cross-institution collaboration and hands-on knowledge exchange in cardiac biomechanics.
+                            The team discussed protocols, data quality checks, and next steps for integrating results into modeling workflows.
+                        </p>
+                        <ul>
+                            <li>Hands-on biaxial testing workflow and setup</li>
+                            <li>Discussion on experimental repeatability and measurement alignment</li>
+                            <li>Planning follow-up analysis and potential future collaboration</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities2.png"
+                  alt="Team demo or lab activity photo"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2025-11-19">Nov 19, 2025</time>
+                    <span class="cs-tag">Seminar</span>
+                </div>
+                <h2 class="cs-activity-title">Research Seminar Recap!</h2>
+                <p class="cs-desc">
+                    Our lab welcomed Dr. Hai Dong from Emory University for a research seminar!
+                    Topic: The Unified-Fiber-Distribution (UFD) Model: Three Applications In Vascular Biomechanics
+                </p>
+                <details class="cs-details">
+                    <summary>Read more</summary>
+                    <div class="cs-details-content">
+                        <p>
+                            During the seminar, Dr. Dong introduced the UFD model,
+                            a new way to represent fibers in vascular tissues that's more realistic and accurate than traditional fiber-family-based models.
+                            He also showcased three applications:
+                        </p>
+                        <ul>
+                            <li>Quantifying gene- and age-related arterial stiffening</li>
+                            <li>Identifying material properties of aortic aneurysms in Vivo</li>
+                            <li>Modeling aortic tissue growth</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities3.png"
+                  alt="Team demo or lab activity photo"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2025-10-03">Oct 3, 2025</time>
+                    <span class="cs-tag">Networking</span>
+                </div>
+                <h2 class="cs-activity-title">Y Computing System Lab Meet-and-Greet</h2>
+                <p class="cs-desc">
+                    Our lab's freshman scholars held a meet-and-greet event with the Y Computing System Lab.
+                    The event provided an opportunity for students to connect, exchange ideas, and foster collaboration between the two labs.
+                </p>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities4.png"
+                  alt="Team demo or lab activity photo"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2025-08-24">Aug 24 – Sep 3, 2025</time>
+                    <span class="cs-tag">Visiting Scholar</span>
+                </div>
+                <h2 class="cs-activity-title">Scholar Visit: Hannah (Columbia University)</h2>
+                <p class="cs-desc">
+                    We welcomed Hannah, a 3rd-year PhD student from Columbia University, to our lab!
+                    She worked on uniaxial heart stretching experiments and got hands-on experience in cardiac biomechanics research.
+                </p>
+                <details class="cs-details">
+                    <summary>Read more</summary>
+                    <div class="cs-details-content">
+                        <p>
+                            Hannah's visit strengthened our collaboration with Columbia University and provided hands-on training in uniaxial testing for cardiac tissue. During her time in the lab, she supported experiment setup and execution,
+                            reviewed data quality checks, and helped align testing parameters with our broader study goals in cardiac biomechanics.
+                        </p>
+                        <ul>
+                            <li>Hands-on uniaxial stretching workflow: specimen mounting, preconditioning, and test execution</li>
+                            <li>Discussion of protocol consistency, calibration, and data quality/organization for downstream analysis</li>
+                            <li>Planning next steps for interpreting results and integrating findings into ongoing research efforts</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities5.png"
+                  alt="Team demo or lab activity photo"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2025-08-25">Aug 25, 2025</time>
+                    <span class="cs-tag">Media Feature</span>
+                </div>
+                <h2 class="cs-activity-title">Dr. Shi Interviewed by the University: Advancing Gastrointestinal Research</h2>
+                <p class="cs-desc">
+                    Dr. Shi was interviewed by the university for the second time, discussing his work on gastrointestinal research.
+                    The interview focused on how he leverages his engineering background to develop solutions for stomach diseases, highlighting the innovative, interdisciplinary approach of his lab.
+                </p>
+            </div>
+        </article>
+
+        <article class="cs-activity cs-news-item">
+            <div class="cs-media">
+                <img
+                  src="/assets/images/activities/activities6.png"
+                  alt="Team demo or lab activity photo"
+                  loading="lazy"
+                  decoding="async"
+                />
+            </div>
+            <div class="cs-body">
+                <div class="cs-meta">
+                    <time class="cs-date" datetime="2025-06-22">June 22 – June 25, 2025</time>
+                    <span class="cs-tag">Conference</span>
+                </div>
+                <h2 class="cs-activity-title">ASME SBC 2025: Lab Representation & Yue Li Travel Award</h2>
+                <p class="cs-desc">
+                    Dr. Shi and his PhD student Yue Li represented our lab at the ASME SB3C Summer Bioengineering Conference (SBC 2025).
+                    During the conference, Yue Li received the Culture and Community Travel Award for the 2025 ASME SBC in recognition of her contributions.
+                </p>
+                <details class="cs-details">
+                    <summary>Read more</summary>
+                    <div class="cs-details-content">
+                        <p>
+                            SBC 2025 gave our team a chance to step back from day-to-day experiments and benchmark our work against what other groups are building right now. Beyond attending sessions, we used the conference to trade notes on current best practices,
+                            get feedback on our research direction, and bring home practical ideas we can apply immediately—especially around presenting results clearly and designing studies that are easier to reproduce across labs.
+                        </p>
+                        <ul>
+                            <li>Presented our lab's research and connected with faculty, students, and industry partners in the biomechanics community</li>
+                            <li>Discussed current challenges and emerging methods in bioengineering, including experimental design, data interpretation, and modeling workflows</li>
+                            <li>Captured takeaways and next steps for future collaborations, presentations, and publication planning based on conference feedback</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </article>
+
+        <!-- Pagination -->
+        <nav class="cs-pagination" id="news-pagination" aria-label="News pagination"></nav>
+    </div>
+</section>
+
+</BaseLayout>
+
+
+
+
+<style lang="less">
+
+/*-- -------------------------- -->
+<---           Hero             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #hero-2150 {
+        /* 300px - 400px on top - leaving extra space for the navigation */
+        /* 60px - 100px on bottom */
+        padding: clamp(10rem, 40vw, 25rem) (16/16rem) clamp(3.75rem, 7.5vw, 6.25rem) (16/16rem);
+        /* prevents the topper line from causing an overflow */
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at tablet */
+            max-width: (704/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 48px - 60px */
+            gap: clamp(3rem, 6vw, 3.75rem);
+        }
+
+        .cs-content {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cs-title {
+            /* 39px - 61px */
+            position: relative;
+            top: -130px;
+            font-size: clamp(3rem, 6vw, 5rem);
+            max-width: 30ch;
+            color: var(--bodyTextColorWhite);
+        }
+        
+        .cs-topper {
+            font-size: clamp(1rem, 1.6vw, 1.4rem);
+            position: relative;
+            top: -130px;
+            color: var(--csTopperColor);
+        }
+
+        .cs-text {
+            /* 16px - 20px */
+            position: relative;
+            top: 50px;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 55ch;
+            margin-bottom: (32/16rem);
+            color: var(--bodyTextColorWhite);
+            opacity: 0.8;
+        }
+
+        .cs-button-solid {
+            position: relative;
+            top: 50px;
+            font-size: (16/16rem);
+            font-weight: 700;
+            /* 46px - 56px */
+            line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-align: center;
+            text-decoration: none;
+            min-width: (200/16rem);
+            margin: 0;
+            /* prevents padding from adding to the width */
+            box-sizing: border-box;
+            /* 32px - 48px */
+            padding: 0 clamp(2rem, 4vw, 3rem);
+            background-color: var(--primary);
+            color: var(--bodyTextColorWhite);
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s;
+
+            &:before {
+                content: "";
+                width: 0%;
+                height: 100%;
+                background: #ffffff;
+                opacity: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                color: var(--headerColor);
+
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            /* 32px - 60px */
+            row-gap: clamp(2rem, 4vw, 3.75rem);
+        }
+
+        .cs-item {
+            text-align: left;
+            list-style: none;
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            grid-column: span 12;
+            gap: (16/16rem);
+        }
+
+        .cs-icon-group {
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: (8/16rem);
+        }
+
+        .cs-icon {
+            width: (32/16rem);
+            height: auto;
+            display: block;
+        }
+
+        .cs-h3 {
+            /* 20px - 25px */
+            font-size: clamp(1.25rem, 2.5vw, 1.5625rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: inherit;
+            margin: 0;
+            color: var(--bodyTextColorWhite);
+            transition: color 0.3s;
+        }
+
+        .cs-item-text {
+            /* 16px - 20px */
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.5em;
+            text-align: inherit;
+            margin: 0;
+            color: #F7F7F7;
+            opacity: 0.8;
+        }
+
+        .cs-background {
+          width: 100%;
+          height: 100%;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        
+          &:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);
+            pointer-events: none;
+            opacity: 1;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+          }
+      
+          .cs-slideshow {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+          }
+
+          .cs-track {
+            height: 100%;
+            display: flex;
+            transition: transform 0.6s ease;
+            will-change: transform;
+          }
+
+          .cs-slide-frame {
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          /* Portrait: blurred backdrop + full image (set via JS .is-portrait) */
+          &.is-portrait {
+            .cs-slide-bg {
+              display: block;
+            }
+
+            .cs-slide {
+              position: relative;
+              z-index: 1;
+              max-width: 100%;
+              max-height: 100%;
+              width: auto;
+              height: auto;
+              object-fit: contain;
+              object-position: center;
+            }
+          }
+
+          .cs-slide-bg {
+            display: none;
+            position: absolute;
+            inset: -10%;
+            width: 120%;
+            height: 120%;
+            object-fit: cover;
+            object-position: center;
+            filter: blur(28px) brightness(0.45) saturate(1.15);
+            transform: scale(1.08);
+            pointer-events: none;
+          }
+
+          .cs-slide {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          /* Landscape: single layer, fill the hero */
+          &.is-landscape {
+            .cs-slide-bg {
+              display: none;
+            }
+
+            .cs-slide {
+              max-width: none;
+              max-height: none;
+            }
+          }
+        }
+
+        .cs-slideshow-controls {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 (12/16rem);
+          pointer-events: none;
+        }
+
+        .cs-slideshow-btn {
+          pointer-events: auto;
+          width: (44/16rem);
+          height: (44/16rem);
+          padding: 0;
+          border: 1px solid rgba(255, 255, 255, 0.45);
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.45);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition:
+            background-color 0.2s,
+            border-color 0.2s,
+            transform 0.2s;
+
+          svg {
+            width: (26/16rem);
+            height: (26/16rem);
+            fill: currentColor;
+          }
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.65);
+            border-color: rgba(255, 255, 255, 0.85);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+          }
+
+          &:active {
+            transform: scale(0.96);
+          }
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #hero-2150 {
+        .cs-container {
+            max-width: (1280/16rem);
+        }
+
+        .cs-item {
+            grid-column: span 4;
+        }
+
+        .cs-card-group {
+            /* 24px - 60px */
+            margin-top: clamp(1.5rem, 3vw, 3.75rem);
+            /* 32px - 60px */
+            column-gap: clamp(2rem, 4vw, 3.75rem);
+        }
+    }
+}                     
+                                
+/*-- -------------------------- -->
+<---          Services          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #services-1338 {
+        padding: var(--sectionPadding);
+        /* removing the side paddings to allow the cards to fit the whole page width */
+        padding-right: 0;
+        padding-left: 0;
+        position: relative;
+
+        .cs-container {
+            width: 100%;
+            max-width: (2500/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            /* 16px - 40px */
+            padding: 0 clamp(1rem, 3.8vw, 2.5rem);
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: center;
+        }
+
+        .cs-title {
+            max-width: 20ch;
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            /* 16px - 20px */
+            gap: clamp(1rem, 2.5vw, 1.25rem);
+        }
+
+        .cs-item {
+            text-align: left;
+            list-style: none;
+            width: 100%;
+            /* 300px - 580px */
+            height: clamp(18.75rem, 50vw, 36.25rem);
+            margin: 0;
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            grid-column: span 12;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cs-link {
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 0;
+            /* we use flexbox here to grow the link to fit the whole item, making it clickable everywhere, no matter the size */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 1;
+
+            &::after {
+                /* hover overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                right: 0;
+                pointer-events: none;
+                z-index: -1;
+                /* as we can't animate background gradients, we animate the change of opacity from 0 to 1 */
+                transition: opacity 0.3s;
+            }
+        }
+
+        .cs-number {
+            /* 25px - 39px */
+            font-size: clamp(1.5625rem, 2.7vw, 2.4375rem);
+            font-weight: bold;
+            color: var(--bodyTextColor);
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: (20/16rem);
+            transition:
+                opacity 0.3s,
+                top 0.3s;
+        }
+
+        .cs-info {
+            text-align: center;
+            width: 83%;
+            max-width: (385/16rem);
+            margin: 0 auto;
+            /* 16px - 40px */
+            padding: clamp(1rem, 2.7vw, 2.5rem);
+            box-sizing: border-box;
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s;
+        }
+
+        .cs-h3 {
+            /* 20px - 25px */
+            font-size: clamp(1.25rem, 1.8vw, 1.5625rem);
+            font-weight: bold;
+            line-height: 1.2em;
+            text-align: inherit;
+            margin: 0 0 (4/16rem) 0;
+            color: var(--bodyTextColorWhite);
+            transition: color 0.3s;
+        }
+
+        .cs-item-text {
+            /* 14px - 16px */
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.5em;
+            margin: 0;
+            padding: 0;
+            color: var(--bodyTextColorWhite);
+        }
+
+        .cs-picture {
+            width: 100%;
+            height: 100%;
+            box-shadow: 0px 12px 80px 0px rgba(26, 26, 26, 0.08);
+            display: block;
+            z-index: -1;
+            overflow: hidden;
+            position: absolute;
+            bottom: (40/16rem);
+            left: 0;
+
+            &:before {
+                /* background color overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: -moz-linear-gradient(
+                    top,
+                    rgba(26, 26, 26, 0) 0%,
+                    rgba(0, 0, 0, 0.76) 100%
+                ); /* FF3.6-15 */
+                background: -webkit-linear-gradient(
+                    top,
+                    rgba(26, 26, 26, 0) 0%,
+                    rgba(0, 0, 0, 0.76) 100%
+                ); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(
+                    to bottom,
+                    rgba(26, 26, 26, 0) 0%,
+                    rgba(0, 0, 0, 0.76) 100%
+                );
+                opacity: 1;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            &:after {
+                /* background color overlay on hover */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: -moz-linear-gradient(
+                    top,
+                    rgba(26, 26, 26, 0.4) 0%,
+                    rgba(0, 0, 0, 0.8) 100%
+                ); /* FF3.6-15 */
+                background: -webkit-linear-gradient(
+                    top,
+                    rgba(26, 26, 26, 0.4) 0%,
+                    rgba(0, 0, 0, 0.8) 100%
+                ); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(
+                    to bottom,
+                    rgba(26, 26, 26, 0.4) 0%,
+                    rgba(0, 0, 0, 0.8) 100%
+                );
+                opacity: 0;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: opacity 0.3s;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                /* Makes img tag act as a background image */
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: transform 0.7s;
+            }
+        }
+
+        .cs-arrow {
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition:
+                bottom 0.3s,
+                opacity 0.3s,
+                transform 0.3s;
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #services-1338 {
+        .cs-item {
+            grid-column: span 6;
+        }
+    }
+}
+
+/* Large Desktop - 1300px */
+@media only screen and (min-width: 81.25rem) {
+    #services-1338 {
+        .cs-item {
+            grid-column: span 3;
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---       Side By Side         -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #sbs-2283 {
+        padding: var(--sectionPadding);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at desktop */
+            max-width: (584/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: flex-start;
+        }
+
+        .cs-content-images {
+            display: none;
+        }
+
+        .cs-text {
+            max-width: 100%;
+            margin-bottom: (16/16rem);
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+
+        .cs-card-group {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: (20/16rem);
+            order: 3;
+        }
+
+        .cs-item {
+            list-style: none;
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 5vw, 2rem);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: (12/16rem);
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                opacity: .05;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        }
+
+        .cs-item-picture {
+            display: none;
+        }
+
+        .cs-h3 {
+            font-size: (16/16rem);
+            line-height: 1.2em;
+            font-weight: 700;
+            margin: 0;
+            color: var(--headerColor);
+        }
+
+        .cs-item-text {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            margin: 0;
+            color: var(--bodyTextColor);
+        }
+
+        .cs-button-solid {
+            font-size: (16/16rem);
+            font-weight: 700;
+            /* 46px - 56px */
+            line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-align: center;
+            text-decoration: none;
+            min-width: (150/16rem);
+            margin: 0;
+            /* prevents padding from adding to the width */
+            box-sizing: border-box;
+            padding: 0 (24/16rem);
+            background-color: var(--primary);
+            color: #fff;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                content: "";
+                width: 0%;
+                height: 100%;
+                background: #000;
+                opacity: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        .cs-image-group {
+            /* scales the whole group based on the view width size and stop when that vales equals .74em, resets at desktop */
+            font-size: ~"min(2.48vw, 1rem)";
+            width: (584/16em);
+            height: (619/16em);
+            display: block;
+            position: relative;
+            z-index: 1;
+            order: 2;
+        }
+
+        .cs-picture {
+            display: block;
+            position: absolute;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .cs-picture1 {
+            width: (340/16em);   /* ← shrink slightly from 381 */
+            height: (340/16em);  /* ← shrink slightly from 381 */
+            border-right: (14/16em) solid #FEF5F4;
+            border-bottom: (14/16em) solid #FEF5F4;
+            top: 0;
+            bottom: (281/16em);
+            left: 0;
+            z-index: 2;
+        }
+
+        .cs-picture2 {
+            width: (382/16em);
+            height: (326/16em);
+            right: 0;
+            bottom: 0;
+        }
+
+        .cs-picture3 {
+            width: (215/16em);
+            height: (152/16em);
+            bottom: (160/16em);
+            left: (100/16em);
+        }
+    }
+}
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #sbs-2283 {
+        .cs-container {
+            max-width: (1280/16rem);
+            gap: (32/16rem);
+        }
+
+        .cs-content {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: (44/16rem);
+            position: relative;
+            z-index: 10;
+        }
+
+        .cs-flex {
+            width: 100%;
+            max-width: (738/16rem);
+        }
+
+        .cs-content-images {
+            width: 45vw;
+            max-width: (412/16rem);
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+            order: -1;
+        }
+
+        .cs-li {
+            align-items: center;
+        }
+
+        .cs-image-group {
+            display: none;
+        }
+
+        .cs-picture1 {
+            width: (381/16em);
+            height: (381/16em);
+            border-right: (14/16em) solid #FEF5F4;
+            border-bottom: (14/16em) solid #FEF5F4;
+            top: 0;
+            bottom: (340/16em);   /* ← increased from 281 */
+            left: 0;
+        }
+
+        .cs-picture3 {
+            width: 56%;
+            min-height: 100px;
+            max-width: (233/16rem);
+            left: 50%;
+            top: calc(100% + 5rem);
+            transform: translateX(-50%);
+
+            img {
+                width: 100%;
+                height: auto;
+                position: relative;
+                z-index: 1;
+                top: auto;
+                left: auto;
+                object-fit: initial;
+            }
+        }
+
+        .cs-card-group {
+            width: 50%;
+            max-width: (521/16rem);
+            margin-left: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cs-item-picture {
+            width: 30vw;
+            max-width: (413/16rem);
+            border: none;
+            display: block;
+            position: absolute;
+            /* 72px - 130px */
+            right: calc(100% + clamp(4.5rem, 6vw + 2.5rem, 8.125rem));
+            top: (36/16rem);
+            bottom: 0;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        .cs-picture2 {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---   Side By Side Reverse     -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #sbsr-2289 {
+        padding: var(--sectionPadding);
+        overflow: hidden;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at desktop */
+            max-width: (584/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: (48/16rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: flex-start;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cs-text {
+            margin-bottom: (16/16rem);
+            &:last-of-type {
+                margin-bottom: (32/16rem);
+            }
+        }
+
+        .cs-features {
+            width: 100%;
+            margin: 0 0 (32/16rem);
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 4vw, 2rem);
+            background-color: #f3f8fb;
+            border-left: (4/16rem) solid var(--secondary);
+        }
+
+        .cs-h3 {
+            font-size: (16/16rem);
+            font-weight: 700;
+            line-height: 1.5em;
+            margin: 0 0 (12/16rem);
+            color: var(--headerColor);
+        }
+
+        .cs-ul {
+            font-size: (12/16rem);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: (12/16rem);
+        }
+
+        .cs-li {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            list-style: none;
+            /* 20px - 24px */
+            padding-left: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--bodyTextColor);
+            position: relative;
+
+            &::before {
+                content: "";
+                width: (8/16rem);
+                height: (8/16rem);
+                margin-top: (8/16rem);
+                background-color: var(--secondary);
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: rotate(45deg);
+            }
+        }
+
+        .cs-button-solid {
+            font-size: (16/16rem);
+            font-weight: 700;
+            /* 46px - 56px */
+            line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-align: center;
+            text-decoration: none;
+            min-width: (150/16rem);
+            margin: 0;
+            /* prevents padding from adding to the width */
+            box-sizing: border-box;
+            padding: 0 (24/16rem);
+            background-color: var(--csButtonColor);
+            color: #ffffff;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s;
+
+            &:before {
+                content: "";
+                width: 0%;
+                height: 100%;
+                background: #000000;
+                opacity: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: width 0.3s;
+            }
+
+            &:hover {
+                color: #ffffff;
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        .cs-image-group {
+            width: 100%;
+            height: 126vw;
+            max-height: (626/16rem);
+            display: block;
+            order: -1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cs-picture {
+            /* big background image */
+            width: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: (95/16rem);
+            left: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .cs-box {
+            text-align: left;
+            width: 91%;
+            max-width: (450/16rem);
+            /* prevents padding and border from affecting height and width */
+            box-sizing: border-box;
+            /* 24px - 32px */
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background-color: #fffcf3;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            column-gap: (24/16rem);
+            row-gap: (8/16rem);
+            position: absolute;
+            right: 50%;
+            bottom: 0;
+            z-index: 10;
+            transform: translate(50%);
+        }
+
+        .cs-number {
+            /* 31px - 49px */
+            font-size: clamp(1.9375rem, 4vw, 3.0625rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--csButtonColor);
+        }
+
+        .cs-heading {
+            font-size: (20/16rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            margin: 0 0 (8/16rem);
+            color: var(--headerColor);
+        }
+
+        .cs-desc {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            color: var(--bodyTextColor);
+        }
+
+        .cs-graphic {
+            width: 150%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #sbsr-2289 {
+        .cs-box {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #sbsr-2289 {
+        .cs-container {
+            max-width: (1280/16rem);
+            flex-direction: row;
+            align-items: stretch;
+            gap: (20/16rem);
+        }
+
+        .cs-content {
+            padding-right: (52/16rem);
+            padding-bottom: (108/16rem);
+        }
+
+        .cs-image-group {
+            height: auto;
+            min-height: (642/16rem);
+            max-height: 100%;
+            order: initial;
+        }
+
+        .cs-picture {
+            bottom: (64/16rem);
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---          Steps             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #steps-2330 {
+        padding: var(--sectionPadding);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at desktop */
+            max-width: (584/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: (32/16rem);
+        }
+
+        .cs-wrapper {
+            display: contents;
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: left;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: flex-start;
+        }
+
+        .cs-topper {
+            color: var(--secondary);
+        }
+
+        .cs-title {
+            margin: 0;
+            max-width: (20ch);
+        }
+
+        .cs-card-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            /* 32px - 60px */
+            gap: clamp(2rem, 6vw, 3.75rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            /* 16px - 24px */
+            gap: clamp(1rem, 2vw, 1.5rem);
+            position: relative;
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+
+        .cs-number {
+            /* 39px - 61px */
+            font-size: clamp(2.4375rem, 7vw, 3.8125rem);
+            font-weight: 900;
+            line-height: (19/16em);
+            color: var(--csButtonColor);
+            display: block;
+        }
+
+        .cs-h3 {
+            font-size: (20/16rem);
+            font-weight: 700;
+            line-height: (18/16em);
+            margin: 0 0 (12/16rem) 0;
+            color: var(--headerColor);
+        }
+
+        .cs-item-text {
+            font-size: (16/16rem);
+            line-height: (24/16em);
+            text-align: left;
+            margin: 0;
+            color: var(--bodyTextColor);
+        }
+
+        .cs-picture {
+            width: 100%;
+            height: auto;
+            order: 3;
+
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;                
+            }
+        }
+
+        .cs-floater {
+            display: none;
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #steps-2330 {
+        .cs-floater {
+            font-size: (180/16rem);
+            text-transform: uppercase;
+            line-height: 1.2em;
+            font-weight: 900;
+            color: #F3F3F3;
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: (-350/16rem);
+            z-index: -2;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+    }
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #steps-2330 {
+        .cs-container {
+            max-width: (1280/16rem);
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        .cs-wrapper {
+            max-width: (748/16rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: (32/16rem);
+        }
+
+        .cs-title {
+            width: 80%;
+        }
+
+        .cs-card-group {
+            max-width: (578/16rem);
+            align-items: flex-end;
+        }
+
+        .cs-item {
+            position: relative;
+            z-index: 1;
+            
+            &:nth-of-type(1) {
+            }
+
+            &:nth-of-type(2) {
+                width: (538/16rem);
+            }
+
+            &:nth-of-type(3) {
+                width: (498/16rem);
+            }
+
+            &:nth-of-type(4) {
+                width: (458/16rem);
+            }
+        }
+
+        .cs-picture {
+            width: 120%;
+            max-height: (420/16rem);
+            max-width: (685/16rem);
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+/*-- -------------------------- -->
+<---           News              -->
+<--- -------------------------- -*/
+#news-page {
+  background: #fff;
+  padding: clamp(4rem, 8vw, 6rem) 1rem;
+  .cs-container {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+  .cs-content {
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .cs-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 0.75rem 0;
+    color: var(--headerColor);
+  }
+  .cs-topper {
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.875rem;
+  }
+  .cs-text {
+    max-width: 60ch;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+}
+
+.cs-news-item { display: none; }
+.cs-news-item.is-visible { display: block; }
+.cs-activity.is-visible { display: grid; }
+
+.cs-activity {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  margin-bottom: 1.5rem;
+}
+
+/* Carousel variant: 2-col with single-image carousel on left */
+.cs-activity-gallery {
+  grid-template-columns: 1fr;
+}
+.cs-carousel {
+  position: relative;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: #f4f4f4;
+  aspect-ratio: 4 / 3;
+}
+.cs-carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
+.cs-carousel-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cs-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  color: var(--headerColor);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2;
+}
+.cs-carousel-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+.cs-carousel-prev { left: 0.625rem; }
+.cs-carousel-next { right: 0.625rem; }
+.cs-carousel-dots {
+  position: absolute;
+  bottom: 0.625rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.375rem;
+  z-index: 2;
+}
+.cs-carousel-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.cs-carousel-dot.is-active {
+  background: #fff;
+  transform: scale(1.35);
+}
+
+@media (min-width: 48rem) {
+  .cs-featured.cs-activity-gallery {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .cs-featured.cs-activity-gallery .cs-carousel {
+    aspect-ratio: 4 / 3;
+  }
+  .cs-featured:not(.cs-activity-gallery) {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+@media (min-width: 64rem) {
+  .cs-featured.cs-activity-gallery {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+.cs-media {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+.cs-media img {
+  width: 100%;
+  height: 100%;
+  max-height: 26rem;
+  object-fit: cover;
+  display: block;
+}
+/* Featured articles: show full image, no crop, columns on tablet+ */
+.cs-featured .cs-media img {
+  height: auto;
+  max-height: none;
+  object-fit: fill;
+}
+.cs-body { display: flex; flex-direction: column; gap: 0.75rem; }
+.cs-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.cs-date { font-weight: 700; color: #1f4bd8; }
+.cs-tag {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+}
+.cs-activity-title { font-size: clamp(1.2rem, 2vw, 1.6rem); margin: 0; color: var(--headerColor); }
+.cs-desc { margin: 0; line-height: 1.6; opacity: 1; color: var(--bodyTextColor); }
+
+.cs-details summary { cursor: pointer; font-weight: 700; margin-top: 0.25rem; }
+.cs-details-content { margin-top: 0.75rem; line-height: 1.6; color: var(--bodyTextColor); }
+.cs-details-content ul { margin: 0.75rem 0 0 1.25rem; }
+
+/* Pagination */
+.cs-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+}
+.cs-pagination button,
+.cs-pagination .cs-page-ellipsis {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: var(--bodyTextColor);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-pagination button:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.cs-pagination button.cs-page-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+.cs-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.cs-page-ellipsis {
+  border: none;
+  background: transparent;
+  cursor: default;
+  color: #94a3b8;
+}
+
+/* Desktop activity layout */
+@media (min-width: 64rem) {
+  .cs-activity:not(.cs-featured) {
+    grid-template-columns: 1fr;
+  }
+  .cs-featured:not(.cs-activity-gallery) {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+  }
+  .cs-media img {
+    max-height: 22rem;
+    object-fit: cover;
+  }
+  .cs-featured .cs-media img {
+    max-height: none;
+    height: auto;
+  }
+}
+
+</style>
+
+<script is:inline>
+(function () {
+  const ITEMS_PER_PAGE = 4;
+  const items = document.querySelectorAll('.cs-news-item');
+  const pagination = document.getElementById('news-pagination');
+  if (!items.length || !pagination) return;
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  let currentPage = 1;
+
+  function showPage(page) {
+    currentPage = Math.max(1, Math.min(page, totalPages));
+    items.forEach((el, i) => {
+      const idx = i + 1;
+      const onPage = idx >= (currentPage - 1) * ITEMS_PER_PAGE + 1 && idx <= currentPage * ITEMS_PER_PAGE;
+      el.classList.toggle('is-visible', onPage);
+    });
+    renderPagination();
+  }
+
+  function renderPagination() {
+    pagination.innerHTML = '';
+
+    const prev = document.createElement('button');
+    prev.textContent = '‹ Prev';
+    prev.disabled = currentPage === 1;
+    prev.addEventListener('click', () => showPage(currentPage - 1));
+    pagination.appendChild(prev);
+
+    const windowSize = 1;
+    const pages = new Set();
+    pages.add(1);
+    pages.add(totalPages);
+    for (let i = currentPage - windowSize; i <= currentPage + windowSize; i++) {
+      if (i >= 1 && i <= totalPages) pages.add(i);
+    }
+    const sorted = [...pages].sort((a, b) => a - b);
+
+    sorted.forEach((p, idx) => {
+      if (idx > 0 && p - sorted[idx - 1] > 1) {
+        const span = document.createElement('span');
+        span.className = 'cs-page-ellipsis';
+        span.textContent = '…';
+        pagination.appendChild(span);
+      }
+      const btn = document.createElement('button');
+      btn.textContent = p;
+      if (p === currentPage) btn.classList.add('cs-page-active');
+      btn.addEventListener('click', () => showPage(p));
+      pagination.appendChild(btn);
+    });
+
+    const next = document.createElement('button');
+    next.textContent = 'Next ›';
+    next.disabled = currentPage === totalPages;
+    next.addEventListener('click', () => showPage(currentPage + 1));
+    pagination.appendChild(next);
+  }
+
+  showPage(1);
+  document.addEventListener('astro:after-swap', () => showPage(1));
+})();
+</script>
