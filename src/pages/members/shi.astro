@@ -68,7 +68,7 @@ const member = {
 
   locations: {
     birthplace: "China",
-    highSchool: "Example High School",
+    highSchool: "",
     traveled: [
       { name: "China", country: "China", lat: 35.8617, lon: 104.1954, label: "Birthplace" },
       { name: "New York", country: "USA", lat: 40.7128, lon: -74.0060, label: "Ph.D. Study" },
@@ -101,7 +101,9 @@ const member = {
         <div class="cs-hero-content">
           <span class="cs-topper">Team Member Profile</span>
           <h1 class="cs-title">
-            <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            {member.personalWebsite ? (
+              <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            ) : member.fullName}
           </h1>
           <p class="cs-role">{member.role}</p>
           <p class="cs-short-bio">{member.shortBio}</p>
@@ -117,14 +119,16 @@ const member = {
               <span class="cs-meta-value">{member.role}</span>
             </div>
 
-            <div class="cs-meta-item">
-              <span class="cs-meta-label">Email</span>
-              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
-            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
           </div>
 
           <div class="cs-social-links">
-            {member.socialLinks.map((link) => (
+            {member.socialLinks.filter((link) => link.url).map((link) => (
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="cs-social-link">
                 {link.name}
               </a>
@@ -161,7 +165,7 @@ const member = {
           <section class="cs-section-card">
             <h2>CV Overview</h2>
             <div class="cs-cv-grid">
-              {member.cvSections.map((section) => (
+              {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
                 <div class="cs-cv-card">
                   <h3>{section.title}</h3>
                   <ul class="cs-list">
@@ -204,16 +208,21 @@ const member = {
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
-              <li>
-                <span>Birthplace:</span>
-                <strong>{member.locations.birthplace}</strong>
-              </li>
-              <li>
-                <span>Hobbies:</span>
-                <strong>{member.hobbies.join(", ")}</strong>
-              </li>
+              {member.locations.birthplace && (
+                <li>
+                  <span>Birthplace:</span>
+                  <strong>{member.locations.birthplace}</strong>
+                </li>
+              )}
+              {member.hobbies.length > 0 && (
+                <li>
+                  <span>Hobbies:</span>
+                  <strong>{member.hobbies.join(", ")}</strong>
+                </li>
+              )}
             </ul>
           </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

@@ -3,16 +3,16 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
   fullName: "Sanjian Zhang",
-  role: "PhD Student, Graduate Researcher",
+  role: "Ph.D. Student, Graduate Researcher",
   image: "/assets/images/members/sanjian.png",
   email: "szhang97@students.kennesaw.edu",
   department: "Intelligent Biomechanics Lab",
 
   shortBio:
-     "Sanjian Zhang is a PhD student at Kennesaw State University, focusing on spatiotemporal modeling for cardiac dynamics and patient-specific cardiovascular digital twins.",
+    "Sanjian Zhang is a Ph.D. student at Kennesaw State University, focusing on spatiotemporal modeling for cardiac dynamics and patient-specific cardiovascular digital twins.",
 
-introduction:
-  "Sanjian Zhang is a PhD student in Interdisciplinary Engineering at Kennesaw State University, working in the Intelligent Biomechanics Lab. His research focuses on modeling and predicting cardiac dynamics using data-driven approaches. Specifically, he studies how to integrate cardiac structures reconstructed from CT/MRI imaging with physiological signals such as blood pressure and clinical variables to model the temporal evolution of cardiac motion across the cardiac cycle. His goal is to develop accurate and reliable models for patient-specific cardiovascular digital twins.His work lies at the intersection of spatiotemporal machine learning, biomedical modeling, and data-driven simulation for real-world healthcare applications.",
+  introduction:
+    "Sanjian Zhang is a Ph.D. student in Interdisciplinary Engineering at Kennesaw State University, working in the Intelligent Biomechanics Lab. His research focuses on modeling and predicting cardiac dynamics using data-driven approaches. Specifically, he studies how to integrate cardiac structures reconstructed from CT/MRI imaging with physiological signals such as blood pressure and clinical variables to model the temporal evolution of cardiac motion across the cardiac cycle. His goal is to develop accurate and reliable models for patient-specific cardiovascular digital twins. His work lies at the intersection of spatiotemporal machine learning, biomedical modeling, and data-driven simulation for real-world healthcare applications.",
 
   socialLinks: [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/sanjian-zhang/", icon: "in" },
@@ -45,17 +45,11 @@ introduction:
       title: "Research Interests",
       items: [
         "Trustworthy AI for Cardiovascular Digital Twins",
-    "Spatiotemporal Modeling and Time-Series Prediction",
-    "Biomedical AI for Cardiac Dynamics Modeling",
-    "Multimodal Learning and Foundation Models",
-    "Privacy-Preserving Computer Vision",
-    "Reproducible and Deployable Machine Learning Systems"
-      ]
-    },
-    {
-      title: "Selected Projects",
-      items: [
-        
+        "Spatiotemporal Modeling and Time-Series Prediction",
+        "Biomedical AI for Cardiac Dynamics Modeling",
+        "Multimodal Learning and Foundation Models",
+        "Privacy-Preserving Computer Vision",
+        "Reproducible and Deployable Machine Learning Systems"
       ]
     },
     {
@@ -104,7 +98,9 @@ introduction:
         <div class="cs-hero-content">
           <span class="cs-topper">Team Member Profile</span>
           <h1 class="cs-title">
-            <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            {member.personalWebsite ? (
+              <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            ) : member.fullName}
           </h1>
           <p class="cs-role">{member.role}</p>
           <p class="cs-short-bio">{member.shortBio}</p>
@@ -120,14 +116,16 @@ introduction:
               <span class="cs-meta-value">{member.role}</span>
             </div>
 
-            <div class="cs-meta-item">
-              <span class="cs-meta-label">Email</span>
-              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
-            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
           </div>
 
           <div class="cs-social-links">
-            {member.socialLinks.map((link) => (
+            {member.socialLinks.filter((link) => link.url).map((link) => (
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="cs-social-link">
                 {link.name}
               </a>
@@ -164,7 +162,7 @@ introduction:
           <section class="cs-section-card">
             <h2>CV Overview</h2>
             <div class="cs-cv-grid">
-              {member.cvSections.map((section) => (
+              {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
                 <div class="cs-cv-card">
                   <h3>{section.title}</h3>
                   <ul class="cs-list">
@@ -206,14 +204,18 @@ introduction:
               <span>Name</span>
               <strong>{member.fullName}</strong>
             </li>
-            <li>
-              <span>Birthplace:</span>
-              <strong>{member.locations.birthplace}</strong>
-            </li>
-            <li>
-              <span>Hobbies:</span>
-              <strong>{member.hobbies.join(", ")}</strong>
-            </li>
+            {member.locations.birthplace && (
+              <li>
+                <span>Birthplace:</span>
+                <strong>{member.locations.birthplace}</strong>
+              </li>
+            )}
+            {member.hobbies.length > 0 && (
+              <li>
+                <span>Hobbies:</span>
+                <strong>{member.hobbies.join(", ")}</strong>
+              </li>
+            )}
           </ul>
         </div>
       </div>

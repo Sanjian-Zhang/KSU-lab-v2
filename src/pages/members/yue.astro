@@ -3,15 +3,15 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
   fullName: "Yue (Lydia) Li",
-  role: "Graduate Researcher, PhD Student",
+  role: "Ph.D. Student, Graduate Researcher",
   image: "/assets/images/members/lydia.png",
   email: "yli61@students.kennesaw.edu",
   department: "Intelligent Biomechanics Lab",
   shortBio:
-    "Lydia Yue is a graduate student in the Intelligent Biomechanics Lab, where she contributes to interdisciplinary research at the intersection of biomechanics, computation, and experimental analysis.",
+    "Yue (Lydia) Li is a Ph.D. student in the Intelligent Biomechanics Lab at Kennesaw State University, working at the intersection of cardiac biomechanics, digital twin simulation, and artificial intelligence.",
 
   introduction:
-    "Lydia Yue is a graduate student in the Intelligent Biomechanics Lab, where she contributes to interdisciplinary research at the intersection of biomechanics, computation, and experimental analysis.",
+    "Yue (Lydia) Li is a Ph.D. student in the Intelligent Biomechanics Lab at Kennesaw State University. Her doctoral research combines artificial intelligence and biomechanics for digital twin simulation, with interests in cardiac biomechanics, generative AI, and natural language processing. Before joining KSU, she earned an M.S. from Universiti Sains Malaysia, where her work focused on natural language processing, meta learning, prompt learning, and few-shot text classification. She also brings several years of teaching experience as a lecturer at Guangzhou Huaxia Technical College and Guangxi City Vocational University. In 2025, she received the Culture and Community Travel Award at the ASME Summer Bioengineering Conference (SBC 2025).",
 
   socialLinks: [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/yueli0207/", icon: "in" },
@@ -37,7 +37,6 @@ const member = {
 
   workExperience: [
     "Doctoral Student - Kennesaw State University (Aug 2024 - Present)",
-    "Master of science - Universiti Sains Malaysia (Apr 2022 - Oct 2023)",
     "Lecturer - Guangzhou Huaxia Technical College (Mar 2020 - Apr 2022)",
     "Deputy Head of Division - Guangxi City Vocational University (Nov 2019 - Jan 2020)",
     "Lecturer - Guangxi City Vocational University (Mar 2018 - Nov 2019)",
@@ -46,32 +45,32 @@ const member = {
 
   cvSections: [
     {
-      title: "Career Interests",
+      title: "Research Interests",
       items: [
-        "Educator",
-        "Programmer",
+        "Cardiac Biomechanics",
+        "Digital Twin Simulation",
+        "Generative AI",
+        "Natural Language Processing"
       ]
     },
     {
-      title: "Selected Projects",
+      title: "Career Interests",
       items: [
-        "Project title or short description",
-        "Project title or short description",
-        "Project title or short description"
+        "Educator",
+        "Programmer"
       ]
     },
     {
       title: "Awards / Honors",
       items: [
-        "Award or recognition",
-        "Award or recognition"
+        "Culture and Community Travel Award - ASME SBC 2025"
       ]
     }
   ],
 
   locations: {
     birthplace: "China",
-    highSchool: "Example High School",
+    highSchool: "",
     traveled: [
       { name: "China", country: "China", lat: 35.8617, lon: 104.1954, label: "Birthplace" },
       { name: "Malaysia", country: "Malaysia", lat: 4.2105, lon: 101.9758, label: "Study" },
@@ -104,7 +103,9 @@ const member = {
         <div class="cs-hero-content">
           <span class="cs-topper">Team Member Profile</span>
           <h1 class="cs-title">
-            <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            {member.personalWebsite ? (
+              <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            ) : member.fullName}
           </h1>
           <p class="cs-role">{member.role}</p>
           <p class="cs-short-bio">{member.shortBio}</p>
@@ -120,14 +121,16 @@ const member = {
               <span class="cs-meta-value">{member.role}</span>
             </div>
 
-            <div class="cs-meta-item">
-              <span class="cs-meta-label">Email</span>
-              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
-            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
           </div>
 
           <div class="cs-social-links">
-            {member.socialLinks.map((link) => (
+            {member.socialLinks.filter((link) => link.url).map((link) => (
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="cs-social-link">
                 {link.name}
               </a>
@@ -164,7 +167,7 @@ const member = {
           <section class="cs-section-card">
             <h2>CV Overview</h2>
             <div class="cs-cv-grid">
-              {member.cvSections.map((section) => (
+              {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
                 <div class="cs-cv-card">
                   <h3>{section.title}</h3>
                   <ul class="cs-list">
@@ -207,16 +210,21 @@ const member = {
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
-              <li>
-                <span>Birthplace:</span>
-                <strong>{member.locations.birthplace}</strong>
-              </li>
-              <li>
-                <span>Hobbies:</span>
-                <strong>{member.hobbies.join(", ")}</strong>
-              </li>
+              {member.locations.birthplace && (
+                <li>
+                  <span>Birthplace:</span>
+                  <strong>{member.locations.birthplace}</strong>
+                </li>
+              )}
+              {member.hobbies.length > 0 && (
+                <li>
+                  <span>Hobbies:</span>
+                  <strong>{member.hobbies.join(", ")}</strong>
+                </li>
+              )}
             </ul>
           </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

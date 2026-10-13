@@ -3,15 +3,15 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
   fullName: "Nanlong Sun",
-  role: "Graduate Researcher, PhD Student",
+  role: "Ph.D. Student, Graduate Researcher",
   image: "/assets/images/members/nanlong.jpg",
   email: "nsun5@students.kennesaw.edu",
   department: "Intelligent Biomechanics Lab",
   shortBio:
-    "Nanlong Sun is a PhD student in the Intelligent Biomechanics Lab, specializing in mechanical engineering with a focus on real-time automatic thin-film optimization using PyTorch and COMSOL.",
+    "Nanlong Sun is a Ph.D. student in the Intelligent Biomechanics Lab at Kennesaw State University, specializing in mechanical engineering with a focus on real-time automatic thin-film optimization using PyTorch and COMSOL.",
 
   introduction:
-    "Nanlong Sun is a PhD student at Kennesaw State University, currently conducting research at the Chinese Academy of Sciences. His research focuses on real-time automatic thin-film optimization using PyTorch and COMSOL. He completed his Bachelor's degree in Mechanical Engineering at Jiangsu University.",
+    "Nanlong Sun is a Ph.D. student in Mechanical Engineering at Kennesaw State University, working in the Intelligent Biomechanics Lab. His research focuses on real-time automatic thin-film optimization using PyTorch and COMSOL. He completed his Bachelor's degree in Mechanical Engineering at Jiangsu University and, before joining KSU, worked as a research intern at the Chinese Academy of Sciences.",
 
   socialLinks: [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/nanlong-sun-479a963a1/", icon: "in" },
@@ -41,21 +41,21 @@ const member = {
       title: "Research Focus",
       items: [
         "Real-time Automatic Thin-Film Optimization",
-        "PyTorch and COMSOL",
+        "PyTorch and COMSOL"
       ]
     },
     {
-      title: "Current Affiliation",
+      title: "Affiliations",
       items: [
-        "Chinese Academy of Sciences - Research Intern",
-        "Kennesaw State University - PhD Student"
+        "Kennesaw State University - Ph.D. Student (2026 - Present)",
+        "Chinese Academy of Sciences - Research Intern (2025)"
       ]
     }
   ],
 
   locations: {
     birthplace: "China",
-    highSchool: "Example High School",
+    highSchool: "",
     traveled: [
       { name: "China", country: "China", lat: 35.8617, lon: 104.1954, label: "Birthplace" },
       { name: "United States", country: "USA", lat: 37.0902, lon: -95.7129, label: "Research" },
@@ -87,7 +87,9 @@ const member = {
         <div class="cs-hero-content">
           <span class="cs-topper">Team Member Profile</span>
           <h1 class="cs-title">
-            <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            {member.personalWebsite ? (
+              <a href={member.personalWebsite} target="_blank" rel="noopener noreferrer">{member.fullName}</a>
+            ) : member.fullName}
           </h1>
           <p class="cs-role">{member.role}</p>
           <p class="cs-short-bio">{member.shortBio}</p>
@@ -103,14 +105,16 @@ const member = {
               <span class="cs-meta-value">{member.role}</span>
             </div>
 
-            <div class="cs-meta-item">
-              <span class="cs-meta-label">Email</span>
-              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
-            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
           </div>
 
           <div class="cs-social-links">
-            {member.socialLinks.map((link) => (
+            {member.socialLinks.filter((link) => link.url).map((link) => (
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="cs-social-link">
                 {link.name}
               </a>
@@ -147,7 +151,7 @@ const member = {
           <section class="cs-section-card">
             <h2>CV Overview</h2>
             <div class="cs-cv-grid">
-              {member.cvSections.map((section) => (
+              {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
                 <div class="cs-cv-card">
                   <h3>{section.title}</h3>
                   <ul class="cs-list">
@@ -190,16 +194,21 @@ const member = {
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
-              <li>
-                <span>Birthplace:</span>
-                <strong>{member.locations.birthplace}</strong>
-              </li>
-              <li>
-                <span>Hobbies:</span>
-                <strong>{member.hobbies.join(", ")}</strong>
-              </li>
+              {member.locations.birthplace && (
+                <li>
+                  <span>Birthplace:</span>
+                  <strong>{member.locations.birthplace}</strong>
+                </li>
+              )}
+              {member.hobbies.length > 0 && (
+                <li>
+                  <span>Hobbies:</span>
+                  <strong>{member.hobbies.join(", ")}</strong>
+                </li>
+              )}
             </ul>
           </div>
+      </div>
     </div>
   </section>
 </BaseLayout>
