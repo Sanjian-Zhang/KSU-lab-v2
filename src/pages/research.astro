@@ -1,5 +1,35 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
+import ResearchVideo from "@components/ResearchVideo.astro";
+
+// Put a video file in public/assets/videos/ (or paste a YouTube/Vimeo link)
+// and set `src` below. An empty `src` shows a placeholder.
+const videos = {
+  ml: {
+    src: "",
+    poster: "",
+    title: "HeartSimSage Simulation",
+    caption: "Video: HeartSimSage predicting cardiac tissue deformation compared with finite element results.",
+  },
+  multiscale: {
+    src: "",
+    poster: "",
+    title: "Electromechanical Digital Twin",
+    caption: "Video: Patient-specific simulation coupling electrical activity with organ motion.",
+  },
+  constitutive: {
+    src: "",
+    poster: "",
+    title: "Soft Tissue Material Response",
+    caption: "Video: Simulated tensile response of soft tissue under large deformation.",
+  },
+  experiments: {
+    src: "",
+    poster: "",
+    title: "Mechanical Testing in Action",
+    caption: "Video: Tissue specimen tested in the Instron Biopuls biobath.",
+  },
+};
 ---
 
 <BaseLayout
@@ -19,24 +49,16 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
         <!-- Funding & Partners -->
         <div class="fnp-grid">
             <div class="fnp-card">
-                <div class="fnp-logo-box">
-                    <img src="/assets/images/funding/NIH.svg" alt="NIH Logo" />
-                </div>
+                <img src="/assets/images/funding/NIH.svg" alt="National Institutes of Health" />
             </div>
             <div class="fnp-card">
-                <div class="fnp-logo-box">
-                    <img src="/assets/images/funding/NSF.svg" alt="NSF Logo" />
-                </div>
+                <img src="/assets/images/funding/NSF.svg" alt="National Science Foundation" />
             </div>
             <div class="fnp-card">
-                <div class="fnp-logo-box">
-                    <img src="/assets/images/PartnerInstitutions/ksu.png" alt="Kennesaw State University" loading="lazy" decoding="async" />
-                </div>
+                <img src="/assets/images/PartnerInstitutions/ksu.png" alt="Kennesaw State University" loading="lazy" decoding="async" />
             </div>
             <div class="fnp-card">
-                <div class="fnp-logo-box">
-                    <img src="/assets/images/PartnerInstitutions/emory.png" alt="Emory University" loading="lazy" decoding="async" />
-                </div>
+                <img src="/assets/images/PartnerInstitutions/emory.png" alt="Emory University" loading="lazy" decoding="async" />
             </div>
         </div>
     </div>
@@ -45,38 +67,47 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 <!-- Research Areas Navigation -->
 <section id="research-nav">
     <div class="cs-container">
-        <div class="cs-tabs">
-            <button class="cs-tab cs-tab-active" data-tab="ml">
-                <span class="cs-tab-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M12 2v4m0 12v4M2 12h4m12 0h4m-14.5-7.5l2.8 2.8m5.4 5.4l2.8 2.8m0-11l-2.8 2.8m-5.4 5.4l-2.8 2.8"/>
+        <div class="cs-tabs" role="tablist" aria-label="Research areas">
+            <button class="cs-tab cs-tab-ml cs-tab-active" data-tab="ml" role="tab" aria-selected="true" aria-controls="ml-content">
+                <span class="cs-tab-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                        <path d="M5 7l7-3m-7 3l7 5M5 7l7 13M5 17l7-13m-7 13l7-5m-7 5l7 3M12 4l7 4m-7 4l7-4m-7 4l7 4m-7 8l7-4" opacity="0.55" />
+                        <circle cx="5" cy="7" r="2" fill="currentColor" stroke="none" />
+                        <circle cx="5" cy="17" r="2" fill="currentColor" stroke="none" />
+                        <circle cx="12" cy="4" r="2" fill="currentColor" stroke="none" />
+                        <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+                        <circle cx="12" cy="20" r="2" fill="currentColor" stroke="none" />
+                        <circle cx="19" cy="8" r="2" fill="currentColor" stroke="none" />
+                        <circle cx="19" cy="16" r="2" fill="currentColor" stroke="none" />
                     </svg>
                 </span>
                 <span class="cs-tab-label">Machine Learning</span>
             </button>
-            <button class="cs-tab" data-tab="multiscale">
-                <span class="cs-tab-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <button class="cs-tab cs-tab-multiscale" data-tab="multiscale" role="tab" aria-selected="false" aria-controls="multiscale-content">
+                <span class="cs-tab-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="10" cy="10" r="6.5" />
+                        <path d="M15 15l5.5 5.5" stroke-width="2.4" />
+                        <path d="M10 6.8l2.8 1.6v3.2L10 13.2l-2.8-1.6V8.4z" fill="currentColor" fill-opacity="0.35" />
                     </svg>
                 </span>
                 <span class="cs-tab-label">Multiscale &amp; Multiphysics</span>
             </button>
-            <button class="cs-tab" data-tab="constitutive">
-                <span class="cs-tab-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+            <button class="cs-tab cs-tab-constitutive" data-tab="constitutive" role="tab" aria-selected="false" aria-controls="constitutive-content">
+                <span class="cs-tab-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 3v17h17" />
+                        <path d="M5 19c4-.5 7-2 9-5s3.5-6.5 5-10" stroke-width="2.2" />
+                        <circle cx="14" cy="14" r="1.6" fill="currentColor" stroke="none" />
                     </svg>
                 </span>
                 <span class="cs-tab-label">Constitutive Modeling</span>
             </button>
-            <button class="cs-tab" data-tab="experiments">
-                <span class="cs-tab-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 3h6l1 5a4 4 0 0 1-8 0L9 3zM10 12v9M14 12v9M10 21h4"/>
+            <button class="cs-tab cs-tab-experiments" data-tab="experiments" role="tab" aria-selected="false" aria-controls="experiments-content">
+                <span class="cs-tab-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 3h6M10 3v6.2L4.6 18.4A1.8 1.8 0 0 0 6.2 21h11.6a1.8 1.8 0 0 0 1.6-2.6L14 9.2V3" />
+                        <path d="M7.2 15h9.6l1.6 3.2a.9.9 0 0 1-.8 1.3H6.4a.9.9 0 0 1-.8-1.3z" fill="currentColor" fill-opacity="0.35" stroke="none" />
                     </svg>
                 </span>
                 <span class="cs-tab-label">Experiments &amp; Testing</span>
@@ -91,7 +122,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 <!-- ============================================ -->
 <!-- 1. Machine Learning                          -->
 <!-- ============================================ -->
-<div id="ml-content" class="research-area project-content project-active">
+<div id="ml-content" class="research-area area-ml project-content project-active" role="tabpanel">
     <div class="cs-container">
         <div class="area-header">
             <div class="area-badge">01</div>
@@ -111,20 +142,17 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
             <p class="section-text">AI-driven simulation accelerators and predictive models that replace expensive finite element solvers with learned surrogate representations.</p>
         </div>
 
-        <!-- Core Lab Activity: Data Analysis & Machine Learning -->
+        <!-- Overview -->
         <div class="area-block">
             <h3 class="block-title">Data Analysis &amp; Machine Learning</h3>
             <p class="block-text">We design data pipelines and machine learning models to process experimental and clinical data, classify motility patterns, and accelerate prediction and decision support.</p>
-        </div>
-
-        <div class="area-block">
             <p class="block-text">Our machine learning research also explores spatiotemporal modeling of cardiac dynamics. <a href="/members/sanjian/">Sanjian Zhang</a> studies how to integrate cardiac structures reconstructed from CT/MRI with physiological signals, such as blood pressure, and clinical variables to model and predict cardiac motion throughout the cardiac cycle.</p>
         </div>
 
         <!-- Core Framework -->
         <div class="area-block">
             <h3 class="block-title">HeartSimSage: Attention-Enhanced Graph Neural Networks</h3>
-            <p class="block-text">Our flagship ML framework converts cardiac finite element meshes into graph structures, learning the relationship between geometry, material properties, loading conditions, and tissue deformation — at <strong>13,000× GPU acceleration</strong> and <strong>190× CPU acceleration</strong> compared to traditional FEA, with median error under <strong>0.13%</strong>.</p>
+            <p class="block-text">Our flagship ML framework converts cardiac finite element meshes into graph structures, learning the relationship between geometry, material properties, loading conditions, and tissue deformation, at <strong>13,000× GPU acceleration</strong> and <strong>190× CPU acceleration</strong> compared to traditional FEA, with median error under <strong>0.13%</strong>.</p>
 
             <div class="area-image">
                 <img src="/assets/images/item/heartsim.png" alt="HeartSimSage Framework Architecture" loading="lazy" decoding="async" />
@@ -175,7 +203,13 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
             </div>
         </div>
 
-        <!-- Performance -->
+        <!-- Project Visualization -->
+        <div class="area-block">
+            <h3 class="block-title">Project Visualization</h3>
+            <ResearchVideo {...videos.ml} />
+        </div>
+
+        <!-- Highlights -->
         <div class="performance-grid">
             <div class="performance-card">
                 <div class="performance-value">13,000×</div>
@@ -204,6 +238,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
                 </li>
             </ul>
         </div>
+
         <!-- Undergraduate: How You Can Contribute -->
         <div class="area-block ug-contribute">
             <h3 class="block-title ug-contribute-title">How You Can Contribute</h3>
@@ -228,7 +263,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
                     </tr>
                     <tr>
                         <td>Web &amp; Interactive</td>
-                        <td>Build an interactive demo of the cardiac model — a simple web tool that shows simulation results.</td>
+                        <td>Build an interactive demo of the cardiac model, a simple web tool that shows simulation results.</td>
                         <td class="ug-skills">HTML · JavaScript · Three.js basics</td>
                     </tr>
                 </tbody>
@@ -250,48 +285,92 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 <!-- ============================================ -->
 <!-- 2. Multiscale & Multiphysics Simulation     -->
 <!-- ============================================ -->
-<div id="multiscale-content" class="research-area area-alt project-content">
+<div id="multiscale-content" class="research-area area-multiscale project-content" role="tabpanel">
     <div class="cs-container">
         <div class="area-header">
             <div class="area-badge">02</div>
-            <h2 class="section-title">Multiscale &amp; Multiphysics Simulation</h2>
-            <p class="section-text">Cross-scale computational modeling and coupled multiphysics simulations — from molecular ion channels to whole-organ electromechanics.</p>
+            <div class="area-title-row">
+                <h2 class="section-title">Multiscale &amp; Multiphysics Simulation</h2>
+            </div>
+            <p class="section-text">Cross-scale computational modeling and coupled multiphysics simulations, from molecular ion channels to whole-organ electromechanics.</p>
         </div>
 
-        <!-- Core Lab Activity: Medical Imaging & 3D Reconstruction -->
+        <!-- Overview -->
         <div class="area-block">
-            <h3 class="block-title">Medical Imaging &amp; 3D Reconstruction</h3>
-            <p class="block-text">We integrate CT scans, endoscopy images, and manometry data from clinical collaborators to build accurate 3D models of the stomach, esophagus, and heart — the geometric foundation for every digital twin we construct.</p>
+            <h3 class="block-title">Imaging, Reconstruction &amp; Digital Twins</h3>
+            <p class="block-text">We integrate CT scans, endoscopy images, and manometry data from clinical collaborators to build accurate 3D models of the stomach, esophagus, and heart. These models are the geometric foundation for every digital twin we construct.</p>
+            <p class="block-text">On top of that geometry, we develop patient-specific digital twins that couple tissue mechanics with electrical activity to simulate how each organ contracts, moves, and responds to disease or surgical intervention.</p>
         </div>
 
-        <!-- Core Lab Activity: Computational Modeling & Digital Twins -->
+        <!-- Core Framework -->
         <div class="area-block">
-            <h3 class="block-title">Computational Modeling &amp; Digital Twins</h3>
-            <p class="block-text">We develop patient-specific digital twins that couple tissue mechanics with electrical activity to simulate how each organ contracts, moves, and responds to disease or surgical intervention.</p>
-        </div>
+            <h3 class="block-title">3D-0D Electromechanical Coupling</h3>
+            <p class="block-text">Implicit coupling framework that integrates 0D ion-based electrophysiology models with 3D finite-element solid mechanics, enabling patient-specific simulation of cardiac and gastric motility.</p>
 
-        <div class="two-col">
-            <div class="area-block">
-                <h3 class="block-title">3D-0D Electromechanical Coupling</h3>
-                <p class="block-text">Implicit coupling framework that integrates 0D ion-based electrophysiology models with 3D finite-element solid mechanics, enabling patient-specific simulation of cardiac and gastric motility.</p>
-                <div class="area-image">
-                    <img src="/assets/images/achievements/cardiacdigitaltwin.png" alt="Cardiac Digital Twin Multiscale Modeling" loading="lazy" decoding="async" />
+            <div class="area-image">
+                <img src="/assets/images/achievements/cardiacdigitaltwin.png" alt="Cardiac Digital Twin Multiscale Modeling" loading="lazy" decoding="async" />
+                <p class="area-image-caption"><strong>Figure 1:</strong> Multiscale modeling of a patient-specific cardiac digital twin.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                            <path d="M12 2l9 5v10l-9 5-9-5V7z"/>
+                            <path d="M3 7l9 5 9-5M12 12v10"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">3D Solid Mechanics</h4>
+                    <p class="tech-text">Nonlinear finite-element mechanics with large deformation kinematics.</p>
                 </div>
-                <div class="feature-list">
-                    <div class="feature-item"><span>3D</span> Nonlinear solid mechanics with large deformation kinematics</div>
-                    <div class="feature-item"><span>0D</span> Ion-channel electrophysiology (e.g., Hodgkin-Huxley type)</div>
-                    <div class="feature-item"><span>Couple</span> Bidirectional mechano-electric feedback</div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 12h4l2-6 4 12 3-9 2 3h5"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">0D Electrophysiology</h4>
+                    <p class="tech-text">Ion-channel models of electrical activity (e.g., Hodgkin-Huxley type).</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 2l4 4-4 4"/>
+                            <path d="M3 11V9a3 3 0 0 1 3-3h15"/>
+                            <path d="M7 22l-4-4 4-4"/>
+                            <path d="M21 13v2a3 3 0 0 1-3 3H3"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Mechano-Electric Feedback</h4>
+                    <p class="tech-text">Bidirectional coupling between tissue deformation and electrical activity.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18M9 21V9"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Implicit Coupling</h4>
+                    <p class="tech-text">0D and 3D models solved together within one implicit coupling framework.</p>
                 </div>
             </div>
-            <div class="area-block">
-                <h3 class="block-title">4D Patient-Specific Imaging</h3>
-                <p class="block-text">Integration of time-phase CT and MRI imaging to construct personalized 3D organ geometries that evolve physiologically throughout the cardiac or respiratory cycle.</p>
-                <div class="feature-list">
-                    <div class="feature-item"><span>Segment</span> Multi-atlas + deep-learning organ segmentation</div>
-                    <div class="feature-item"><span>Morph</span> Non-rigid registration for motion estimation</div>
-                    <div class="feature-item"><span>Mesh</span> Hex-dominant discretization with quality control</div>
-                </div>
+        </div>
+
+        <div class="area-block">
+            <h3 class="block-title">4D Patient-Specific Imaging</h3>
+            <p class="block-text">Integration of time-phase CT and MRI imaging to construct personalized 3D organ geometries that evolve physiologically throughout the cardiac or respiratory cycle.</p>
+            <div class="feature-list">
+                <div class="feature-item"><span>Segment</span> Multi-atlas + deep-learning organ segmentation</div>
+                <div class="feature-item"><span>Morph</span> Non-rigid registration for motion estimation</div>
+                <div class="feature-item"><span>Mesh</span> Hex-dominant discretization with quality control</div>
             </div>
+        </div>
+
+        <!-- Project Visualization -->
+        <div class="area-block">
+            <h3 class="block-title">Project Visualization</h3>
+            <ResearchVideo {...videos.multiscale} />
         </div>
 
         <!-- Applications -->
@@ -329,6 +408,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
             </div>
         </div>
 
+        <!-- Publications -->
         <div class="area-block">
             <h3 class="block-title">Related Publications</h3>
             <ul class="pub-list">
@@ -340,6 +420,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
                 </li>
             </ul>
         </div>
+
         <!-- Interested CTA -->
         <div class="research-interested">
             <div class="interested-left">
@@ -354,20 +435,30 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 <!-- ============================================ -->
 <!-- 3. Constitutive Modeling                    -->
 <!-- ============================================ -->
-<div id="constitutive-content" class="research-area project-content">
+<div id="constitutive-content" class="research-area area-constitutive project-content" role="tabpanel">
     <div class="cs-container">
         <div class="area-header">
             <div class="area-badge">03</div>
-            <h2 class="section-title">Constitutive Modeling</h2>
+            <div class="area-title-row">
+                <h2 class="section-title">Constitutive Modeling</h2>
+            </div>
             <p class="section-text">Physics-based material models that capture the complex, nonlinear behavior of biological soft tissues under large deformation.</p>
         </div>
 
+        <!-- Overview -->
+        <div class="area-block">
+            <h3 class="block-title">Why Material Models Matter</h3>
+            <p class="block-text">Every simulation we run depends on how accurately it describes the tissue itself. Stomach, cardiac, and other soft tissues show both elastic recoil and time-dependent relaxation, so our models are calibrated against the mechanical tests performed in our lab.</p>
+        </div>
+
+        <!-- Core Framework -->
         <div class="area-block">
             <h3 class="block-title">Hyper-Viscoelastic Constitutive Framework</h3>
-            <p class="block-text">We develop microstructure-informed material models that combine hyperelastic equilibrium response with viscoelastic rate-dependent behavior — essential for accurate simulation of stomach, cardiac, and other soft tissues that exhibit both elastic recoil and time-dependent relaxation.</p>
+            <p class="block-text">We develop microstructure-informed material models that combine hyperelastic equilibrium response with viscoelastic rate-dependent behavior, which is essential for accurate simulation of soft tissues that exhibit both elastic recoil and time-dependent relaxation.</p>
 
             <div class="area-image">
                 <img src="/assets/images/achievements/computationalbiomechanics.jpg" alt="Computational Biomechanics" loading="lazy" decoding="async" />
+                <p class="area-image-caption"><strong>Figure 1:</strong> Computational biomechanics modeling of soft tissue.</p>
             </div>
 
             <div class="tech-grid">
@@ -411,6 +502,13 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
             </div>
         </div>
 
+        <!-- Project Visualization -->
+        <div class="area-block">
+            <h3 class="block-title">Project Visualization</h3>
+            <ResearchVideo {...videos.constitutive} />
+        </div>
+
+        <!-- Publications -->
         <div class="area-block">
             <h3 class="block-title">Related Publications</h3>
             <ul class="pub-list">
@@ -419,6 +517,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
                 </li>
             </ul>
         </div>
+
         <!-- Interested CTA -->
         <div class="research-interested">
             <div class="interested-left">
@@ -433,87 +532,75 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 <!-- ============================================ -->
 <!-- 4. Experiments & Mechanical Testing          -->
 <!-- ============================================ -->
-<div id="experiments-content" class="research-area area-alt project-content">
+<div id="experiments-content" class="research-area area-experiments project-content" role="tabpanel">
     <div class="cs-container">
         <div class="area-header">
             <div class="area-badge">04</div>
-            <h2 class="section-title">Experiments &amp; Mechanical Testing</h2>
+            <div class="area-title-row">
+                <h2 class="section-title">Experiments &amp; Mechanical Testing</h2>
+            </div>
             <p class="section-text">State-of-the-art experimental facilities and protocols for characterizing the mechanical properties of biological tissues.</p>
         </div>
 
-        <!-- Precision Testing (Side By Side Reverse) -->
-        <div class="precision-sbsr">
-            <div class="precision-sbsr-content">
-                <h3 class="precision-sbsr-topper">Precision Testing &amp; Modeling</h3>
-                <h4 class="precision-sbsr-title">Accurate Models Don't Happen by Accident</h4>
-                <p class="precision-sbsr-text">
-                    We combine carefully controlled experiments, advanced instruments like the Instron Biopuls system, and rigorous computational methods to capture how the stomach and GI tract actually behave. Every data point feeds into more realistic digital twins and deeper insight into GI function.
-                </p>
-                <p class="precision-sbsr-text">
-                    High-quality science starts with careful planning, attention to detail, and consistent methods. In the Intelligent Biomechanics Lab, we design each study around clear clinical questions, prepare and test tissue under physiologically relevant conditions, and link experimental results directly to our computational models. From the first specimen in the biobath to the final simulation run, we focus on reproducibility, transparency, and meaningful impact.
-                </p>
-            </div>
-            <div class="precision-sbsr-visual">
-                <picture>
-                    <img src="/assets/images/index/index8.png" alt="Precision testing and modeling workflow" loading="lazy" decoding="async" />
-                </picture>
-                <div class="precision-sbsr-box">
-                    <span class="precision-sbsr-number">100%</span>
-                    <div class="precision-sbsr-box-info">
-                        <h4>Research-Driven Results</h4>
-                        <span>Every conclusion we draw is grounded in quantitative experiments, clinical data, and rigorous analysis.</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Overview -->
+        <div class="area-block">
+            <h3 class="block-title">Precision Testing &amp; Modeling</h3>
+            <p class="block-text">We combine carefully controlled experiments, advanced instruments like the Instron Biopuls system, and rigorous computational methods to capture how the stomach and GI tract actually behave. Every data point feeds into more realistic digital twins and deeper insight into GI function.</p>
+            <p class="block-text">High-quality science starts with careful planning, attention to detail, and consistent methods. We design each study around clear clinical questions, prepare and test tissue under physiologically relevant conditions, and link experimental results directly to our computational models. From the first specimen in the biobath to the final simulation run, we focus on reproducibility, transparency, and meaningful impact.</p>
         </div>
 
-        <!-- Equipment -->
+        <!-- Core Framework -->
         <div class="area-block">
             <h3 class="block-title">Tissue Preparation &amp; Biomechanical Testing</h3>
             <p class="block-text">We collect and prepare GI tissue samples and use systems like the Instron Biopuls biobath to perform tensile and biaxial tests, measuring stiffness, elasticity, and other mechanical properties. Every specimen is handled with care to preserve native tissue structure and ensure physiologically relevant results.</p>
+
+            <div class="area-image area-image-narrow">
+                <img src="/assets/images/index/index8.png" alt="Instron Biopuls biobath testing setup" loading="lazy" decoding="async" />
+                <p class="area-image-caption"><strong>Figure 1:</strong> Tissue testing in the Instron Biopuls temperature-controlled biobath.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 3h6M10 3v6.2L4.6 18.4A1.8 1.8 0 0 0 6.2 21h11.6a1.8 1.8 0 0 0 1.6-2.6L14 9.2V3"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Instron Biopuls Biobath</h4>
+                    <p class="tech-text">Temperature-controlled physiological solution bath for uniaxial, biaxial, and shear tissue testing.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M12 3v18M7 7l5-4 5 4M7 17l5 4 5-4"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">5960 Universal Testing Machine</h4>
+                    <p class="tech-text">High-precision force and displacement measurement with sub-micron resolution and temperature control.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/>
+                            <circle cx="12" cy="12" r="3.5"/>
+                        </svg>
+                    </div>
+                    <h4 class="tech-title">Digital Image Correlation (DIC)</h4>
+                    <p class="tech-text">Full-field strain measurement via high-speed camera and stochastic speckle pattern analysis.</p>
+                </div>
+            </div>
         </div>
 
+        <!-- Project Visualization -->
         <div class="area-block">
-            <h3 class="block-title">Experimental Facilities</h3>
-            <div class="area-image">
-                <img src="/assets/images/index/index9.png" alt="Biomechanical Testing Setup" loading="lazy" decoding="async" />
-            </div>
-            <div class="equipment-grid">
-                <div class="equipment-card">
-                    <div class="equipment-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 3h6l1 5a4 4 0 0 1-8 0L9 3zM10 12v9M14 12v9M10 21h4"/>
-                        </svg>
-                    </div>
-                    <h4>Instron Biopuls Biobath</h4>
-                    <p>Temperature-controlled physiological solution bath for uniaxial, biaxial, and shear tissue testing.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2v20M2 12h20"/>
-                        </svg>
-                    </div>
-                    <h4>5960 Universal Testing Machine</h4>
-                    <p>High-precision force and displacement measurement with sub-micron resolution and temperature control.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h4>Digital Image Correlation (DIC)</h4>
-                    <p>Full-field strain measurement via high-speed camera and stochastic speckle pattern analysis.</p>
-                </div>
-            </div>
+            <h3 class="block-title">Project Visualization</h3>
+            <ResearchVideo {...videos.experiments} />
         </div>
 
         <!-- Testing Process -->
         <div class="area-block">
             <h3 class="block-title">Testing Process</h3>
-            <p class="section-text">Our standardized workflow ensures consistent, high-quality mechanical data that feeds directly into constitutive model calibration and simulation validation.</p>
+            <p class="block-text">Our standardized workflow ensures consistent, high-quality mechanical data that feeds directly into constitutive model calibration and simulation validation.</p>
             <ul class="process-list">
                 <li class="process-item">
                     <span class="process-num">01</span>
@@ -545,6 +632,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
                 </li>
             </ul>
         </div>
+
         <!-- Interested CTA -->
         <div class="research-interested">
             <div class="interested-left">
@@ -623,57 +711,45 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
     line-height: 1.5;
 }
 
-/* Funding & Partners (unified 4-col logo row) */
+/* Funding & Partners (compact logo row) */
 .fnp-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.75rem;
+    max-width: 52rem;
     margin: 0 auto;
 }
 .fnp-card {
-    aspect-ratio: 16 / 9;
-    padding: 0;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    transition: all 0.3s ease;
+    height: 4.75rem;
+    padding: 0.625rem 1rem;
+    box-sizing: border-box;
+    border-radius: 0.625rem;
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 1px 3px rgba(0, 30, 70, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .fnp-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 30, 70, 0.18);
 }
-.fnp-logo-box {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.25rem;
-}
-.fnp-logo-box img {
+.fnp-card img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
 }
-@media only screen and (max-width: 60rem) {
+@media only screen and (max-width: 48rem) {
     .fnp-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media only screen and (max-width: 30rem) {
-    .fnp-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0.5rem;
+    }
+    .fnp-card {
+        height: 4rem;
     }
 }
 
@@ -715,11 +791,12 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 #research-nav .cs-tab {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
+    gap: 0.625rem;
+    padding: 0.4375rem 1.25rem 0.4375rem 0.4375rem;
     border-radius: 999px;
     background: transparent;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: inherit;
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
@@ -737,23 +814,40 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 }
 #research-nav .cs-tab.cs-tab-active {
     background: #fff;
-    color: var(--primary);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    color: var(--headerColor);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), inset 0 0 0 2px var(--tab-accent);
 }
-#research-nav .cs-tab.cs-tab-active .cs-tab-icon {
-    color: var(--primary);
+#research-nav .cs-tab:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 #research-nav .cs-tab-icon {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0.4375rem;
+    box-sizing: border-box;
     flex-shrink: 0;
-    color: rgba(255, 255, 255, 0.7);
-    transition: all 0.25s ease;
+    border-radius: 50%;
+    background: var(--tab-accent);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    display: flex;
+    transition: transform 0.25s ease;
+}
+#research-nav .cs-tab:hover .cs-tab-icon,
+#research-nav .cs-tab.cs-tab-active .cs-tab-icon {
+    transform: scale(1.06);
 }
 #research-nav .cs-tab-icon svg {
     width: 100%;
     height: 100%;
 }
+
+/* One accent per research area, shared by its tab and section badge */
+.cs-tab-ml, .area-ml { --tab-accent: #7c3aed; }
+.cs-tab-multiscale, .area-multiscale { --tab-accent: #0d9488; }
+.cs-tab-constitutive, .area-constitutive { --tab-accent: #d97706; }
+.cs-tab-experiments, .area-experiments { --tab-accent: #e11d48; }
 
 /* ============================================ */
 /* Research Area Sections                        */
@@ -787,12 +881,12 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
     width: 2.75rem;
     height: 2.75rem;
     border-radius: 0.5rem;
-    background: linear-gradient(135deg, var(--primary), #0056b3);
+    background: var(--tab-accent, var(--primary));
     color: #fff;
     font-size: 1.125rem;
     font-weight: 800;
     letter-spacing: 0.05em;
-    box-shadow: 0 4px 14px rgba(0, 86, 179, 0.25);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 .area-title-row {
@@ -915,6 +1009,12 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
     height: auto;
     display: block;
 }
+/* Square or portrait photos would be oversized at full width */
+.area-image-narrow {
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+}
 .area-image-caption {
     padding: 0.75rem 1rem;
     font-size: 0.75rem;
@@ -923,14 +1023,6 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
     margin: 0;
     line-height: 1.5;
     border-top: 1px solid #e2e8f0;
-}
-
-/* Two column */
-.two-col {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: clamp(1.25rem, 2.5vw, 2rem);
-    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 /* Feature list */
@@ -1176,74 +1268,6 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
     line-height: 1.55;
 }
 
-/* Equipment grid */
-.equipment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-    margin-top: 1.25rem;
-}
-.equipment-card {
-    padding: 1.375rem;
-    border-radius: 0.875rem;
-    border: 1px solid #e2e8f0;
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.equipment-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), #0056b3);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s ease;
-}
-.equipment-card:hover {
-    border-color: transparent;
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 86, 179, 0.15);
-}
-.equipment-card:hover::before {
-    transform: scaleX(1);
-}
-.equipment-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(99,102,241,0.12));
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0.875rem;
-    transition: all 0.3s ease;
-}
-.equipment-card:hover .equipment-icon {
-    background: linear-gradient(135deg, var(--primary), #0056b3);
-    color: #fff;
-    transform: scale(1.05);
-}
-.equipment-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-.equipment-card h4 {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--headerColor);
-    margin: 0 0 0.375rem;
-}
-.equipment-card p {
-    font-size: 0.8125rem;
-    color: #64748b;
-    margin: 0;
-    line-height: 1.55;
-}
-
 /* Process list */
 .process-list {
     list-style: none;
@@ -1300,22 +1324,39 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 
 /* Responsive adjustments */
 @media only screen and (max-width: 48rem) {
+    /* 2x2 grid on phones so every area stays visible */
+    #research-nav .cs-container {
+        padding: 0.75rem 1rem;
+    }
     #research-nav .cs-tabs {
-        gap: 0.25rem;
-        padding: 0.1875rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.375rem;
+        width: 100%;
+        padding: 0.375rem;
+        border-radius: 1rem;
+        box-sizing: border-box;
     }
     #research-nav .cs-tab {
-        padding: 0.45rem 0.75rem;
+        padding: 0.3125rem 0.5rem 0.3125rem 0.3125rem;
+        gap: 0.4rem;
         font-size: 0.75rem;
+        line-height: 1.25;
+        white-space: normal;
+        text-align: left;
+        border-radius: 0.75rem;
     }
-    .tech-grid,
-    .equipment-grid {
+    #research-nav .cs-tab-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        padding: 0.3125rem;
+    }
+    .tech-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 @media only screen and (max-width: 30rem) {
     .tech-grid,
-    .equipment-grid,
     .performance-grid {
         grid-template-columns: 1fr;
     }
@@ -1406,109 +1447,6 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 }
 
 /* ============================================ */
-/* Precision Testing (Side By Side Reverse)      */
-/* ============================================ */
-.precision-sbsr {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    margin: clamp(1.5rem, 3vw, 2.5rem) 0;
-}
-.precision-sbsr-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-.precision-sbsr-topper {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--primary);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 0;
-}
-.precision-sbsr-title {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 700;
-    color: var(--headerColor);
-    margin: 0;
-    line-height: 1.25;
-}
-.precision-sbsr-text {
-    font-size: clamp(0.9375rem, 1.7vw, 1.0625rem);
-    color: var(--bodyTextColor);
-    line-height: 1.6;
-    margin: 0.5rem 0 0;
-}
-.precision-sbsr-visual {
-    position: relative;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 61, 128, 0.12);
-    aspect-ratio: 1 / 1;
-}
-.precision-sbsr-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.precision-sbsr-box {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-radius: 0.75rem;
-    padding: 0.875rem 1.125rem;
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    max-width: calc(100% - 2rem);
-}
-.precision-sbsr-number {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--primary);
-    line-height: 1;
-    white-space: nowrap;
-}
-.precision-sbsr-box-info h4 {
-    margin: 0 0 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--headerColor);
-}
-.precision-sbsr-box-info span {
-    font-size: 0.75rem;
-    color: #64748b;
-    line-height: 1.4;
-}
-
-@media (min-width: 64rem) {
-    .precision-sbsr {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 3rem;
-    }
-    /* Reverse: visual on left, content on right */
-    .precision-sbsr-content { order: 2; }
-    .precision-sbsr-visual { order: 1; }
-    .precision-sbsr-box {
-        bottom: 1.5rem;
-        left: 1.5rem;
-        padding: 1rem 1.5rem;
-    }
-    .precision-sbsr-number { font-size: 2.25rem; }
-    .precision-sbsr-box-info h4 { font-size: 0.9375rem; }
-    .precision-sbsr-box-info span { font-size: 0.8125rem; }
-}
-
-@media (min-width: 48rem) and (max-width: 63.9375rem) {
-    .precision-sbsr-visual { aspect-ratio: 16 / 10; }
-}
-
-/* ============================================ */
 /* Interested in This Research CTA               */
 /* ============================================ */
 .research-interested {
@@ -1530,7 +1468,7 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 .interested-left p {
     margin: 0;
     font-size: 0.9375rem;
-    opacity: 0.85;
+    color: rgba(255, 255, 255, 0.85);
 }
 .interested-btn {
     display: inline-block;
@@ -1593,10 +1531,14 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
         const target = tab.getAttribute('data-tab');
         if (!target) return;
 
-        tabs.forEach(t => t.classList.remove('cs-tab-active'));
+        tabs.forEach(t => {
+            t.classList.remove('cs-tab-active');
+            t.setAttribute('aria-selected', 'false');
+        });
         contents.forEach(c => c.classList.remove('project-active'));
 
         tab.classList.add('cs-tab-active');
+        tab.setAttribute('aria-selected', 'true');
         const targetContent = document.getElementById(target + '-content');
         if (targetContent) targetContent.classList.add('project-active');
     }

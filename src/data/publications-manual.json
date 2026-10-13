@@ -1,0 +1,16 @@
+{
+  "_howTo": "Papers listed here always appear on the Publications page, even if ORCID or Semantic Scholar don't have them. An entry with the same DOI or title as a fetched paper replaces it, so this is also the place to fix a wrong title or author list. Fields: title, authors (array), venue, year, doi (or null), link (or null).",
+  "papers": [
+    {
+      "title": "Variance-Aware Adaptive Weighting for Diffusion Model Training",
+      "authors": [
+        "Nanlong Sun",
+        "Lei Shi"
+      ],
+      "venue": "arXiv preprint",
+      "year": 2026,
+      "doi": "10.48550/arXiv.2603.10391",
+      "link": "https://arxiv.org/abs/2603.10391"
+    }
+  ]
+}

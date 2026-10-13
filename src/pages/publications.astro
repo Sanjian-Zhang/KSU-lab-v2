@@ -34,6 +34,12 @@ const years = Object.keys(byYear)
   .map(k => k === 'Before 2023' ? { key: k, num: -1 } : { key: k, num: Number(k) })
   .sort((a, b) => b.num - a.num)
   .map(y => y.key);
+
+const lastUpdated = new Date(publications.fetchedAt).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <BaseLayout
@@ -47,6 +53,7 @@ const years = Object.keys(byYear)
     <header class="cs-header">
       <h1>Publications</h1>
       <a class="cs-scholar" href="https://scholar.google.com/citations?user=t-lHPeMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+      <p class="cs-updated">{publications.totalPapers} publications · Last updated {lastUpdated}</p>
     </header>
 
     {years.map(year => (
@@ -55,9 +62,9 @@ const years = Object.keys(byYear)
         <ul class="cs-papers">
           {byYear[year].map(paper => {
             const authorsHtml = formatAuthors(paper.authors);
-            const doiLink = paper.doi ? `https://doi.org/${paper.doi}` : null;
-            const titleTag = doiLink
-              ? `<a href="${doiLink}" class="cs-title-link" target="_blank" rel="noopener">${paper.title}</a>`
+            const paperLink = paper.doi ? `https://doi.org/${paper.doi}` : paper.link;
+            const titleTag = paperLink
+              ? `<a href="${paperLink}" class="cs-title-link" target="_blank" rel="noopener">${paper.title}</a>`
               : paper.title;
             return (
               <li>
@@ -121,6 +128,12 @@ const years = Object.keys(byYear)
   background: var(--primary);
   color: #fff;
   text-decoration: none;
+}
+
+.cs-updated {
+  margin: 1rem 0 0;
+  font-size: 0.8125rem;
+  color: #64748b;
 }
 
 /* ---- Year labels ---- */
