@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-09-13T14:30:33.024Z",
-  "totalPapers": 10,
+  "fetchedAt": "2026-10-13T05:57:04.510Z",
+  "totalPapers": 23,
   "labMembers": [
     "Lei Shi",
     "Nanlong Sun",
@@ -10,7 +10,20 @@
   ],
   "papers": [
     {
-      "title": "HeartSimSage: Attention-Enhanced Graph Neural Networks for Accelerating Cardiac Mechanics Modeling",
+      "title": "Effects of Left Atrial Wall Thickness on Myocardial Mechanics and Blood Dynamics using Multiscale Modeling",
+      "authors": [
+        "Boyang Gan",
+        "Lei Shi",
+        "Ian Y. Chen",
+        "Vijay Vedula"
+      ],
+      "venue": "bioRxiv",
+      "year": 2026,
+      "doi": "10.64898/2026.06.09.731221",
+      "link": "https://doi.org/10.64898/2026.06.09.731221"
+    },
+    {
+      "title": "HeartSimSage: Attention-enhanced graph neural networks for accelerating cardiac mechanics modeling",
       "authors": [
         "Lei Shi",
         "Yurui Chen",
@@ -22,77 +35,15 @@
       "link": "https://doi.org/10.1016/j.jcp.2026.114895"
     },
     {
-      "title": "Personalized multiscale modeling of left atrial mechanics and blood flow",
+      "title": "Microstructure-informed hyper-viscoelastic model capturing soft tissue tensile behavior across large deformations",
       "authors": [
         "Lei Shi",
-        "Bo-Yang Gan",
-        "Ian Chen",
-        "Vijay Vedula"
+        "Kristin M. Myers"
       ],
-      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "venue": "Journal of the Mechanics and Physics of Solids",
       "year": 2026,
-      "doi": "10.1016/j.cma.2025.118412",
-      "link": "https://doi.org/10.1016/j.cma.2025.118412"
-    },
-    {
-      "title": "Effects of Left Atrial Wall Thickness on Myocardial Mechanics and Blood Dynamics using Multiscale Modeling",
-      "authors": [
-        "Bo-Yang Gan",
-        "Lei Shi",
-        "Ian Chen",
-        "Vijay Vedula"
-      ],
-      "venue": "bioRxiv",
-      "year": 2026,
-      "doi": "10.64898/2026.06.09.731221",
-      "link": "https://doi.org/10.64898/2026.06.09.731221"
-    },
-    {
-      "title": "Variance-Aware Adaptive Weighting for Diffusion Model Training",
-      "authors": [
-        "Nan Sun",
-        "Lei Shi"
-      ],
-      "venue": "arXiv preprint",
-      "year": 2026,
-      "doi": "10.48550/arXiv.2603.10391",
-      "link": "https://arxiv.org/abs/2603.10391"
-    },
-    {
-      "title": "A software benchmark for cardiac elastodynamics",
-      "authors": [
-        "Reidmen Aróstica",
-        "David Nolte",
-        "Aaron L. Brown",
-        "A. Gebauer",
-        "E. Karabelas",
-        "Javiera Jilberto",
-        "Matteo Salvador",
-        "Michele Bucelli",
-        "R. Piersanti",
-        "Kasra Osouli",
-        "Christoph M. Augustin",
-        "H. Finsberg",
-        "Lei Shi",
-        "M. Hirschvogel",
-        "M. Pfaller",
-        "P. C. Africa",
-        "M. Gsell",
-        "Alison L. Marsden",
-        "D. Nordsletten",
-        "Francesco Regazzoni",
-        "Gernot Plank",
-        "J. Sundnes",
-        "Luca Dede'",
-        "M. Peirlinck",
-        "Vijay Vedula",
-        "Wolfgang Wall",
-        "Cristóbal Bertoglio"
-      ],
-      "venue": "Computer Methods in Applied Mechanics and Engineering",
-      "year": 2025,
-      "doi": "10.1016/j.cma.2024.117485",
-      "link": "https://doi.org/10.1016/j.cma.2024.117485"
+      "doi": "10.1016/j.jmps.2025.106348",
+      "link": "https://doi.org/10.1016/j.jmps.2025.106348"
     },
     {
       "title": "Personalized biventricular mechanics and sensitivity to model morphology",
@@ -104,28 +55,105 @@
         "Daniel B. Ennis",
         "Ian Chen",
         "Vijay Vedula",
-        "A. Marsden"
+        "Alison L. Marsden"
       ],
-      "venue": "bioRxiv",
-      "year": 2025,
-      "doi": "10.64898/2025.12.11.693778",
-      "link": "https://doi.org/10.64898/2025.12.11.693778"
+      "venue": "Biomechanics and Modeling in Mechanobiology",
+      "year": 2026,
+      "doi": "10.1007/s10237-026-02127-w",
+      "link": "https://doi.org/10.1007/s10237-026-02127-w"
     },
     {
-      "title": "An Optimization Framework to Personalize Passive Cardiac Mechanics",
+      "title": "Personalized multiscale modeling of left atrial mechanics and blood flow",
       "authors": [
         "Lei Shi",
-        "Ian Chen",
-        "Hiroo Takayama",
+        "Boyang Gan",
+        "Ian Y. Chen",
         "Vijay Vedula"
       ],
       "venue": "Computer Methods in Applied Mechanics and Engineering",
-      "year": 2024,
-      "doi": "10.48550/arXiv.2404.02807",
-      "link": "https://doi.org/10.48550/arXiv.2404.02807"
+      "year": 2026,
+      "doi": "10.1016/j.cma.2025.118412",
+      "link": "https://doi.org/10.1016/j.cma.2025.118412"
     },
     {
-      "title": "A Modular Framework for Implicit 3D-0D Coupling in Cardiac Mechanics",
+      "authors": [
+        "Nanlong Sun",
+        "Lei Shi"
+      ],
+      "venue": "arXiv preprint",
+      "doi": "10.48550/arXiv.2603.10391",
+      "link": "https://arxiv.org/abs/2603.10391",
+      "title": "Variance-Aware Adaptive Weighting for Diffusion Model Training",
+      "year": 2026
+    },
+    {
+      "title": "A software benchmark for cardiac elastodynamics",
+      "authors": [
+        "Reidmen Aróstica",
+        "David Nolte",
+        "Aaron Brown",
+        "Amadeus Gebauer",
+        "Elias Karabelas",
+        "Javiera Jilberto",
+        "Matteo Salvador",
+        "Michele Bucelli",
+        "Roberto Piersanti",
+        "Kasra Osouli",
+        "Christoph Augustin",
+        "Henrik Finsberg",
+        "Lei Shi",
+        "Marc Hirschvogel",
+        "Martin Pfaller",
+        "Pasquale Claudio Africa",
+        "Matthias Gsell",
+        "Alison Marsden",
+        "David Nordsletten",
+        "Francesco Regazzoni",
+        "Gernot Plank",
+        "Joakim Sundnes",
+        "Luca Dede’",
+        "Mathias Peirlinck",
+        "Vijay Vedula",
+        "Wolfgang Wall",
+        "Cristóbal Bertoglio"
+      ],
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2025,
+      "doi": "10.1016/j.cma.2024.117485",
+      "link": "https://doi.org/10.1016/j.cma.2024.117485"
+    },
+    {
+      "title": "Advances in Materials and Actuation Strategies for Wearable Medical Robotics: Optimization for Biomedical Applications",
+      "authors": [
+        "Jing Fang",
+        "Yue Li",
+        "Lei Shi"
+      ],
+      "venue": "MedMat",
+      "year": 2025,
+      "doi": "10.1097/mm9.0000000000000027",
+      "link": "https://doi.org/10.1097/mm9.0000000000000027"
+    },
+    {
+      "title": "Equilibrium mechanical properties of the human uterus in tension and compression",
+      "authors": [
+        "Shuyang Fang",
+        "Camilo A. Duarte",
+        "Daniella M. Fodera",
+        "Lei Shi",
+        "Xiaowei Chen",
+        "Arnold P. Advincula",
+        "Joy Vink",
+        "Christine P. Hendon",
+        "Kristin M. Myers"
+      ],
+      "venue": "Acta Biomaterialia",
+      "year": 2025,
+      "doi": "10.1016/j.actbio.2025.01.033",
+      "link": "https://doi.org/10.1016/j.actbio.2025.01.033"
+    },
+    {
+      "title": "A modular framework for implicit 3D–0D coupling in cardiac mechanics",
       "authors": [
         "Aaron L. Brown",
         "Matteo Salvador",
@@ -133,37 +161,230 @@
         "Martin R. Pfaller",
         "Zinan Hu",
         "Kaitlin E. Harold",
-        "Tzung-Hsi K. Ai",
-        "Vijay Vedula",
-        "A. Marsden"
-      ],
-      "venue": "Computer Methods in Applied Mechanics and Engineering",
-      "year": 2023,
-      "doi": "10.48550/arXiv.2310.13780",
-      "link": "https://doi.org/10.48550/arXiv.2310.13780"
-    },
-    {
-      "title": "A Comparison of Hyperelastic Constitutive Models for Passive Cardiac Mechanics",
-      "authors": [
-        "Lei Shi",
+        "Tzung Hsiai",
         "Vijay Vedula",
         "Alison L. Marsden"
       ],
-      "venue": "Acta Biomaterialia",
-      "year": 2022,
-      "doi": null,
-      "link": null
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2024,
+      "doi": "10.1016/j.cma.2024.116764",
+      "link": "https://doi.org/10.1016/j.cma.2024.116764"
     },
     {
-      "title": "Computational Modeling of the Stomach: A Review",
+      "title": "An optimization framework to personalize passive cardiac mechanics",
       "authors": [
         "Lei Shi",
+        "Ian Y. Chen",
+        "Hiroo Takayama",
         "Vijay Vedula"
+      ],
+      "venue": "Computer Methods in Applied Mechanics and Engineering",
+      "year": 2024,
+      "doi": "10.1016/j.cma.2024.117401",
+      "link": "https://doi.org/10.1016/j.cma.2024.117401"
+    },
+    {
+      "title": "A finite porous-viscoelastic model capturing mechanical behavior of human cervix under multi-step spherical indentation",
+      "authors": [
+        "Lei Shi",
+        "Kristin Myers"
+      ],
+      "venue": "Journal of the Mechanical Behavior of Biomedical Materials",
+      "year": 2023,
+      "doi": "10.1016/j.jmbbm.2023.105875",
+      "link": "https://doi.org/10.1016/j.jmbbm.2023.105875"
+    },
+    {
+      "title": "A biomimetic multilayered polymeric material designed for heart valve repair and replacement",
+      "authors": [
+        "Mingze Sun",
+        "Mohamed Elkhodiry",
+        "Lei Shi",
+        "Yingfei Xue",
+        "Maryam H. Abyaneh",
+        "Alexander P. Kossar",
+        "Caroline Giuglaris",
+        "Samuel L. Carter",
+        "Richard L. Li",
+        "Emile Bacha",
+        "Giovanni Ferrari",
+        "Jeffrey Kysar",
+        "Kristin Myers",
+        "David Kalfa"
+      ],
+      "venue": "Biomaterials",
+      "year": 2022,
+      "doi": "10.1016/j.biomaterials.2022.121756",
+      "link": "https://doi.org/10.1016/j.biomaterials.2022.121756"
+    },
+    {
+      "title": "Mechanical Response of Mouse Cervices Lacking Decorin and Biglycan During Pregnancy",
+      "authors": [
+        "Nicole Lee",
+        "Lei Shi",
+        "Mariano Colon Caraballo",
+        "Shanmugasundaram Nallasamy",
+        "Mala Mahendroo",
+        "Renato V. Iozzo",
+        "Kristin Myers"
+      ],
+      "venue": "Journal of Biomechanical Engineering",
+      "year": 2022,
+      "doi": "10.1115/1.4054199",
+      "link": "https://doi.org/10.1115/1.4054199"
+    },
+    {
+      "title": "Three-dimensional anisotropic hyperelastic constitutive model describing the mechanical response of human and mouse cervix",
+      "authors": [
+        "Lei Shi",
+        "Lingfeng Hu",
+        "Nicole Lee",
+        "Shuyang Fang",
+        "Kristin Myers"
+      ],
+      "venue": "Acta Biomaterialia",
+      "year": 2022,
+      "doi": "10.1016/j.actbio.2022.07.062",
+      "link": "https://doi.org/10.1016/j.actbio.2022.07.062"
+    },
+    {
+      "title": "Anisotropic Mechanical Properties of the Human Uterus Measured by Spherical Indentation",
+      "authors": [
+        "Shuyang Fang",
+        "James McLean",
+        "Lei Shi",
+        "Joy-Sarah Y. Vink",
+        "Christine P. Hendon",
+        "Kristin M. Myers"
+      ],
+      "venue": "Annals of Biomedical Engineering",
+      "year": 2021,
+      "doi": "10.1007/s10439-021-02769-0",
+      "link": "https://doi.org/10.1007/s10439-021-02769-0"
+    },
+    {
+      "title": "Nacre‐Inspired Composite Electrolytes for Load‐Bearing Solid‐State Lithium‐Metal Batteries",
+      "authors": [
+        "Aijun Li",
+        "Xiangbiao Liao",
+        "Hanrui Zhang",
+        "Lei Shi",
+        "Peiyu Wang",
+        "Qian Cheng",
+        "James Borovilas",
+        "Zeyuan Li",
+        "Wenlong Huang",
+        "Zhenxuan Fu",
+        "Martin Dontigny",
+        "Karim Zaghib",
+        "Kristin Myers",
+        "Xiuyun Chuan",
+        "Xi Chen",
+        "Yuan Yang"
+      ],
+      "venue": "Advanced Materials",
+      "year": 2020,
+      "doi": "10.1002/adma.201905517",
+      "link": "https://doi.org/10.1002/adma.201905517"
+    },
+    {
+      "title": "Anisotropic Material Characterization of Human Cervix Tissue Based on Indentation and Inverse Finite Element Analysis",
+      "authors": [
+        "Lei Shi",
+        "Wang Yao",
+        "Yu Gan",
+        "Lily Y. Zhao",
+        "W. Eugene McKee",
+        "Joy Vink",
+        "Ronald J. Wapner",
+        "Christine P. Hendon",
+        "Kristin Myers"
       ],
       "venue": "Journal of Biomechanical Engineering",
       "year": 2019,
-      "doi": null,
-      "link": null
+      "doi": "10.1115/1.4043977",
+      "link": "https://doi.org/10.1115/1.4043977"
+    },
+    {
+      "title": "Thermally stable, nano-porous and eco-friendly sodium alginate/attapulgite separator for lithium-ion batteries",
+      "authors": [
+        "Qingquan Song",
+        "Aijun Li",
+        "Lei Shi",
+        "Cheng Qian",
+        "Tony Gordon Feric",
+        "Yanke Fu",
+        "Hanrui Zhang",
+        "Zeyuan Li",
+        "Peiyu Wang",
+        "Zheng Li",
+        "Haowei Zhai",
+        "Xue Wang",
+        "Martin Dontigny",
+        "Karim Zaghib",
+        "Ah-Hyung (Alissa) Park",
+        "Kristin Myers",
+        "Xiuyun Chuan",
+        "Yuan Yang"
+      ],
+      "venue": "Energy Storage Materials",
+      "year": 2019,
+      "doi": "10.1016/j.ensm.2019.06.033",
+      "link": "https://doi.org/10.1016/j.ensm.2019.06.033"
+    },
+    {
+      "title": "Configurational Entropy of Adlayers in Atomic Layer Deposition",
+      "authors": [
+        "Lei Shi",
+        "Zhengning Gao",
+        "Zhaonan Liu",
+        "Yoon Myung",
+        "Parag Banerjee"
+      ],
+      "venue": "Chemistry of Materials",
+      "year": 2017,
+      "doi": "10.1021/acs.chemmater.6b04829",
+      "link": "https://doi.org/10.1021/acs.chemmater.6b04829"
+    },
+    {
+      "title": "Optimal Control for a Cooperative Rendezvous Between Two Spacecraft from Determined Orbits",
+      "authors": [
+        "Weiming Feng",
+        "Liping Han",
+        "Lei Shi",
+        "Di Zhao",
+        "Kun Yang"
+      ],
+      "venue": "The Journal of the Astronautical Sciences",
+      "year": 2016,
+      "doi": "10.1007/s40295-015-0079-4",
+      "link": "https://doi.org/10.1007/s40295-015-0079-4"
+    },
+    {
+      "title": "Optimization control for the far-distance rapid cooperative rendezvous of spacecraft with different masses",
+      "authors": [
+        "Weiming Feng",
+        "Di Zhao",
+        "Lei Shi",
+        "Kun Yang",
+        "Junfeng Zhao"
+      ],
+      "venue": "Aerospace Science and Technology",
+      "year": 2015,
+      "doi": "10.1016/j.ast.2015.06.015",
+      "link": "https://doi.org/10.1016/j.ast.2015.06.015"
+    },
+    {
+      "title": "Optimal control for far-distance rapid cooperative rendezvous",
+      "authors": [
+        "Wei-ming Feng",
+        "Fei Ren",
+        "Lei Shi"
+      ],
+      "venue": "Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering",
+      "year": 2014,
+      "doi": "10.1177/0954410014524182",
+      "link": "https://doi.org/10.1177/0954410014524182"
     }
   ]
 }

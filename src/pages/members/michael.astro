@@ -5,42 +5,43 @@ const member = {
   fullName: "Michael Duong",
   role: "Undergraduate Researcher",
   image: "/assets/images/members/michael.png",
-  email: "undergraduate@example.com",
+  email: "",
   department: "Intelligent Biomechanics Lab",
   shortBio:
-    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+    "Michael Duong is an undergraduate researcher in the Intelligent Biomechanics Lab at Kennesaw State University, with interests in software engineering and machine learning.",
 
   introduction:
-    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+    "Michael joined the Intelligent Biomechanics Lab as an undergraduate researcher, contributing to interdisciplinary projects that combine biomechanics, data analysis, and computational research under the mentorship of Dr. Lei Shi. Michael's project work includes developing a machine learning model and an autonomous electric machine. Michael was named a 2025 KSU Freshman Academic Scholar and earned a place on the 2025 Dean's Honor List.",
 
   hobbies: [
     "Reading",
     "Drawing",
-    "Playing Videogames",
+    "Playing Video Games",
     "Meditating"
   ],
 
   academicExperience: [
-    "Highschool Diploma - Buford Highschool"
+    "Undergraduate Studies - Kennesaw State University",
+    "High School Diploma - Buford High School"
   ],
 
   workExperience: [
-    "Researcher, Kennesaw State University",
-    "Intern, Skyline Technologies"
+    "Undergraduate Researcher - Intelligent Biomechanics Lab, Kennesaw State University",
+    "Intern - Skyline Technologies"
   ],
 
   cvSections: [
     {
       title: "Career Interests",
       items: [
-        "Software Engineer",
+        "Software Engineering"
       ]
     },
     {
       title: "Selected Projects",
       items: [
-        "Developing Machine Learning Model",
-        "Developing autonomous Electric Machine"
+        "Developing a Machine Learning Model",
+        "Developing an Autonomous Electric Machine"
       ]
     },
     {
@@ -97,10 +98,12 @@ const member = {
               <span class="cs-meta-label">Role</span>
               <span class="cs-meta-value">{member.role}</span>
             </div>
-            <div class="cs-meta-item">
-              <span class="cs-meta-label">Email</span>
-              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
-            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -137,7 +140,7 @@ const member = {
             <h2>CV Overview</h2>
             <br>
             <div class="cs-cv-grid">
-              {member.cvSections.map((section) => (
+              {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
                 <div class="cs-cv-card">
                   <h3>{section.title}</h3>
                   <ul class="cs-list">
@@ -159,14 +162,18 @@ const member = {
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
-              <li>
-                <span>Birthplace:</span>
-                <strong>{member.locations.birthplace}</strong>
-              </li>
-              <li>
-                <span>Hobbies:</span>
-                <strong>{member.hobbies.join(", ")}</strong>
-              </li>
+              {member.locations.birthplace && (
+                <li>
+                  <span>Birthplace:</span>
+                  <strong>{member.locations.birthplace}</strong>
+                </li>
+              )}
+              {member.hobbies.length > 0 && (
+                <li>
+                  <span>Hobbies:</span>
+                  <strong>{member.hobbies.join(", ")}</strong>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -174,7 +181,6 @@ const member = {
           <section class="cs-section-card cs-map-section">
             <h2>Places Visited</h2>
             <br>
-            </p>
 
             <div class="cs-map-wrap" id="cs-map-wrap">
               <canvas id="cs-map-canvas"></canvas>

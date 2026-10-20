@@ -3,57 +3,40 @@ import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const member = {
   fullName: "Ty Johnston",
-  role: "Undergraduate Researcher",
+  role: "Former Undergraduate Researcher",
   image: "/assets/images/members/ty.png",
-  email: "undergraduate@example.com",
+  email: "",
   department: "Intelligent Biomechanics Lab",
   shortBio:
-    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+    "Ty Johnston is a former undergraduate researcher in the Intelligent Biomechanics Lab at Kennesaw State University, with career interests in mechanical engineering.",
 
   introduction:
-    "They are an undergraduate student researcher in the Intelligent Biomechanics Lab, where they contribute to interdisciplinary projects in biomechanics, data analysis, and computational research.",
+    "Ty joined the Intelligent Biomechanics Lab as an undergraduate researcher, contributing to interdisciplinary projects that combine biomechanics, data analysis, and computational research under the mentorship of Dr. Lei Shi. Ty's career interests include mechanical engineering.",
 
   hobbies: [
-    "Hockey",
+    "Hockey"
   ],
 
   academicExperience: [
-    "Highschool Diploma - [Some Highschool]"
+    "Undergraduate Studies - Kennesaw State University"
   ],
 
   workExperience: [
-    "Researcher, Kennesaw State University",
-    "Previous Position - Institution / Organization",
-    "Previous Position - Institution / Organization"
+    "Undergraduate Researcher - Intelligent Biomechanics Lab, Kennesaw State University"
   ],
 
   cvSections: [
     {
       title: "Career Interests",
       items: [
-        "Mechanical Engineer",
-      ]
-    },
-    {
-      title: "Selected Projects",
-      items: [
-        "Project title or short description",
-        "Project title or short description",
-        "Project title or short description"
-      ]
-    },
-    {
-      title: "Awards / Honors",
-      items: [
-        "Award or recognition",
-        "Award or recognition"
+        "Mechanical Engineering"
       ]
     }
   ],
 
   locations: {
     birthplace: "Grand Rapids, Michigan",
-    highSchool: "Example High School",
+    highSchool: "",
     traveled: [
       { name: "United States", country: "USA", lat: 37.0902, lon: -95.7129, label: "Research" }
     ]
@@ -98,10 +81,12 @@ const member = {
               <span class="cs-meta-value">{member.role}</span>
             </div>
 
-            <div class="cs-meta-item">
-              <span class="cs-meta-label">Email</span>
-              <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
-            </div>
+            {member.email && (
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Email</span>
+                <a class="cs-meta-value" href={`mailto:${member.email}`}>{member.email}</a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -134,7 +119,7 @@ const member = {
           <section class="cs-section-card">
             <h2>CV Overview</h2>
             <div class="cs-cv-grid">
-              {member.cvSections.map((section) => (
+              {member.cvSections.filter((section) => section.items.length > 0).map((section) => (
                 <div class="cs-cv-card">
                   <h3>{section.title}</h3>
                   <ul class="cs-list">
@@ -177,16 +162,21 @@ const member = {
                 <span>Name</span>
                 <strong>{member.fullName}</strong>
               </li>
-              <li>
-                <span>Birthplace:</span>
-                <strong>{member.locations.birthplace}</strong>
-              </li>
-              <li>
-                <span>Hobbies:</span>
-                <strong>{member.hobbies.join(", ")}</strong>
-              </li>
+              {member.locations.birthplace && (
+                <li>
+                  <span>Birthplace:</span>
+                  <strong>{member.locations.birthplace}</strong>
+                </li>
+              )}
+              {member.hobbies.length > 0 && (
+                <li>
+                  <span>Hobbies:</span>
+                  <strong>{member.hobbies.join(", ")}</strong>
+                </li>
+              )}
             </ul>
           </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

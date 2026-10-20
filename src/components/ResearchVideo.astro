@@ -1,0 +1,133 @@
+---
+// Video slot for a research area. `src` can be a local file in /public
+// (e.g. "/assets/videos/heartsim.mp4") or a YouTube/Vimeo link.
+// Leave `src` empty to show a placeholder until the video is ready.
+interface Props {
+  src?: string;
+  poster?: string;
+  title: string;
+  caption?: string;
+}
+
+const { src = "", poster, title, caption } = Astro.props;
+
+const youtube = src.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+const vimeo = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+const embed = youtube
+  ? `https://www.youtube-nocookie.com/embed/${youtube[1]}`
+  : vimeo
+    ? `https://player.vimeo.com/video/${vimeo[1]}`
+    : null;
+---
+
+<figure class="rv">
+  <div class="rv-frame">
+    {embed ? (
+      <iframe
+        src={embed}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        allowfullscreen
+      ></iframe>
+    ) : src ? (
+      <video controls playsinline preload="metadata" poster={poster}>
+        <source src={src} type="video/mp4" />
+      </video>
+    ) : (
+      <div class="rv-placeholder" role="img" aria-label={`${title}: video coming soon`}>
+        <span class="rv-play">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+        </span>
+        <span class="rv-placeholder-title">{title}</span>
+        <span class="rv-placeholder-note">Simulation video coming soon</span>
+      </div>
+    )}
+  </div>
+  {src && caption && <figcaption class="rv-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .rv {
+    max-width: 52rem;
+    margin: 0 auto;
+    border-radius: 0.875rem;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+  }
+
+  .rv-frame {
+    aspect-ratio: 16 / 9;
+    background: #0f172a;
+    position: relative;
+  }
+
+  .rv-frame iframe,
+  .rv-frame video {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    object-fit: contain;
+    background: #000;
+  }
+
+  .rv-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    color: #cbd5e1;
+    background:
+      linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 50% 45%, #1e3a5f 0%, #0f172a 70%);
+    background-size: 32px 32px, 32px 32px, 100% 100%;
+  }
+
+  .rv-play {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rv-play svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-left: 0.2rem;
+    fill: #fff;
+  }
+
+  .rv-placeholder-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .rv-placeholder-note {
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+  }
+
+  .rv-caption {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #64748b;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+  }
+</style>
